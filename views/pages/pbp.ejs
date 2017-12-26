@@ -1,0 +1,85 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="/js/scripts.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>ADCA
+<ul class="nav">     
+<li><a href = "/pbp.php">Play-by-Play</a></li>  
+<li>TDF</li>  
+</ul>
+
+
+<ul class="nav">
+    <li> 
+        User: <%=user.local.email%>
+    </li>
+    <br/> <br/>
+    <li> 
+        To use this site, we hope you will click on the names of shows you want to see below or use the Quick Select buttons to the right.
+    </li>
+</ul>
+
+<br/><br/>
+<div class="page-header text-center">
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <a href="/pbp" class="btn btn-default btn-sm">PBP</a>
+    </div>
+
+
+<table class="quickwatch" style="float:right;">
+
+<tr>
+   <th style='width:40%'>Quickly Select</th>
+   <th style='width:30%'>Current</th>
+   <th style='width:30%'>Future</th>
+</tr>
+<tr>
+   <td><a  class='quickButton'>Watch All</a></td>
+   <td><input type='checkbox'  id='all_alls_cur'              data-userid = <%=user._id%> data-category = 'All' data-mode = 'offx' data-watchType = 1 onmousedown="watchGenre(this);" ></input></td>
+   <td><input type='checkbox'
+<% if (user.local.genre_alls_fut==1){%>checked<%}else{%><%}%>
+
+    id='all_alls_fut'   data-userid = $<%=user._id%> data-category = 'All' data-mode = '<% if (user.local.genre_alls_fut==1){%>onx<%}else{%>offx<%}%>' data-watchType = 2 onmousedown="watchGenre(this);" ></input></td>
+</tr>
+<div class="container">
+
+    
+<%categories.forEach(function(category){%>
+    <tr><td><a  class='quickButton'><%=category[0]%></a></td>
+    <td><input type='checkbox'  id='all_<%=category[0].substr(0,4).toLowerCase()%>_cur' data-userid = <%=user._id%> data-category = '<%=category[0]%>' data-mode = 'offx' data-watchType = 1    onmousedown="watchGenre(this);" ></input></td>
+    <td><input type='checkbox' 
+ <% if (category[1] == 1){%>checked<%} else{%><%}%> 
+    id='all_<%=category[0].toLowerCase().substr(0,4)%>_fut' data-userid = <%=user._id%> data-category = '<%=category[0]%>' data-mode = '<% if (category[1] == 1){%>onx<%} else{%>offx<%}%>' data-watchType = 2    onmousedown="watchGenre(this);" ></input></td>
+<%})%>
+       
+
+<table class="portfolio sortable" style="display: inline-block" >
+
+    <tr>
+        <th style='width: 75%'>Title</th>
+        <th style='width: 25%'>Genre</th>
+    </tr>
+    <%dshow.forEach(function(entry){%>
+        <tr><td><a id='<%=entry.titleHist.titleGenre.substr(0,4).toLowerCase()%>_<%=entry.titleHist.titleId%>'
+class='<% if (entry.title.watchThis == 1){%>onxButton<%} else{%>offxButton<%}%> showButton' data-mode='<% if (entry.title.watchThis == 1){%>onx<%} else{%>offx<%}%>' data-genre='<%=entry.titleHist.titleGenre%>'
+onmousedown='watchshow(this)'
+><%=entry.titleHist.title%></a></td>
+<td class='genre'><%=entry.titleHist.titleGenre%></td></tr>
+    <%})%>        
+
+
+</div>
+
+
+</body>
+</html>
