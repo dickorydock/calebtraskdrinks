@@ -44,8 +44,7 @@ module.exports = function(survey) {
         console.log("this is them");
         console.log(res);
     
-    }){
-        }
+    });
         // asynchronous
         // process.nextTick(function() {
         // find a user whose email is the same as the forms email
@@ -62,26 +61,27 @@ module.exports = function(survey) {
                // return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             //} else {
                 // if there is no user with that email
+
+
+                
                 // create the user
-                var newUserSurvey            = new userSurvey();
+        //         var newUserSurvey            = new userSurvey();
 
-                // set the user's local credentials
-                newUser.question.email    = email;
-                newUser.local.password = newUser.generateHash(password);
+        //         newUser.question.email    = email;
+        //         newUser.local.password = newUser.generateHash(password);
 
-                newUser.local.genre_broa_cur = 0 ;
-                newUser.local.genre_caba_cur = 0 ;
-                newUser.local.genre_chil_cur = 0 ;
+        //         newUser.local.genre_broa_cur = 0 ;
+        //         newUser.local.genre_caba_cur = 0 ;
+        //         newUser.local.genre_chil_cur = 0 ;
 
-                // save the user --- turning off this function
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-             }});    
+        //         newUser.save(function(err) {
+        //             if (err)
+        //                 throw err;
+        //             return done(null, newUser);
+        //         });
+        //      }});    
 
-        });
+        // });
 
     // }));
 
