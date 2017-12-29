@@ -10,6 +10,22 @@ module.exports =
     makesurvey: function(req, res){
         console.log("OH GOD");
         console.log(req.body);
+
+
+        var newUserSurvey            = new userSurvey();
+
+        // set the user's local credentials
+        newUserSurvey.surveyQuestion    = req.body.question;
+        newUserSurvey.surveyOptions     = [req.body.option1, req.body.option2, req.body.option3, 
+                                            req.body.option4, req.body.option5];
+        newUserSurvey.surveyResponses   = [0,0,0,0,0];
+
+        // save the user --- turning off this function
+        newUserSurvey.save(function(err) {
+            if (err)
+                throw err;
+            return done(null, newUser);
+        });
     }
     // =========================================================================
     // survey session setup ==================================================
