@@ -74,7 +74,7 @@ module.exports = function(app, passport, survey) {
         });
     });  
 
-    // var survey   = require('./config/survey.js');
+    var survey   = require('../config/survey.js');
 
     app.post('/makesurvey', function(req,res){
         console.log("POSTED");
