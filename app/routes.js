@@ -74,6 +74,7 @@ module.exports = function(app, passport, survey) {
         });
     });  
     app.post('/makesurvey', function(req,res){
+        console.log("POSTED");
         console.log(req.body);
     });
 
