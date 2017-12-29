@@ -43,13 +43,13 @@ module.exports =
         // passReqToCallback : true // allows us to pass back the entire request to the callback
     // },
     // function(req, email, password, done) {
-    survey.makesurvey(req, res, function(req,res){
-        console.log("this is us");
-        console.log(req.body);
-        console.log("this is them");
-        console.log(res);
+    // survey.makesurvey(req, res, function(req,res){
+    //     console.log("this is us");
+    //     console.log(req.body);
+    //     console.log("this is them");
+    //     console.log(res);
     
-    });
+    // });
         // asynchronous
         // process.nextTick(function() {
         // find a user whose email is the same as the forms email
