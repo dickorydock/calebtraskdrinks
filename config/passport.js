@@ -90,7 +90,7 @@ module.exports = function(passport) {
     // =========================================================================
     // TWITTER =================================================================
     // =========================================================================
-    passport.use(new TwitterStrategy({
+    passport.use('twitter', new TwitterStrategy({
 
         consumerKey     : configAuth.twitterAuth.consumerKey,
         consumerSecret  : configAuth.twitterAuth.consumerSecret,
