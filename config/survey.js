@@ -23,6 +23,8 @@ module.exports =
         newUserSurvey.surveyQuestion    = req.body.question;
         newUserSurvey.surveyOptions     = arrOptions;
         newUserSurvey.surveyResponses   = [0,0,0,0,0];
+        newUserSurvey.surveyActive      = 1 ; 
+        newUserSurvey.userId            = req.user._id;
 
         // save the userSurvey
         return newUserSurvey.save();

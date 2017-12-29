@@ -20,6 +20,46 @@
 
     <div class="row">
 
+        <!-- MY SURVEYS -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> My Surveys</h3>
+                    <tr>
+                    <th style='width: 75%'>Survey Question</th>
+                    <th style='width: 25%'>Number of Responses</th>
+                    </tr>
+                    <%dshow.forEach(function(entry){%>
+                        <tr><td><a id='<%=entry.id%>'
+                        class='surveyQuestion'><%=entry.surveyQuestion%></a></td>
+                        <td class='numberResponses'>8</td></tr>
+                    <%})%>   
+
+
+
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-info"><span class="fa fa-twitter"></span> All Surveys</h3>
+                    <p>
+                        <strong>id</strong>: <%= user.twitter.id %><br>
+                        <strong>token</strong>: <%= user.twitter.token %><br>
+                        <strong>username</strong>: <%= user.twitter.username %><br>
+                        <strong>displayName</strong>: <%= user.twitter.displayName %>
+                    </p>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
@@ -36,7 +76,6 @@
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
-
                     <p>
                         <strong>id</strong>: <%= user.twitter.id %><br>
                         <strong>token</strong>: <%= user.twitter.token %><br>
