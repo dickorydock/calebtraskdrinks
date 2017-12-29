@@ -78,16 +78,17 @@ module.exports = function(app, passport, survey) {
         var userId = req.user._id;
         userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
         
-        res.render('pages/pbp.ejs', {
-            user:req.user,
-            userData: doc
-        })          
-        })
+        // res.render('pages/pbp.ejs', {
+            // user:req.user,
+            // userData: doc
+        // })          
+        // })
 // })
 
 
         res.render('pages/makesurvey.ejs', {
-            user : req.user // get the user out of session and pass to template
+            user : req.user,
+            userData: doc // get the user out of session and pass to template
         });
     });  
 
