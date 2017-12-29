@@ -39,9 +39,7 @@ module.exports = function(passport) {
     function(req, email, password, done) {
         
         // asynchronous
-        // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
-        // console.log("dumdum");
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'local.email' :  email }, function(err, user) {
@@ -50,13 +48,11 @@ module.exports = function(passport) {
                 return done(err);
 
             // check to see if theres already a user with that email
-             /* 8-10-2017 NO LONGER ALLOW NEW USERS*/
-              
+             /* 8-10-2017 NO LONGER ALLOW NEW USERS*/              
              if ( user) {
             //if (true) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
-
                 // if there is no user with that email
                 // create the user
                 var newUser            = new User();
@@ -68,35 +64,13 @@ module.exports = function(passport) {
                 newUser.local.genre_broa_cur = 0 ;
                 newUser.local.genre_caba_cur = 0 ;
                 newUser.local.genre_chil_cur = 0 ;
-                newUser.local.genre_conc_cur = 0 ;
-                newUser.local.genre_danc_cur = 0 ;
-                newUser.local.genre_lect_cur = 0 ;
-                newUser.local.genre_live_cur = 0 ;
-                newUser.local.genre_musi_cur = 0 ;
-                newUser.local.genre_othe_cur = 0 ;
-                newUser.local.genre_play_cur = 0 ;
-                newUser.local.genre_spec_cur = 0 ;
-                newUser.local.genre_spor_cur = 0 ;
 
-                newUser.local.genre_broa_fut = 0 ;
-                newUser.local.genre_caba_fut = 0 ;
-                newUser.local.genre_chil_fut = 0 ;
-                newUser.local.genre_conc_fut = 0 ;
-                newUser.local.genre_danc_fut = 0 ;
-                newUser.local.genre_lect_fut = 0 ;
-                newUser.local.genre_live_fut = 0 ;
-                newUser.local.genre_musi_fut = 0 ;
-                newUser.local.genre_othe_fut = 0 ;
-                newUser.local.genre_play_fut = 0 ;
-                newUser.local.genre_spec_fut = 0 ;
-                newUser.local.genre_spor_fut = 0 ;
-
-                newUser.local.genre_alls_fut = 0 ;
-                newUser.local.genre_alls_cur = 0 ;
-
-
-        // save the user --- turning off this function
-                newUser.save();
+                // save the user --- turning off this function
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
              }});    
 
         });
