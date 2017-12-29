@@ -1,6 +1,8 @@
 // app/routes.js
 module.exports = function(app, passport, survey) {
+    var survey   = require('../config/survey.js');
 
+    
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -74,11 +76,8 @@ module.exports = function(app, passport, survey) {
         });
     });  
 
-    var survey   = require('../config/survey.js');
-
     app.post('/makesurvey', function(req,res){
-     
-        survey.makesurvey(req,res);
+        survey.makesurvey(req,res, {successRedirect: '/profile', failureRedirect: '/makeasurvey', failureFlash: true});
 
         //need to make sure they haven't left some survey options blank - or deal with these if they have!
 

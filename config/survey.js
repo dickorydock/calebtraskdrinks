@@ -12,10 +12,13 @@ module.exports =
         console.log(req.body);
 
 
+        var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
+
+        //remove blank options
+        arrOptions = arrOptions.filter(function(n){ return n != undefined }); 
+
         var newUserSurvey            = new userSurvey();
         
-        var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
-        arrOptions = arrOptions.filter(function(n){ return n != undefined }); 
         // set the user's local credentials
         newUserSurvey.surveyQuestion    = req.body.question;
         newUserSurvey.surveyOptions     = arrOptions;
