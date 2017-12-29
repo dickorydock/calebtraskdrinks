@@ -65,7 +65,6 @@ module.exports = function(app, passport, survey) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('pages/profile.ejs', {
-
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -78,7 +77,9 @@ module.exports = function(app, passport, survey) {
 
     app.post('/makesurvey', function(req,res){
         survey.makesurvey(req,res);
-        res.render('pages/profile.ejs');
+        res.render('pages/profile.ejs',, {
+            user : req.user // get the user out of session and pass to template
+        });
         // es, 
             // {successRedirect: '/profile', failureRedirect: '/makeasurvey', failureFlash: true});
 

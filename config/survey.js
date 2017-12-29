@@ -9,7 +9,7 @@ module.exports =
 {
     makesurvey: function(req,res){
         console.log("OH GOD");
-        console.log(req.body);
+        console.log(req);
 
 
         var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
