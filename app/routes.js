@@ -69,7 +69,19 @@ module.exports = function(app, passport, survey) {
                 console.log("IN HERE");
                 res.render('pages/profile.ejs', {
                     user : req.user,
-                    userData: doc // get the user out of session and pass to template
+                    userData: doc,
+                    allData: doc /*need this to be EVERYTHING not just this user*/
+
+
+/*NEXT TO FIX:
+--column widths 
+--actually link to the survey page
+--make a page where you can view the survey and vote! title, options, the number of responses for each. maybe should allow voting, but maybe not multiple times
+--aghhh, make a voting page!
+--add graphic display of results to the survey
+--ok, so one page for voting, one page for viewing maybe? 
+--allow deleting of polls (maybe on the individual poll page?)
+*/ // get the user out of session and pass to template
                 });
             });
         });
