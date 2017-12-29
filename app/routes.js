@@ -84,13 +84,11 @@ module.exports = function(app, passport, survey) {
         // })          
         // })
 // })
-
-
         res.render('pages/makesurvey.ejs', {
-            user : req.user,
-            userData: doc // get the user out of session and pass to template
+                user : req.user,
+                userData: doc // get the user out of session and pass to template
+            });
         });
-    });
     });  
 
     app.post('/makesurvey', function(req,res){
