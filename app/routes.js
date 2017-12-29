@@ -77,7 +77,10 @@ module.exports = function(app, passport, survey) {
     });  
 
     app.post('/makesurvey', function(req,res){
-        survey.makesurvey(req,res, {successRedirect: '/profile', failureRedirect: '/makeasurvey', failureFlash: true});
+        survey.makesurvey(req,res);
+        res.render('pages/profile.ejs');
+        // es, 
+            // {successRedirect: '/profile', failureRedirect: '/makeasurvey', failureFlash: true});
 
         //need to make sure they haven't left some survey options blank - or deal with these if they have!
 

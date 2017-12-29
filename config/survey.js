@@ -7,7 +7,7 @@ var userSurvey            = require('../app/models/userSurvey');
 // expose this function to our app using module.exports
 module.exports =
 {
-    makesurvey: function(req, res, done){
+    makesurvey: function(req,res){
         console.log("OH GOD");
         console.log(req.body);
 
@@ -15,7 +15,7 @@ module.exports =
         var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
 
         //remove blank options
-        arrOptions = arrOptions.filter(function(n){ return n != undefined }); 
+        arrOptions = arrOptions.filter(function(n){ return n != ""}); 
 
         var newUserSurvey            = new userSurvey();
         
@@ -24,7 +24,7 @@ module.exports =
         newUserSurvey.surveyOptions     = arrOptions;
         newUserSurvey.surveyResponses   = [0,0,0,0,0];
 
-        // save the user --- turning off this function
+        // save the userSurvey
         return newUserSurvey.save();
     }
     // =========================================================================
