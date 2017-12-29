@@ -6,10 +6,11 @@ mongoose.Promise = global.Promise;
 // define the schema for our user model
 var userSurveySchema = mongoose.Schema({
         id             : String,
-        user           : String,
+        userId          : String,
         surveyQuestion : String,
         surveyOptions  : Array,
-        surveyResponses: Array
+        surveyResponses: Array,
+        surveyActive :Number
 });
 
 // create the model for users and expose it to our app
