@@ -1,46 +1,25 @@
-// app/models/user.js
-// load the things we need
-var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
 
-// define the schema for our user model
-var userSchema = mongoose.Schema({
+// expose our config directly to our application using module.exports
+module.exports = {
 
-    local            : {
-        email        : String,
-        password     : String,
+    'facebookAuth' : {
+        'clientID'      : 'your-secret-clientID-here', // your App ID
+        'clientSecret'  : 'your-client-secret-here', // your App Secret
+        'callbackURL'   : 'http://localhost:8080/auth/facebook/callback',
+        'profileURL'    : 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
+        'profileFields' : ['id', 'email', 'name'] // For requesting permissions from Facebook API
     },
-    facebook         : {
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
+
+    'twitterAuth' : {
+        'consumerKey'       : 'your-consumer-key-here',
+        'consumerSecret'    : 'your-client-secret-here',
+        'callbackURL'       : 'http://localhost:8080/auth/twitter/callback'
     },
-    twitter          : {
-        id           : String,
-        token        : String,
-        displayName  : String,
-        username     : String
-    },
-    google           : {
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
+
+    'googleAuth' : {
+        'clientID'      : 'your-secret-clientID-here',
+        'clientSecret'  : 'your-client-secret-here',
+        'callbackURL'   : 'http://localhost:8080/auth/google/callback'
     }
 
-});
-
-// methods ======================
-// generating a hash
-userSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
-
-// checking if password is valid
-userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.local.password);
-};
-
-// create the model for users and expose it to our app
-module.exports = mongoose.model('User', userSchema);
