@@ -21,11 +21,7 @@ module.exports =
         newUserSurvey.surveyResponses   = [0,0,0,0,0];
 
         // save the user --- turning off this function
-        newUserSurvey.save(function(err) {
-            if (err)
-                throw err;
-            return done(null, newUserSurvey);
-        });
+        return newUserSurvey.save();
     }
     // =========================================================================
     // survey session setup ==================================================
