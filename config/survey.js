@@ -7,7 +7,7 @@ var userSurvey            = require('../app/models/userSurvey');
 // expose this function to our app using module.exports
 module.exports =
 {
-    makesurvey: function(req, res){
+    makesurvey: function(req, res, done){
         console.log("OH GOD");
         console.log(req.body);
 
@@ -24,7 +24,7 @@ module.exports =
         newUserSurvey.save(function(err) {
             if (err)
                 throw err;
-            return done(null, newUser);
+            return done(null, newUserSurvey);
         });
     }
     // =========================================================================
