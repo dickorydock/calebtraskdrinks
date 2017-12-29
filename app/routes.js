@@ -73,7 +73,9 @@ module.exports = function(app, passport, survey) {
             user : req.user // get the user out of session and pass to template
         });
     });  
-    app.post('/makesurvey', survey.makeSurvey(req,res));
+    app.post('/makesurvey', function(req,res){
+        console.log(req.body);
+    });
 
     // =====================================
     // LOGOUT ==============================
