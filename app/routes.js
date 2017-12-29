@@ -77,7 +77,7 @@ module.exports = function(app, passport, survey) {
 
     app.post('/makesurvey', function(req,res){
         survey.makesurvey(req,res);
-        res.render('pages/profile.ejs',, {
+        res.render('pages/profile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
         // es, 
