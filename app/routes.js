@@ -73,9 +73,22 @@ module.exports = function(app, passport, survey) {
             user : req.user // get the user out of session and pass to template
         });
     });  
+
+    var curtainup   = require('./config/survey.js');
+
     app.post('/makesurvey', function(req,res){
         console.log("POSTED");
         console.log(req.body);
+
+        survey.makesurvey(req,res);
+
+        //need to make sure they haven't left some survey options blank - or deal with these if they have!
+
+        //post to the database
+
+        //ok so two tabs on the home page
+            //list all your surveys / make a new survey
+            //links to most recent surveys made by others
     });
 
     // =====================================

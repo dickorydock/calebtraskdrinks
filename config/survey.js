@@ -5,7 +5,12 @@
 var userSurvey            = require('../app/models/userSurvey');
 
 // expose this function to our app using module.exports
-module.exports = function(survey) {
+module.exports =
+{
+    makesurvey: function(req, res){
+        console.log("OH GOD");
+        console.log(req.body);
+    }
     // =========================================================================
     // survey session setup ==================================================
     // =========================================================================
@@ -40,7 +45,7 @@ module.exports = function(survey) {
     // function(req, email, password, done) {
     survey.makesurvey(req, res, function(req,res){
         console.log("this is us");
-        console.log(req);
+        console.log(req.body);
         console.log("this is them");
         console.log(res);
     
@@ -63,7 +68,7 @@ module.exports = function(survey) {
                 // if there is no user with that email
 
 
-                
+
                 // create the user
         //         var newUserSurvey            = new userSurvey();
 
