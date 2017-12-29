@@ -65,8 +65,6 @@ module.exports = function(app, passport, survey) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
             var userSurveys  = require('./models/userSurvey');
-            var users       = require('./models/user');
-            // var userId = req.user._id;
             userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
                 console.log("IN HERE");
                 res.render('pages/profile.ejs', {
@@ -77,31 +75,21 @@ module.exports = function(app, passport, survey) {
         });
 
     app.get('/makesurvey', isLoggedIn, function(req, res) {
+         // var userSurveys  = require('./models/userSurvey');
+        // userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
         
-
- // app.get('/pbp', isLoggedIn, function(req,res){
-        var userSurveys  = require('./models/userSurvey');
-        var users       = require('./models/user');
-        // var userId = req.user._id;
-        userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
-            console.log("IN HERE");
-        // res.render('pages/pbp.ejs', {
-            // user:req.user,
-            // userData: doc
-        // })          
-        // })
-// })
         res.render('pages/makesurvey.ejs', {
                 user : req.user // get the user out of session and pass to template
             });
         });
-    });  
+    // });  
 
     app.post('/makesurvey', function(req,res){
         survey.makesurvey(req,res);
-        res.render('pages/profile.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
+        res.redirect('/profile');
+        // , {
+            // user : req.user // get the user out of session and pass to template
+        // });
         // es, 
             // {successRedirect: '/profile', failureRedirect: '/makeasurvey', failureFlash: true});
 
