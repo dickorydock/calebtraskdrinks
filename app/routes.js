@@ -87,11 +87,11 @@ module.exports = function(app, passport, survey) {
         });
     });
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
-        console.log("WHEEEEEE");
+        console.log("WHEEEEEE"+req.body.text);
         console.log(req.params.id);
-
+        var incVar = 'surveyResponses.'+str(req.body.text)+'.content';
         var userSurveys  = require('./models/userSurvey');
-        userSurveys.update({'_id':  req.params.id}, {"$inc": {'surveyResponses.'+req.body.text+'.content' : 1}});
+        userSurveys.update({'_id':  req.params.id}, {"$inc": {incVar : 1}});
         res.redirect('/profile');
         
         // res.render('pages/survey.ejs', {
