@@ -91,7 +91,7 @@ module.exports = function(app, passport, survey) {
         var myupdate = {$inc:{}};
         myupdate.$inc["surveyResponses."+req.body.text] = 1 ;
         userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
-            console.log("Updated "+req.params.id+" with " + req.body.text);
+            res.redirect('/survey/'+req.params.id);
         });
     });
         // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
