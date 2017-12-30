@@ -26,7 +26,10 @@
                     <option selected disabled value=''>Choose an option:</option>
                     <%surveyData[0].surveyOptions.forEach(function(entry, k ){%>
                         <option value = '<%=k%>'' ><%=entry%></option>
-                    <%})%> 
+                    <%})%>
+ 
+
+
                 </select>
                 <button type="submit" name="submit" value="submit">Submit</button>
                 </form>
@@ -55,7 +58,8 @@
 
         // The data for our dataset
         data: {
-            labels: [<%-chartNames%>],
+            labels: <%chartNames.forEach(function(thisName, k ){%>'<%=thisName%>',<%})%>
+            <!--NO comma here!-->
             datasets: [{
                 label: "My First dataset",
                 data: [<%=chartData%>], 
