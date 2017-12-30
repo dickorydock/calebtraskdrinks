@@ -96,6 +96,8 @@ module.exports = function(app, passport, survey) {
                 });
             });*/
         });
+
+        });
 /*NEXT TO FIX:
 --column widths 
 --actually link to the survey page
