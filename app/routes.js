@@ -91,7 +91,7 @@ module.exports = function(app, passport, survey) {
         console.log(req.params.id);
 
         var userSurveys  = require('./models/userSurvey');
-        userSurveys.update({'_id':  req.params.id}, {"$inc": 'surveyResponses.'+req.body.text+'.content' : 1});
+        userSurveys.update({'_id':  req.params.id}, {"$inc": {'surveyResponses.'+req.body.text+'.content' : 1}});
         res.redirect('/profile');
         
         // res.render('pages/survey.ejs', {
