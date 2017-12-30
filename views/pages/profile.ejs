@@ -24,13 +24,14 @@
         <div class="col-sm-6">
             <div class="well">
                 <h3><span class="fa fa-user"></span> My Surveys</h3>
-                    <div class="row">
-                        <div class="col-sm-10">Survey Question</div>
-                        <div class="col-sm-2"># of Responses</div>
-                        <%userData.forEach(function(entry){%>
-                        <div class="col-sm-10"><a id='<%=entry.id%>'class='surveyQuestion'><%=entry.surveyQuestion%></a></div>
-                        <div class="col-sm-2"><a id='<%=entry.id%>'class='surveyQuestion'><%=entry.surveyActive%></a></div>
-                        <%})%> 
+                <div class="row">
+                    <div class="col-sm-9">Survey Question</div>
+                    <div class="col-sm-3"># of Responses</div>
+                    <%userData.forEach(function(entry){%>
+                    <div class="col-sm-9"><a id='<%=entry.id%>'class='surveyQuestion'><%=entry.surveyQuestion%></a></div>
+                    <div class="col-sm-3"><a id='<%=entry.id%>'class='surveyQuestion'><%=entry.surveyActive%></a></div>
+                    <%})%> 
+                </div>
             </div>
         </div>
         <div class="col-sm-6">
