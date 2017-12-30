@@ -89,17 +89,18 @@ module.exports = function(app, passport, survey) {
         });
     });
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
-        console.log(req.params.id);
-        // res.redirect('/profile');
-        var userSurveys  = require('./models/userSurvey');
-        userSurveys.find({'_id':  req.params.id}, function(err, doc){
+        console.log("WHEEEEEE");
+        console.log(req.body);
+        res.redirect('/profile');
+        // var userSurveys  = require('./models/userSurvey');
+        // userSurveys.find({'_id':  req.params.id}, function(err, doc){
 
-        res.render('pages/survey.ejs', {
-                user : req.user,
-                surveyid: req.params.id,
-                surveyData: doc
-            });
-        });
+        // res.render('pages/survey.ejs', {
+        //         user : req.user,
+        //         surveyid: req.params.id,
+        //         surveyData: doc
+        //     });
+        // });
     });
            /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
                 console.log("IN HERE");
