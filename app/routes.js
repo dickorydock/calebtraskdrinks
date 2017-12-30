@@ -75,7 +75,7 @@ module.exports = function(app, passport, survey) {
             });
         });
   app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
-            console.log(id);
+            console.log(req.params.id);
             res.redirect('/profile');
             var userSurveys  = require('./models/userSurvey');
            /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
