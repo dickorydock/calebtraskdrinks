@@ -116,15 +116,14 @@ module.exports = function(app, passport, survey) {
                 });
             });*/
 /*NEXT TO FIX:
---column widths 
---actually link to the survey page
---make a page where you can view the survey and vote! title, options, the number of responses for each. 
-   maybe should allow voting, but maybe not multiple times per...computer?
---aghhh, make a voting page!
---add graphic display of results to the survey
---ok, so one page for voting, one page for viewing maybe? 
-
---allow deleting of polls (maybe on the individual poll page?)
+--column widths  DONE
+--actually link to the survey page DONE
+--make a page where you can view the survey and vote! title, options, the number of responses for each.  DONE
+   maybe should allow voting, but maybe not multiple times per...computer? TODO
+--aghhh, make a voting page! DONE
+--add graphic display of results to the survey DONE
+--ok, so one page for voting, one page for viewing maybe? SAME PAGE
+--allow deleting of polls (maybe on the individual poll page?) TODO
 */ // get the user out of session and pass to template
 
     app.get('/makesurvey', isLoggedIn, function(req, res) {

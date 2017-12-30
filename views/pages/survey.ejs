@@ -39,8 +39,8 @@
             <div class="well">
                  <h3><span class="fa fa-user surv_title"></span>Survey Results</h3>
                     <%surveyData[0].surveyOptions.forEach(function(entry, k ){%>
-                        <row><div class="col-sm-9"><%=entry%></div>
-                        <div class="col-sm-3"><%=surveyData[0].surveyResponses[k]%></div></row>
+                        <div class="row-fluid"><div class="span9"><%=entry%></div>
+                        <div class="span3"><%=surveyData[0].surveyResponses[k]%></div></div>
                     <%})%> 
             </div>
             <canvas id="myChart"></canvas>
