@@ -80,6 +80,7 @@ module.exports = function(app, passport, survey) {
         var userSurveys  = require('./models/userSurvey');
         // console.log("myres is "+mySurveyResponses);
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
+        console.log(doc);
         var myChartData = doc.surveyResponses.slice(0,doc.surveyOptions.length+1);
         var myChartNames = req.params.surveyOptions;
         console.log(myChartData); 
