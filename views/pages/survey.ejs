@@ -20,9 +20,14 @@
         <div class="col-sm-6">
             <div class="well">
                 <%surveyData.forEach(function(entry){%>
-                    <h3><span class="fa fa-user"></span>Question:</h3>
-                    <div><%=entry.surveyQuestion%></div>
-
+                    <h3><span class="fa fa-user surv_title"></span>Survey Title</h3>
+                    <div class="surv_question"><%=entry.surveyQuestion%></div>
+                    <div class="surv_dropdown"><%=entry.surveyQuestion%></div>
+                    <select>
+                        <option>Milk</option>
+                        <option>Coffee</option>
+                        <option>Tea</option>
+                    </select>
                         <%})%> 
             </div>
         </div>
