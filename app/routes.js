@@ -89,7 +89,10 @@ module.exports = function(app, passport, survey) {
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
         var incVar = '"surveyResponses.'+req.body.text+'"';
-        userSurveys.update({'_id':  req.params.id}, {"$inc": {incVar :1}}, { multi: true },function(err,doc){
+
+        var vals = {};
+        // vals['surveyResponses'.req.body.text] = req.body.hostName;
+        userSurveys.update({'_id':  req.params.id}, {"$inc": {'"surveyResponses.'req.body.text'"' :1}}, { multi: true },function(err,doc){
             console.log("Updated "+req.params.id+" with " + req.body.text);
         });
        
