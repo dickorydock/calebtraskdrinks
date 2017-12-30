@@ -89,14 +89,13 @@ module.exports = function(app, passport, survey) {
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
         var incVar = '"surveyResponses.'+req.body.text+'"';
+        userSurveys.update({'_id':  req.params.id}, {"$inc": {incVar :1}}, { multi: true },function(err,doc){
+            console.log("Updated "+req.params.id+" with " + req.body.text);
+        });
+       
         console.log(req.params.id);
         console.log(incVar);
         // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
-        userSurveys.update({'_id':  req.params.id}, {"$inc": {incVar:1}}, function(err,doc){
-            console.log("OH NO");
-            // console.log(err);
-            // console.log(doc);
-        });
         // res.redirect('/profile');
         
         // res.render('pages/survey.ejs', {
