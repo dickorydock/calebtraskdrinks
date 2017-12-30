@@ -32,6 +32,16 @@
                 </form>
             </div>
         </div>
+        <div class="col-sm-6">
+            <div class="well">
+                 <h3><span class="fa fa-user surv_title"></span>Survey Results</h3>
+                    <option selected disabled value=''>Choose an option:</option>
+                    <%surveyData[0].surveyOptions.forEach(function(entry, k ){%>
+                        <row><div class="col-sm-9"><%=entry%></div>
+                        <div class="col-sm-3">surveyData[0].surveyResponses[k]</div></row>
+                    <%})%> 
+                </div>
+        </div>
     </div>
 </div>
 </body>
