@@ -81,8 +81,8 @@ module.exports = function(app, passport, survey) {
         // console.log("myres is "+mySurveyResponses);
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
         console.log(doc);
-        var myChartData = doc.surveyResponses.slice(0,doc.surveyOptions.length+1);
-        var myChartNames = req.params.surveyOptions;
+        var myChartData = doc[0].surveyResponses.slice(0,doc.surveyOptions.length+1);
+        var myChartNames = doc[0].surveyOptions;
         console.log(myChartData); 
         console.log(myChartNames);
         res.render('pages/survey.ejs', {
