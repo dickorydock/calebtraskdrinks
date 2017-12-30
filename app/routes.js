@@ -94,7 +94,9 @@ module.exports = function(app, passport, survey) {
        
         var oneVote = {$inc:{}};
         oneVote.$inc["surveyResponses."+req.body.text] = 1 ;
-        userSurveys.update({"_id":  req.params.id}, oneVote);
+        userSurveys.update({"_id":  req.params.id}, oneVote, function(err,data){
+            console.log("DID IT");
+        });
        });
            /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
                 console.log("IN HERE");
