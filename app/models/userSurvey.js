@@ -10,7 +10,8 @@ var userSurveySchema = mongoose.Schema({
         surveyQuestion : String,
         surveyOptions  : Array,
         surveyResponses: Array,
-        surveyActive :Number
+        surveyActive :Number,
+        responseCount :Number
 });
 
 // create the model for users and expose it to our app

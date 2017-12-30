@@ -24,6 +24,7 @@ module.exports =
         newUserSurvey.surveyOptions     = arrOptions;
         newUserSurvey.surveyResponses   = [0,0,0,0,0];
         newUserSurvey.surveyActive      = 1 ; 
+        newUserSurvey.responseCount       = 0 ; 
         newUserSurvey.userId            = req.user._id;
 
         // save the userSurvey
