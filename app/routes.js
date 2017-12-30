@@ -78,6 +78,13 @@ module.exports = function(app, passport, survey) {
             console.log(req.params.id);
             res.redirect('/profile');
             var userSurveys  = require('./models/userSurvey');
+            userSurveys.find({'_id.$oid':  req.params.id}, function(err, doc){
+            
+            res.render('pages/survey.ejs', {
+                    user : req.user,
+                    surveyid: req.params.id,
+                    surveydata: doc
+                });
            /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
                 console.log("IN HERE");
                 res.render('pages/profile.ejs', {
