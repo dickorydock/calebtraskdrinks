@@ -17,6 +17,11 @@
         <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
         <%=user%>
         <%=surveyData[0].userId%>
+        <%if (user._id eq surveyData[0].userId){%>
+            WE ARE IN
+            <%}else{%>
+             NO 
+             <%}%>
         <a href="#/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
     <div class="row">
