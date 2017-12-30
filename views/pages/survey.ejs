@@ -21,13 +21,14 @@
             <div class="well">
                      <h3><span class="fa fa-user surv_title"></span>Survey Title</h3>
                     <div class="surv_question"><%=surveyData.surveyQuestion%></div>
-                    <div class="surv_dropdown"><%=entry.surveyQuestion%></div>
+                    <div class="surv_dropdown"><%=surveyData.surveyQuestion%></div>
                     <select name="text">
                         <option selected disabled>Choose an option:</option>
                         <%surveyData.surveyOptions.forEach(function(entry){%>
-                        <option><%=entry%></option>
-                    </select>
+                            <option><%=entry%></option>
                         <%})%> 
+                    </select>
+                    
             </div>
         </div>
     </div>
