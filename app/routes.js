@@ -76,21 +76,14 @@ module.exports = function(app, passport, survey) {
             });
         });
     app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
-        // res.redirect('/profile');
         var userSurveys  = require('./models/userSurvey');
-        // console.log("myres is "+mySurveyResponses);
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
-        console.log(doc);
-        var myChartData = doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length);
-        var myChartNames = doc[0].surveyOptions;
-        // console.log(myChartData); 
-        // console.log(myChartNames);
-        res.render('pages/survey.ejs', {
-                user : req.user,
-                surveyid: req.params.id,
-                surveyData: doc,
-                chartNames: myChartNames,
-                chartData: myChartData
+            res.render('pages/survey.ejs', {
+                    user : req.user,
+                    surveyid: req.params.id,
+                    surveyData: doc,
+                    chartNames: doc[0].surveyOptions,
+                    chartData: doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length)
             });
         });
     });
@@ -129,6 +122,7 @@ module.exports = function(app, passport, survey) {
 --aghhh, make a voting page!
 --add graphic display of results to the survey
 --ok, so one page for voting, one page for viewing maybe? 
+
 --allow deleting of polls (maybe on the individual poll page?)
 */ // get the user out of session and pass to template
 
