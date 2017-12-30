@@ -86,7 +86,7 @@ module.exports = function(app, passport, survey) {
                 user : req.user,
                 surveyid: req.params.id,
                 surveyData: doc,
-                chartNames: '["red", "blue", "green"]',
+                chartNames: ["red", "blue", "green"],
                 chartData: [2,3,4]
             });
         });
