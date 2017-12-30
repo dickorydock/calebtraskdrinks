@@ -88,11 +88,11 @@ module.exports = function(app, passport, survey) {
     });
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
-        var incVar = 'surveyResponses.'+req.body.text;
+        var incVar = '"surveyResponses.'+req.body.text+'"';
         console.log(req.params.id);
         console.log(incVar);
         // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
-        userSurveys.update({'_id':  req.params.id}, {"$inc": {"surveyResponses.3":1}}, function(err,doc){
+        userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyResponses.3 : 1}}, function(err,doc){
             console.log("OH NO");
             // console.log(err);
             // console.log(doc);
