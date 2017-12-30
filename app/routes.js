@@ -79,15 +79,16 @@ module.exports = function(app, passport, survey) {
         // res.redirect('/profile');
         var userSurveys  = require('./models/userSurvey');
         // var myChartNames = req.params.surveyOptions;
-        // var mySurveyResponses = req.params.surveyResponses.slice(0,req.params.surveyOptions.length+1);
         // console.log("myres is "+mySurveyResponses);
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
+        var mySurveyResponses = doc.surveyResponses.slice(0,doc.surveyOptions.length+1);
+        console.log(mySurveyResponses);
         res.render('pages/survey.ejs', {
                 user : req.user,
                 surveyid: req.params.id,
                 surveyData: doc,
-                chartNames: ["red", "blue", "green"],
-                chartData: [2,3,4]
+                chartNames: doc.surveyOptions,
+                chartData: mySurveyResponses
             });
         });
     });
