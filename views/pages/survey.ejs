@@ -38,7 +38,7 @@
                     <option selected disabled value=''>Choose an option:</option>
                     <%surveyData[0].surveyOptions.forEach(function(entry, k ){%>
                         <row><div class="col-sm-9"><%=entry%></div>
-                        <div class="col-sm-3">surveyData[0].surveyResponses[k]</div></row>
+                        <div class="col-sm-3"><%=surveyData[0].surveyResponses[k]%></div></row>
                     <%})%> 
                 </div>
         </div>
