@@ -59,7 +59,7 @@
             datasets: [{
                 label: "My First dataset",
                 data: [<%=chartData%>], 
-                backgroundColor: palette('tol', myData.length).map(function(hex) {return '#' + hex;})
+                backgroundColor: palette('tol', [<%=chartData%>].length).map(function(hex) {return '#' + hex;})
             }]
         },
 
