@@ -24,7 +24,7 @@
                     <div class="surv_dropdown"><%=surveyData.surveyQuestion%></div>
                     <select name="text">
                         <option selected disabled>Choose an option:</option>
-                        <%surveyData.surveyOptions.forEach(function(entry){%>
+                        <%surveyData[0].surveyOptions.forEach(function(entry){%>
                             <option><%=entry%></option>
                         <%})%> 
                     </select>
