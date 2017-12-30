@@ -83,7 +83,7 @@ module.exports = function(app, passport, survey) {
             res.render('pages/survey.ejs', {
                     user : req.user,
                     surveyid: req.params.id,
-                    surveydata: doc
+                    surveyData: doc
                 });
            /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
                 console.log("IN HERE");

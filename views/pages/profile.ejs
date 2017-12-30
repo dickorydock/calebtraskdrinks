@@ -27,8 +27,8 @@
                 <div class="row">
                     <div class="col-sm-9">Survey Question</div>
                     <div class="col-sm-3"># of Responses</div>
-                    <%userData.forEach(function(entry){%>
-                    <div class="col-sm-9"><a href="http://adamtraskvotes.herokuapp.com/survey/<%=entry._id.$oid%>id='<%=entry.id%>" class='surveyQuestion'><%=entry.surveyQuestion%></a></div>
+                    <%surveyData.forEach(function(entry){%>
+                    <div class="col-sm-9"><a href='http://adamtraskvotes.herokuapp.com/survey/<%=entry._id.$oid%> id='<%=entry.id%>" class='surveyQuestion'><%=entry.surveyQuestion%></a></div>
                     <div class="col-sm-3"><a id='<%=entry.id%>'class='surveyQuestion'><%=entry.surveyActive%></a></div>
                     <%})%> 
                 </div>
