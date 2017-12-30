@@ -58,8 +58,8 @@
 
         // The data for our dataset
         data: {
-            labels: <%chartNames.forEach(function(thisName, k ){%>'<%=thisName%>',<%})%>
-            <!--NO comma here!-->
+            labels: [<%chartNames.forEach(function(thisName, k ){%>'<%=thisName%>',<%})%>]
+            ,
             datasets: [{
                 label: "My First dataset",
                 data: [<%=chartData%>], 
