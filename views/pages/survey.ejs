@@ -20,7 +20,7 @@
         <div class="col-sm-6">
             <div class="well">
                  <h3><span class="fa fa-user surv_title"></span>Survey Title</h3>
-                <div class="surv_question"><%=surveyData.surveyQuestion%></div>
+                <div class="surv_question"><%=surveyData[0].surveyQuestion%></div>
                 <form action="#" method="POST">
                 <select name="text" required>
                     <option selected disabled value=''>Choose an option:</option>
@@ -37,10 +37,10 @@
         </div>
         <div class="col-sm-6">
             <div class="well">
-                 <h3><span class="fa fa-user surv_title"></span>Survey Results</h3>
+                 <h3><span class="fa fa-user surv_title"></span>Results</h3>
                     <%surveyData[0].surveyOptions.forEach(function(entry, k ){%>
-                        <div class="row-fluid"><div class="span9"><%=entry%></div>
-                        <div class="span3"><%=surveyData[0].surveyResponses[k]%></div></div>
+                        <div class="row-fluid"><div class="col-sm-9"><%=entry%></div>
+                        <div class="col-sm-3"><%=surveyData[0].surveyResponses[k]%></div></div>
                     <%})%> 
             </div>
             <canvas id="myChart"></canvas>
