@@ -46,7 +46,7 @@
 </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
+    <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -58,7 +58,8 @@
             labels: ["red", "yellow", "blue"],
             datasets: [{
                 label: "My First dataset",
-                data: [<%=chartData%>],
+                data: [<%=chartData%>], 
+                backgroundColor: palette('tol', myData.length).map(function(hex) {return '#' + hex;})
             }]
         },
 
