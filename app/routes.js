@@ -83,14 +83,14 @@ module.exports = function(app, passport, survey) {
         console.log(doc);
         var myChartData = doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length+1);
         var myChartNames = doc[0].surveyOptions;
-        console.log(myChartData); 
-        console.log(myChartNames);
+        // console.log(myChartData); 
+        // console.log(myChartNames);
         res.render('pages/survey.ejs', {
                 user : req.user,
                 surveyid: req.params.id,
                 surveyData: doc,
-                chartNames: ["thee", "thou"],
-                chartData: [2,10]
+                chartNames: myChartNames,
+                chartData: myChartData
             });
         });
     });
