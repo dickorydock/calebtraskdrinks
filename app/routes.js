@@ -76,11 +76,9 @@ module.exports = function(app, passport, survey) {
             });
         });
     app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
-        console.log(req.params.id);
         // res.redirect('/profile');
         var userSurveys  = require('./models/userSurvey');
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
-        console.log(doc[0]);
         res.render('pages/survey.ejs', {
                 user : req.user,
                 surveyid: req.params.id,
@@ -90,11 +88,12 @@ module.exports = function(app, passport, survey) {
     });
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         console.log("WHEEEEEE");
-        console.log(req.body);
-        res.redirect('/profile');
+        console.log(req.params.id);
+
         // var userSurveys  = require('./models/userSurvey');
         // userSurveys.find({'_id':  req.params.id}, function(err, doc){
-
+        res.redirect('/profile');
+        
         // res.render('pages/survey.ejs', {
         //         user : req.user,
         //         surveyid: req.params.id,
