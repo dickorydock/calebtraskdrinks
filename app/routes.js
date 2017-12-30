@@ -88,31 +88,14 @@ module.exports = function(app, passport, survey) {
     });
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
-        var incVar = '"surveyResponses.'+req.body.text+'"';
+        // var incVar = '"surveyResponses.'+req.body.text+'"';
 
-        var vals = {};
-        var myvar = '_i'+'d';
-
-        var myupdate = {$inc:{}};
-        myupdate.$inc["surveyResponses."+req.body.text] = 1 ;
-        // vals['surveyResponses'.req.body.text] = req.body.hostName;
-        console.log(myupdate)
-        userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
-            console.log("Updated "+req.params.id+" with " + req.body.text);
-        });
+        // var vals = {};
        
-        console.log(req.params.id);
-        console.log(incVar);
-        // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
-        // res.redirect('/profile');
-        
-        // res.render('pages/survey.ejs', {
-        //         user : req.user,
-        //         surveyid: req.params.id,
-        //         surveyData: doc
-        //     });
-        // });
-    });
+        var oneVote = {$inc:{}};
+        oneVote.$inc["surveyResponses."+req.body.text] = 1 ;
+        userSurveys.update({"_id":  req.params.id}, oneVote);
+       });
            /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
                 console.log("IN HERE");
                 res.render('pages/profile.ejs', {
