@@ -15,7 +15,8 @@
         <h1><span class="fa fa-anchor"></span> Survey Page</h1>
         <a href="/profile" class="btn btn-default btn-sm">Profile</a>
         <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <% if (user._id eq surveyData.userId){ %>WE ARE IN<% }else { %> NO <% } %>
+        <a href="#/delete" class="btn btn-default btn-sm">Delete This Survey</a>
     </div>
     <div class="row">
         <div class="col-sm-6">

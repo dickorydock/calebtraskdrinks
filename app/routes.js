@@ -96,6 +96,19 @@ module.exports = function(app, passport, survey) {
             res.redirect('/survey/'+req.params.id);
         });
     });
+
+     app.get('/deletesurvey/:id' /*, isLoggedIn*/, function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        userSurveys.find({'_id':  req.params.id}, function(err, doc){
+            res.render('pages/survey.ejs', {
+                    user : req.user,
+                    surveyid: req.params.id,
+                    surveyData: doc,
+                    chartNames: doc[0].surveyOptions,
+                    chartData: doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length)
+            });
+        });
+    });
         // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
         // res.redirect('/profile');
         
@@ -119,11 +132,12 @@ module.exports = function(app, passport, survey) {
 --column widths  DONE
 --actually link to the survey page DONE
 --make a page where you can view the survey and vote! title, options, the number of responses for each.  DONE
-   maybe should allow voting, but maybe not multiple times per...computer? TODO
 --aghhh, make a voting page! DONE
 --add graphic display of results to the survey DONE
 --ok, so one page for voting, one page for viewing maybe? SAME PAGE
 --allow deleting of polls (maybe on the individual poll page?) TODO
+--add a sharing option TODO
+   maybe should allow voting, but maybe not multiple times per...computer? TODO
 */ // get the user out of session and pass to template
 
     app.get('/makesurvey', isLoggedIn, function(req, res) {
@@ -134,7 +148,6 @@ module.exports = function(app, passport, survey) {
                 user : req.user // get the user out of session and pass to template
             });
         });
-    // });  
 
     app.post('/makesurvey', function(req,res){
         survey.makesurvey(req,res);
