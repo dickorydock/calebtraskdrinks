@@ -58,7 +58,9 @@
 
         // The data for our dataset
         data: {
-            labels: [<%chartNames.forEach(function(thisName, k ){%>'<%=thisName%>',<%})%>]
+            labels: [<%chartNames.forEach(function(thisName, k ){%>'<%=thisName%>'
+            <% if (k<chartNames.length-1) { ,} else { } %> 
+            <%})%>]
             ,
             datasets: [{
                 label: "My First dataset",
