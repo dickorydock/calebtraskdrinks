@@ -19,14 +19,13 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="well">
-                <%surveyData.forEach(function(entry){%>
-                    <h3><span class="fa fa-user surv_title"></span>Survey Title</h3>
-                    <div class="surv_question"><%=entry.surveyQuestion%></div>
+                     <h3><span class="fa fa-user surv_title"></span>Survey Title</h3>
+                    <div class="surv_question"><%=surveyData.surveyQuestion%></div>
                     <div class="surv_dropdown"><%=entry.surveyQuestion%></div>
                     <select name="text">
-                        <option>Milk</option>
-                        <option>Coffee</option>
-                        <option>Tea</option>
+                        <option selected disabled>Choose an option:</option>
+                        <%surveyData.surveyOptions.forEach(function(entry){%>
+                        <option><%=entry%></option>
                     </select>
                         <%})%> 
             </div>

@@ -75,17 +75,32 @@ module.exports = function(app, passport, survey) {
                 });
             });
         });
-  app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
-            console.log(req.params.id);
-            // res.redirect('/profile');
-            var userSurveys  = require('./models/userSurvey');
-            userSurveys.find({'_id':  req.params.id}, function(err, doc){
-            
-            res.render('pages/survey.ejs', {
-                    user : req.user,
-                    surveyid: req.params.id,
-                    surveyData: doc
-                });
+    app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
+        console.log(req.params.id);
+        // res.redirect('/profile');
+        var userSurveys  = require('./models/userSurvey');
+        userSurveys.find({'_id':  req.params.id}, function(err, doc){
+
+        res.render('pages/survey.ejs', {
+                user : req.user,
+                surveyid: req.params.id,
+                surveyData: doc
+            });
+        });
+    });
+    app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
+        console.log(req.params.id);
+        // res.redirect('/profile');
+        var userSurveys  = require('./models/userSurvey');
+        userSurveys.find({'_id':  req.params.id}, function(err, doc){
+
+        res.render('pages/survey.ejs', {
+                user : req.user,
+                surveyid: req.params.id,
+                surveyData: doc
+            });
+        });
+    });
            /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
                 console.log("IN HERE");
                 res.render('pages/profile.ejs', {
@@ -96,9 +111,6 @@ module.exports = function(app, passport, survey) {
 
                 });
             });*/
-        });
-
-        });
 /*NEXT TO FIX:
 --column widths 
 --actually link to the survey page
