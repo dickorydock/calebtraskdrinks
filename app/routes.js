@@ -71,20 +71,34 @@ module.exports = function(app, passport, survey) {
                     user : req.user,
                     userData: doc,
                     allData: doc /*need this to be EVERYTHING not just this user*/
+                });
+            });
+        });
+  app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
+            console.log(id);
+            res.redirect('/profile');
+            var userSurveys  = require('./models/userSurvey');
+           /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
+                console.log("IN HERE");
+                res.render('pages/profile.ejs', {
+                    user : req.user,
+                    userData: doc,
+                    allData: doc
 
 
+                });
+            });*/
+        });
 /*NEXT TO FIX:
 --column widths 
 --actually link to the survey page
---make a page where you can view the survey and vote! title, options, the number of responses for each. maybe should allow voting, but maybe not multiple times
+--make a page where you can view the survey and vote! title, options, the number of responses for each. 
+   maybe should allow voting, but maybe not multiple times per...computer?
 --aghhh, make a voting page!
 --add graphic display of results to the survey
 --ok, so one page for voting, one page for viewing maybe? 
 --allow deleting of polls (maybe on the individual poll page?)
 */ // get the user out of session and pass to template
-                });
-            });
-        });
 
     app.get('/makesurvey', isLoggedIn, function(req, res) {
          // var userSurveys  = require('./models/userSurvey');
