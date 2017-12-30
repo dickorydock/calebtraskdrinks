@@ -26,16 +26,14 @@
                 <h3><span class="fa fa-user"></span> My Surveys</h3>
                     <div class="col-sm-10"><tr>Survey Question</tr>
                         <%userData.forEach(function(entry){%>
-                        <tr><td><a id='<%=entry.id%>'
-                        class='surveyQuestion'><%=entry.surveyQuestion%></a></td>
-                        </tr>
+                        <div class="row"><a id='<%=entry.id%>'
+                        class='surveyQuestion'><%=entry.surveyQuestion%></a></div>
                     <%})%> 
                     </div>
                     <div class="col-sm-2"><tr># of Responses</tr>
                         <%userData.forEach(function(entry){%>
-                        <tr><td><a id='<%=entry.id%>'
-                        class='numberResponses'><%=entry.surveyActive%></a></td>
-                        </tr>
+                        <div class="row"><a id='<%=entry.id%>'
+                        class='numberResponses'><%=entry.surveyActive%></a></div>
                     <%})%> 
                     </div>
             </div>
