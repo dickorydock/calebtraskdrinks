@@ -89,7 +89,7 @@ module.exports = function(app, passport, survey) {
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         console.log("WHEEEEEE"+req.body.text);
         console.log(req.params.id);
-        var incVar = 'surveyResponses.'+req.body.text+'.content';
+        var incVar = 'surveyResponses.'+req.body.text;
         var userSurveys  = require('./models/userSurvey');
         userSurveys.update({'_id':  req.params.id}, {"$inc": {incVar : 1}});
         res.redirect('/profile');
