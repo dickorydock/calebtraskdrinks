@@ -78,17 +78,18 @@ module.exports = function(app, passport, survey) {
     app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         // res.redirect('/profile');
         var userSurveys  = require('./models/userSurvey');
-        // var myChartNames = req.params.surveyOptions;
         // console.log("myres is "+mySurveyResponses);
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
-        var mySurveyResponses = doc.surveyResponses.slice(0,doc.surveyOptions.length+1);
-        console.log(mySurveyResponses);
+        var myChartData = doc.surveyResponses.slice(0,doc.surveyOptions.length+1);
+        var myChartNames = req.params.surveyOptions;
+        console.log(myChartData); 
+        console.log(myChartNames);
         res.render('pages/survey.ejs', {
                 user : req.user,
                 surveyid: req.params.id,
                 surveyData: doc,
-                chartNames: doc.surveyOptions,
-                chartData: mySurveyResponses
+                chartNames: ["thee", "thou"],
+                chartData: [2,10]
             });
         });
     });
