@@ -22,10 +22,10 @@
                      <h3><span class="fa fa-user surv_title"></span>Survey Title</h3>
                     <div class="surv_question"><%=surveyData.surveyQuestion%></div>
                     <div class="surv_dropdown"><%=surveyData.surveyQuestion%></div>
-                    <select name="text">
-                        <option selected disabled>Choose an option:</option>
-                        <%surveyData[0].surveyOptions.forEach(function(entry){%>
-                            <option><%=entry%></option>
+                    <select name="text" required>
+                        <option selected disabled value=''>Choose an option:</option>
+                        <%surveyData[0].surveyOptions.forEach(function(entry, k ){%>
+                            <option value = '<%=k%>'' ><%=entry%></option>
                         <%})%> 
                     </select>
                     
