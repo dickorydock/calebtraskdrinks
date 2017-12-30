@@ -13,8 +13,9 @@
 <div class="container">
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Survey Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <a href="/profile" class="btn btn-default btn-sm">Profile</a>
         <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
     <div class="row">
         <div class="col-sm-6">
@@ -36,7 +37,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="well">
+            <div class="well .clearfix">
                  <div class="row-fluid"><h3><span class="fa fa-user surv_title"></span>Results</h3></div>
                     <%surveyData[0].surveyOptions.forEach(function(entry, k ){%>
                         <div class="row-fluid"><div class="col-sm-9"><%=entry%></div>
