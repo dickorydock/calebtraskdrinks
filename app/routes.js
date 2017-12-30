@@ -92,10 +92,10 @@ module.exports = function(app, passport, survey) {
         console.log(req.params.id);
         console.log(incVar);
         // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
-        userSurveys.update({'_id':  req.params.id}, {'surveyActive':9}, function(err,doc){
+        userSurveys.update({'_id':  req.params.id}, {"$inc": {incVar:1}}, function(err,doc){
             console.log("OH NO");
-            console.log(err);
-            console.log(doc);
+            // console.log(err);
+            // console.log(doc);
         });
         // res.redirect('/profile');
         
