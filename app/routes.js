@@ -94,9 +94,9 @@ module.exports = function(app, passport, survey) {
         var myvar = '_i'+'d';
 
         var myupdate = {$inc:{}};
-        myupdate.$inc["surveyResponses"+req.body.text] = 1 ;
+        myupdate.$inc["surveyResponses."+req.body.text] = 1 ;
         // vals['surveyResponses'.req.body.text] = req.body.hostName;
-        console.log(myupdate);
+        console.log(myupdate)
         userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
             console.log("Updated "+req.params.id+" with " + req.body.text);
         });
