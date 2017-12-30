@@ -66,8 +66,8 @@ module.exports = function(app, passport, survey) {
     app.get('/profile', isLoggedIn, function(req, res) {
             var userSurveys  = require('./models/userSurvey');
             userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
-                console.log("IN HERE");
-                console.log(doc);
+                // console.log("IN HERE");
+                // console.log(doc);
                 res.render('pages/profile.ejs', {
                     user : req.user,
                     userData: doc,
@@ -87,10 +87,10 @@ module.exports = function(app, passport, survey) {
         });
     });
     app.post('/survey/:id' /*, isLoggedIn*/, function(req, res) {
-        console.log("WHEEEEEE"+req.body.text);
-        console.log(req.params.id);
-        var incVar = 'surveyResponses.'+req.body.text;
         var userSurveys  = require('./models/userSurvey');
+        var incVar = 'surveyResponses.'+req.body.text;
+        console.log(req.params.id);
+        console.log(incVar);
         userSurveys.update({'_id':  req.params.id}, {"$inc": {incVar : 1}});
         res.redirect('/profile');
         
