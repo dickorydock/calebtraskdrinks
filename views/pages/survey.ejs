@@ -18,7 +18,7 @@
         <%=user%>
         <%=surveyData[0].userId%>
         <%if (user!=undefined){ if (user._id == surveyData[0].userId){%>
-         <a href="#/deletesurvey/<%=surveyid%>" class="btn btn-default btn-sm">Delete This Survey</a>
+         <a href="/deletesurvey/<%=surveyid%>" class="btn btn-default btn-sm">Delete This Survey</a>
              <%}}%>
         <a href="#/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
