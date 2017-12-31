@@ -66,8 +66,6 @@ module.exports = function(app, passport, survey) {
     app.get('/profile', isLoggedIn, function(req, res) {
             var userSurveys  = require('./models/userSurvey');
             userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
-                // console.log("IN HERE");
-                // console.log(doc);
                 res.render('pages/profile.ejs', {
                     user : req.user,
                     userData: doc,
@@ -101,15 +99,15 @@ module.exports = function(app, passport, survey) {
         var userSurveys  = require('./models/userSurvey');
         console.log(req.user);
         /*NEED TO ACTUALLY IMPLEMENT DELETING*/
-        // userSurveys.find({'_id':  req.params.id, 'userId':'12'}, function(err, doc){
-        //     res.render('pages/profile.ejs', {
-        //             user : req.user,
-        //             surveyid: req.params.id,
-        //             surveyData: doc,
-        //             chartNames: doc[0].surveyOptions,
-        //             chartData: doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length)
-        //     });
-        // });
+        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
+            userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
+                res.render('pages/profile.ejs', {
+                    user : req.user,
+                    userData: doc2,
+                    allData: doc2 /*need this to be EVERYTHING not just this user*/
+                });
+            });
+        });
     });
         // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
         // res.redirect('/profile');
