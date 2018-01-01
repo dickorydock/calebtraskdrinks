@@ -7,6 +7,12 @@ module.exports = function(app, passport, survey) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        userSurveys.find({'surveyActive': 1}, function(err, doc){
+            res.render('pages/index.ejs', {
+               allData: doc /*need this to be EVERYTHING not just this user*/
+            });
+        });
         res.render('pages/index.ejs'); // load the index.ejs file
     });
 
@@ -65,7 +71,7 @@ module.exports = function(app, passport, survey) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
             var userSurveys  = require('./models/userSurvey');
-            userSurveys.find({/*'userId': req.user._id,'surveyActive': 1*/}, function(err, doc){
+            userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
                 res.render('pages/profile.ejs', {
                     user : req.user,
                     userData: doc,
@@ -75,11 +81,6 @@ module.exports = function(app, passport, survey) {
         });
     app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
-        // console.log(req);
-        // console.log(req.params);
-        console.log("HERE WE ARE AT");
-        console.log(req.headers.host+req.originalUrl);
-
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
             res.render('pages/survey.ejs', {
                     user : req.user,
