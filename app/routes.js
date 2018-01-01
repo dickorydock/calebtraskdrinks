@@ -80,7 +80,7 @@ module.exports = function(app, passport, survey) {
         console.log("HERE WE ARE AT");
         console.log(req.headers.host+req.originalUrl);
 
-        userSurveys.find({'_id':  req.params.id}, function(err, doc){
+        userSurveys.find({/*'_id':  req.params.id*/}, function(err, doc){
             res.render('pages/survey.ejs', {
                     user : req.user,
                     surveyid: req.params.id,
