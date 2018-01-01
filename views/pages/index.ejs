@@ -29,7 +29,7 @@
                     <div class="col-sm-9">Survey Question</div>
                     <div class="col-sm-3"># of Responses</div>
                     <%allData.forEach(function(entry,k){%>
-                    <%if (k>allData.length-3- 1) %>
+                    <%if (k>allData.length-3- 1) {%>
                     <div class="col-sm-9"><a target="blank" href='http://adamtraskvotes.herokuapp.com/survey/<%=entry._id%>' id=surv_'<%=entry._id%>' class='surveyQuestion'><%=entry.surveyQuestion%></a></div>
                     <div class="col-sm-3"><a id='<%=entry._id%>'class='surveyQuestion'><%=entry.responseCount%></a></div>
                     <%}})%> 
