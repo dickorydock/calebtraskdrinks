@@ -140,7 +140,8 @@ module.exports = function(app, passport, survey) {
 --add graphic display of results to the survey DONE
 --ok, so one page for voting, one page for viewing maybe? SAME PAGE
 --allow deleting of polls (maybe on the individual poll page?) DONE
---add a sharing option TODO
+--add a sharing option TODO DONE
+--add an indicator of DATE when you make a survey, so we can use this to sort
 
 --FIX BUTTONS TO MAKE THEM LOOK NICE
    maybe should allow voting, but maybe not multiple times per...computer? TODO
