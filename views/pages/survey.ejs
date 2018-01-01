@@ -32,7 +32,10 @@
                 <%})%>
             </select>
             <button type="submit" name="submit" value="submit">Submit</button>
-            <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Please%20take%20my%20survey!">
+            <a class="twitter-share-button" 
+                href="https://twitter.com/intent/tweet?text=Please%20take%20my%20survey!"
+                data-text="Please take my survey!"
+                data-url="https://adamtraskvotes.herokuapp.com/survey/<%=surveyid%>">
             Tweet</a>
             </form>
         </div>
@@ -42,6 +45,7 @@
                     <div class="row-fluid"><div class="col-sm-9"><%=entry%></div>
                     <div class="col-sm-3"><%=surveyData[0].surveyResponses[k]%></div></div>
                 <%})%> 
+
             <canvas id="myChart"></canvas>
         </div>
     </div>
