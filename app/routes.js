@@ -97,8 +97,6 @@ module.exports = function(app, passport, survey) {
 
      app.get('/deletesurvey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
-        console.log(req.user);
-        /*NEED TO ACTUALLY IMPLEMENT DELETING*/
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
             userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
                 res.render('pages/profile.ejs', {
@@ -135,10 +133,13 @@ module.exports = function(app, passport, survey) {
 --aghhh, make a voting page! DONE
 --add graphic display of results to the survey DONE
 --ok, so one page for voting, one page for viewing maybe? SAME PAGE
---allow deleting of polls (maybe on the individual poll page?) TODO
+--allow deleting of polls (maybe on the individual poll page?) DONE
 --add a sharing option TODO
    maybe should allow voting, but maybe not multiple times per...computer? TODO
-*/ // get the user out of session and pass to template
+*/ 
+
+
+// get the user out of session and pass to template
 
     app.get('/makesurvey', isLoggedIn, function(req, res) {
          // var userSurveys  = require('./models/userSurvey');

@@ -15,8 +15,6 @@
         <h1><span class="fa fa-anchor"></span> Survey Page</h1>
         <a href="/profile" class="btn btn-default btn-sm">Profile</a>
         <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
-        <%=user%>
-        <%=surveyData[0].userId%>
         <%if (user!=undefined){ if (user._id == surveyData[0].userId){%>
          <a href="/deletesurvey/<%=surveyid%>" class="btn btn-default btn-sm">Delete This Survey</a>
              <%}}%>
@@ -34,6 +32,8 @@
                 <%})%>
             </select>
             <button type="submit" name="submit" value="submit">Submit</button>
+            <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Please%20take%20my%20survey!">
+            Tweet</a>
             </form>
         </div>
         <div class="col-sm-6">
