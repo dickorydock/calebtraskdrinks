@@ -37,12 +37,12 @@
         </div>
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span>Most Recent Surveys</h3>
+                <h3><span class="fa fa-user"></span>Recent Surveys</h3>
                 <div class="row">
                     <div class="col-sm-9">Survey Question</div>
                     <div class="col-sm-3"># of Responses</div>
                     <%allData.forEach(function(entry,k){%>
-                    <% if (k < 5) {%>
+                    <% if (k > allData.length - 3 ) {%>
                     <div class="col-sm-9"><a href='http://adamtraskvotes.herokuapp.com/survey/<%=entry._id%>' id=surv_'<%=entry._id%>' class='surveyQuestion'><%=entry.surveyQuestion%></a></div>
                     <div class="col-sm-3"><a id='<%=entry._id%>'class='surveyQuestion'><%=entry.responseCount%></a></div>
                     <%}})%> 

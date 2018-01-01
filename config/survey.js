@@ -8,9 +8,7 @@ var userSurvey            = require('../app/models/userSurvey');
 module.exports =
 {
     makesurvey: function(req,res){
-        console.log("OH GOD");
         console.log(req);
-
 
         var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
 
@@ -24,7 +22,8 @@ module.exports =
         newUserSurvey.surveyOptions     = arrOptions;
         newUserSurvey.surveyResponses   = [0,0,0,0,0];
         newUserSurvey.surveyActive      = 1 ; 
-        newUserSurvey.responseCount       = 0 ; 
+        newUserSurvey.responseCount     = 0 ; 
+        newUserSurvey.surveyCreated     = new Date().toISOString();
         newUserSurvey.userId            = req.user._id;
 
         // save the userSurvey
