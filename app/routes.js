@@ -13,7 +13,6 @@ module.exports = function(app, passport, survey) {
                allData: doc /*need this to be EVERYTHING not just this user*/
             });
         });
-        res.render('pages/index.ejs'); // load the index.ejs file
     });
 
     // =====================================
