@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
+        .top-buffer { margin-top:20px; }
     </style>
 </head>
 <body>
@@ -30,9 +31,11 @@
                     <option value = '<%=k%>'' ><%=entry%></option>
                 <%})%>
             </select>
-            <button type="submit" name="submit" value="submit">Submit</button>
-            <span class="fa fa-twitter"></span><a class="twitter-share-button" href="https://twitter.com/share?text=I%20made%20a%20survey!&url=<%=thisUrl%>">
-            Tweet</a>
+            <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block top-buffer">Submit</button>
+
+           
+<div class="row col-sm-12"><a class="btn btn-primary btn-block top-buffer" href="https://twitter.com/share?text=I%20made%20a%20survey!&url=<%=thisUrl%>"><span class="fa fa-twitter"></span>Tweet This</a></div>
+
             </form>
         </div>
         <div class="col-sm-6">
