@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <h3><span class="fa fa-user"></span>Survey: ><%=surveyData[0].surveyQuestion%></h3>
+            <h3><span class="fa fa-user"></span>Survey: <%=surveyData[0].surveyQuestion%></h3>
             <form action="#" method="POST">
             <select name="text" required>
                 <option selected disabled value=''>Choose an option:</option>
@@ -31,7 +31,7 @@
                     <option value = '<%=k%>'' ><%=entry%></option>
                 <%})%>
             </select>
-            <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block top-buffer">Submit</button>
+            <div class="row col-sm-12"><button type="submit" name="submit" value="submit" class="btn btn-primary btn-block top-buffer">Submit</button></div>
 
            
 <div class="row col-sm-12"><a class="btn btn-primary btn-block top-buffer" href="https://twitter.com/share?text=I%20made%20a%20survey!&url=<%=thisUrl%>"><span class="fa fa-twitter"></span>Tweet This</a></div>

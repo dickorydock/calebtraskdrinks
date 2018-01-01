@@ -65,10 +65,10 @@ module.exports = function(app, passport, survey) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
             var userSurveys  = require('./models/userSurvey');
-            userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
+            userSurveys.find({'userId': req.user._id/*,'surveyActive': 1*/}, function(err, doc){
                 res.render('pages/profile.ejs', {
                     user : req.user,
-                    userData: doc,
+                    userData: doc.find({'surveyActive':1}),
                     allData: doc /*need this to be EVERYTHING not just this user*/
                 });
             });
