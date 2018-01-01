@@ -84,7 +84,7 @@ module.exports = function(app, passport, survey) {
             res.render('pages/survey.ejs', {
                     user : req.user,
                     surveyid: req.params.id,
-                    thisUrl: req.headers.host+req.originalUrl
+                    thisUrl: req.headers.host+req.originalUrl,
                     surveyData: doc,
                     chartNames: doc[0].surveyOptions,
                     chartData: doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length)
