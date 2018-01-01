@@ -141,6 +141,8 @@ module.exports = function(app, passport, survey) {
 --ok, so one page for voting, one page for viewing maybe? SAME PAGE
 --allow deleting of polls (maybe on the individual poll page?) DONE
 --add a sharing option TODO
+
+--FIX BUTTONS TO MAKE THEM LOOK NICE
    maybe should allow voting, but maybe not multiple times per...computer? TODO
 */ 
 
