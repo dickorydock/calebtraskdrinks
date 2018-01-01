@@ -75,6 +75,9 @@ module.exports = function(app, passport, survey) {
         });
     app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
+        console.log(req);
+        console.log(req.params);
+        
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
             res.render('pages/survey.ejs', {
                     user : req.user,
