@@ -75,13 +75,16 @@ module.exports = function(app, passport, survey) {
         });
     app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
-        console.log(req);
-        console.log(req.params);
-        
+        // console.log(req);
+        // console.log(req.params);
+        console.log("HERE WE ARE AT");
+        console.log(req.headers.host+req.originalUrl);
+
         userSurveys.find({'_id':  req.params.id}, function(err, doc){
             res.render('pages/survey.ejs', {
                     user : req.user,
                     surveyid: req.params.id,
+                    thisUrl: req.headers.host+req.originalUrl
                     surveyData: doc,
                     chartNames: doc[0].surveyOptions,
                     chartData: doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length)
