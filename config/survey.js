@@ -13,11 +13,12 @@ module.exports =
         var arrOptions = req.body.options.filter(function(n){ return n != ""}); 
 
         var arrZeroes=[];
-        for (var i; i<arrOptions.length;i++){
+        for (var k; k<arrOptions.length;k++){
             arrZeroes.push(0);
         }
         console.log("up here");
         console.log(arrOptions);
+        console.log(arrOptions.length);
         console.log(arrZeroes);
         var newUserSurvey            = new userSurvey();
         
