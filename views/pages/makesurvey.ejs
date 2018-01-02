@@ -27,8 +27,8 @@
             <% for (var i=0;i<5;i++){%>
                 <input type="text" class="form-control" name="option<%=i%>">
             <%}%>
+            <span id="more-boxes"></span>
         </div>
-        <span id="more-boxes"></span>
         <input type="button" onclick="addInput()"/>Add Another Option</button>
         <button type="submit" value="OHBOY" class="btn btn-warning btn-lg">Make the Survey!</button>
     </form>
@@ -42,12 +42,12 @@
 </body>
 
 <script>
-var countBox =6;
+var countBox =5;
 var boxName = 0;
 function addInput()
 {
      var boxName="option"+countBox; 
-document.getElementById('more-boxes').innerHTML+='<br/><input type="text" class="form-control" name="'+boxName+'" "  /><br/>';
+document.getElementById('more-boxes').innerHTML+='<br/><input type="text" class="form-control" name="'+boxName+'"  /><br/>';
      countBox += 1;
 }
 </script>
