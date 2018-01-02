@@ -16,6 +16,9 @@ module.exports =
         for (var i; i<arrOptions.length;i++){
             arrZeroes.push(0);
         }
+        console.log("up here");
+        console.log(arrOptions);
+        console.log(arrZeroes);
         var newUserSurvey            = new userSurvey();
         
         // set the user's local credentials
