@@ -131,10 +131,9 @@ module.exports = function(app, passport, survey) {
                         userData: doc,
                         allData: doc /*need this to be EVERYTHING not just this user*/
                     });       
-                });
-            }
+            });
         });
-    });
+    
         // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
         // res.redirect('/profile');
         
