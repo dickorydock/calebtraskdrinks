@@ -43,7 +43,7 @@ module.exports =
         for(i=0;i<arrOptions.length;i++){
             arrZeroes.push(0);
         }
-        
+        console.log(arrZeroes);
         //construct the mongoDB update
         var myupdate = {$push:{}};
         myupdate.$push["surveyOptions"] = {$each:{}};
