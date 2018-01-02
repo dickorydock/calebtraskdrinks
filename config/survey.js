@@ -26,7 +26,7 @@ module.exports =
 
         // save the userSurvey
         return newUserSurvey.save();
-    } 
+    } ,
 
     addoptions: function(req,res){
         var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
@@ -57,24 +57,6 @@ module.exports =
                 });
             });
         });
-
-
-        //remove blank options
-        arrOptions = arrOptions.filter(function(n){ return n != ""}); 
-
-        var newUserSurvey            = new userSurvey();
-        
-        // set the user's local credentials
-        newUserSurvey.surveyQuestion    = req.body.question;
-        newUserSurvey.surveyOptions     = arrOptions;
-        newUserSurvey.surveyResponses   = [0,0,0,0,0];
-        newUserSurvey.surveyActive      = 1 ; 
-        newUserSurvey.responseCount     = 0 ; 
-        newUserSurvey.surveyCreated     = new Date().toISOString();
-        newUserSurvey.userId            = req.user._id;
-
-        // save the userSurvey
-        return newUserSurvey.save();
     }
     // =========================================================================
     // survey session setup ==================================================
