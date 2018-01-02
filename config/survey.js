@@ -13,12 +13,16 @@ module.exports =
         //remove blank options
         arrOptions = arrOptions.filter(function(n){ return n != ""}); 
 
+        var arrZeroes=[];
+        for (var i; i<arrOptions.length;i++){
+            arrZeroes.push(0);
+        }
         var newUserSurvey            = new userSurvey();
         
         // set the user's local credentials
         newUserSurvey.surveyQuestion    = req.body.question;
         newUserSurvey.surveyOptions     = arrOptions;
-        newUserSurvey.surveyResponses   = [0,0,0,0,0];
+        newUserSurvey.surveyResponses   = arrZeroes;
         newUserSurvey.surveyActive      = 1 ; 
         newUserSurvey.responseCount     = 0 ; 
         newUserSurvey.surveyCreated     = new Date().toISOString();
