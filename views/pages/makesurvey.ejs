@@ -46,9 +46,14 @@ var countBox =5;
 var boxName = 0;
 function addInput()
 {
-     var boxName="options["+countBox+"]"; 
-document.getElementById('more-boxes').innerHTML+='<input type="text" class="form-control" name="'+boxName+'"  />';
-     countBox += 1;
+    var tag = document.createElement('input'); // Create a `input` element,
+    tag.setAttribute('type', 'text');          // Set it's `type` attribute,
+    tag.setAttribute('name', "options["+countBox+"]);               // Set it's `name` attribute,
+    var y = document.getElementById("more-boxes");      // "Get" the `y` element,
+    y.appendChild(tag);                        // Append the input to `y`,
+   countBox += 1;
 }
+
+
 </script>
 </html>
