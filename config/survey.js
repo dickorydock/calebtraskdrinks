@@ -40,7 +40,6 @@ module.exports =
         }
         myupdate.$push["surveyOptions"] = arrOptions;
         myupdate.$push["surveyResponses"] = arrZeroes;
-        
 
         // console.log("PRAY"+arrOptions);
         // console.log("PRAY2"+arrZeroes);
@@ -57,7 +56,7 @@ module.exports =
 
         userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err,doc){
               console.log("IN HERE");
-              console.log(doc);
+              console.log(err);
               console.log("OUT")
               res.redirect('/survey/'+req.params.id);
         });
