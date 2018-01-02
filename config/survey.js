@@ -42,7 +42,7 @@ module.exports =
 
         eachupdate.$each["surveyOptions"] = arrOptions;
         eachupdate.$each["surveyResponse"]=arrZeroes;
-
+        console.log(arrOptions);
         console.log(eachupdate);
         myupdate.$push["surveyOptions"] = {$each:{}};
         myupdate.$push["surveyResponses"] = {$each:{}};
