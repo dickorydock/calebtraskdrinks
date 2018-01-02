@@ -114,14 +114,10 @@ module.exports = function(app, passport, survey) {
         });
     });
 
-     app.post('/deletesurvey/:id', isLoggedIn, function(req,res){
-        survey.addoptions(req,res);
-        res.redirect('/survey'+req.params.id);
-     
-     })
-
     app.get('/addoptions/:id', isLoggedIn, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
+       
+        //is this your survey? if not, return to profile
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
             if (doc!=undefined){
                 userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
