@@ -139,7 +139,7 @@ module.exports = function(app, passport, survey) {
         });
 
 
-    app.post('/makesurvey', function(req,res){
+    app.post('/addoptions/:id', function(req,res){
         survey.addoptions(req,res);
         res.redirect('/survey/'+req.params.id);
        
