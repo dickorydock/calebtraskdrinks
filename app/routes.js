@@ -148,7 +148,7 @@ module.exports = function(app, passport, survey) {
             res.redirect('/survey/'+req.params.id);
         });
     });
-    
+
     app.post('/addoptions/:id', function(req,res){
         survey.addoptions(req,res);
         // res.redirect('/survey/'+req.params.id);
@@ -186,6 +186,11 @@ module.exports = function(app, passport, survey) {
 
 --FIX BUTTONS TO MAKE THEM LOOK NICE
    maybe should allow voting, but maybe not multiple times per...computer? TODO
+
+   LEFT TO DO:
+   What if you want more than five options initially? 
+   only one response per IP?
+
 */ 
 
 
