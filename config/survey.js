@@ -42,8 +42,8 @@ module.exports =
         myupdate.$push["surveyResponses"] = arrZeroes;
         
 
-        console.log("PRAY"+arrOptions);
-        console.log("PRAY2"+arrZeroes);
+        // console.log("PRAY"+arrOptions);
+        // console.log("PRAY2"+arrZeroes);
         console.log(myupdate);// arrOptions.forEach(function(arrOption){
             // myupdate.$push["surveyResponses"] = arrOption;
         
@@ -57,6 +57,8 @@ module.exports =
 
         userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err,doc){
               console.log("IN HERE");
+              console.log(doc);
+              console.log("OUT")
               res.redirect('/survey/'+req.params.id);
         });
     }
