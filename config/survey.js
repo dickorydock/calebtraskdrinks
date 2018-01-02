@@ -38,8 +38,8 @@ module.exports =
         for(i=0;i<arrOptions.length;i++){
             arrZeroes.push(0);
         }
-        myupdate.$push["surveyOptions"] = $each{arrOptions};
-        myupdate.$push["surveyResponses"] = $each{arrZeroes};
+        myupdate.$push["surveyOptions"].$each = arrOptions;
+        myupdate.$push["surveyResponses"].$each = arrZeroes;
 
         // console.log("PRAY"+arrOptions);
         // console.log("PRAY2"+arrZeroes);
