@@ -139,6 +139,16 @@ module.exports = function(app, passport, survey) {
         });
 
 
+    app.post('/survey/:id' , function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        var myupdate = {$inc:{}};
+        myupdate.$inc["surveyResponses."+req.body.text] = 1 ;
+        myupdate.$inc["responseCount"] = 1 ;
+        userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
+            res.redirect('/survey/'+req.params.id);
+        });
+    });
+    
     app.post('/addoptions/:id', function(req,res){
         survey.addoptions(req,res);
         // res.redirect('/survey/'+req.params.id);
