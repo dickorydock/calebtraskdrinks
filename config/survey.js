@@ -33,6 +33,7 @@ module.exports =
         //remove blank options
         arrOptions = arrOptions.filter(function(n){ return n != ""}); 
 
+        console.log("PRAY"+arrOptions);
         var myupdate = {$push:{}};
         myupdate.$push["surveyResponses"] = arrOptions;
         // arrOptions.forEach(function(arrOption){
