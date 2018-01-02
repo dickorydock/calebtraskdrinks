@@ -62,8 +62,8 @@ module.exports =
         // userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
         //     res.redirect('/survey/'+req.params.id);
         // });
-        var update2 = {"$push":{"surveyOptions":{"$each":["hundred little","big fleet"]},"surveyResponses":{"$each":{[0,0]}}}};
-        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, update2, function(err,doc){
+        // var update2 = {"$push":{"surveyOptions":{"$each":["hundred little","big fleet"]},"surveyResponses":{"$each":{[0,0]}}}};
+        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, myupdate, function(err,doc){
               console.log("IN HERE");
               console.log(req.params.id);
               console.log(req.user._id);
