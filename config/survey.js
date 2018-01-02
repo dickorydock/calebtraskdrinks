@@ -38,6 +38,7 @@ module.exports =
     addoptions: function(req,res){
         //remove blank options
         arrOptions = req.body.options.filter(function(n){ return n != ""}); 
+        console.log(arrOptions);
         var arrZeroes=[];
         for(i=0;i<arrOptions.length;i++){
             arrZeroes.push(0);
