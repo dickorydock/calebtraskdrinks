@@ -9,12 +9,12 @@ module.exports =
 {
     makesurvey: function(req,res){
         console.log(req.body);
-        
+
         console.log("THE LENGTH IS"+req.body.length);
-        var arrOptions =  [req.body.option0,req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
+        // var arrOptions =  [req.body.option0,req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
 
         //remove blank options
-        arrOptions = arrOptions.filter(function(n){ return n != ""}); 
+        var arrOptions = req.body.options.filter(function(n){ return n != ""}); 
 
         var arrZeroes=[];
         for (var i; i<arrOptions.length;i++){
@@ -32,7 +32,11 @@ module.exports =
         newUserSurvey.userId            = req.user._id;
 
         // save the userSurvey
-        return newUserSurvey.save();
+        return newUserSurvey.save(function(err,doc){
+            console.log(doc._id);
+            res.redirect('/survey/'+doc._id);
+   
+        });
     } ,
 
     addoptions: function(req,res){

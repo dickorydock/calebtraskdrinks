@@ -206,7 +206,6 @@ module.exports = function(app, passport, survey) {
 
     app.post('/makesurvey', function(req,res){
         survey.makesurvey(req,res);
-        res.redirect('/profile');
        
     });
     // app.get('/addoption/:id', isLoggedIn, function(req, res) {
