@@ -33,8 +33,6 @@ module.exports =
         //remove blank options
         arrOptions = arrOptions.filter(function(n){ return n != ""}); 
 
-        var userSurveys  = require('./models/userSurvey');
-        
         var myupdate = {$push:{}};
         myupdate.$push["surveyResponses"] = arrOptions;
         // arrOptions.forEach(function(arrOption){
@@ -48,8 +46,8 @@ module.exports =
             // res.redirect('/survey/'+req.params.id);
         // });
 
-        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err, doc){
-            userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
+        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err, doc){
+            userSurvey.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
                 res.render('pages/profile.ejs', {
                     user : req.user,
                     userData: doc2,
