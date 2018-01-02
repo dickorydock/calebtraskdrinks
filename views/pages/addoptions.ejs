@@ -20,12 +20,12 @@
         <div>Survey Question: ADCLJN</div>      
         <div class="form-group">
             <label>Options To Add:</label>
-            <input type="text" class="form-control" name="options[1]">
-            <input type="text" class="form-control" name="options[2]">
-            <input type="text" class="form-control" name="options[3]">
-            <input type="text" class="form-control" name="options[4]">
-            <input type="text" class="form-control" name="options[5]">
-        </div>
+            <% for (var i=0;i<5;i++){%>
+                <input type="text" class="form-control" name="options[<%=i%>]">
+            <%}%>
+            <span id="more-boxes"></span>
+        </div> 
+        <input type="button" onclick="addInput()" class="btn btn-warning btn-lg btn-space" value="Add Row"/>
         <button type="submit" class="btn btn-warning btn-lg">Apply</button>
     </form>
 
