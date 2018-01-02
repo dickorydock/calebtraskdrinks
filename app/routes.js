@@ -123,7 +123,7 @@ module.exports = function(app, passport, survey) {
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {}, function(err, doc){
             if (doc!=undefined){
                 // userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
-                    // console.log(doc2);
+                    console.log(doc);
                     res.render('pages/addoptions.ejs', {
                         user : req.user,
                         surveyid: req.params.id,
