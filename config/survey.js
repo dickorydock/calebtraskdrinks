@@ -8,10 +8,6 @@ var userSurvey            = require('../app/models/userSurvey');
 module.exports =
 {
     makesurvey: function(req,res){
-        console.log(req.body);
-
-        console.log("THE LENGTH IS"+req.body.length);
-        // var arrOptions =  [req.body.option0,req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
 
         //remove blank options
         var arrOptions = req.body.options.filter(function(n){ return n != ""}); 
@@ -40,45 +36,20 @@ module.exports =
     } ,
 
     addoptions: function(req,res){
-        var arrOptions =  [req.body.option0,req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
         //remove blank options
-        arrOptions = arrOptions.filter(function(n){ return n != ""}); 
-
-        var myupdate = {$push:{}};
-        var eachupdate = {$each:{}};
+        arrOptions = req.body.options.filter(function(n){ return n != ""}); 
         var arrZeroes=[];
         for(i=0;i<arrOptions.length;i++){
             arrZeroes.push(0);
         }
-
-        eachupdate.$each["surveyOptions"] = arrOptions;
-        eachupdate.$each["surveyResponse"]=arrZeroes;
-        console.log(JSON.stringify(arrOptions));
-        console.log(eachupdate);
+        
+        //construct the mongoDB update
+        var myupdate = {$push:{}};
         myupdate.$push["surveyOptions"] = {$each:{}};
         myupdate.$push["surveyResponses"] = {$each:{}};
         myupdate.$push["surveyOptions"].$each= arrOptions;
         myupdate.$push["surveyResponses"].$each= arrZeroes;
-        // myupdate.$push["surveyResponses"] = arrZeroes;
-
-        // console.log("PRAY"+arrOptions);
-        // console.log("PRAY2"+arrZeroes);
-        console.log(JSON.stringify(myupdate));// arrOptions.forEach(function(arrOption){
-            // myupdate.$push["surveyResponses"] = arrOption;
-        
-
-        // })
-        // myupdate.$push["surveyResponses."+req.body.text] = 1 ;
-        // myupdate.$inc["responseCount"] = 1 ;
-        // userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
-        //     res.redirect('/survey/'+req.params.id);
-        // });
-        // var update2 = {"$push":{"surveyOptions":{"$each":["hundred little","big fleet"]},"surveyResponses":{"$each":{[0,0]}}}};
         userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, myupdate, function(err,doc){
-              console.log("IN HERE");
-              console.log(req.params.id);
-              console.log(req.user._id);
-              console.log("OUT")
               res.redirect('/survey/'+req.params.id);
         });
     }

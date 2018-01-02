@@ -20,11 +20,11 @@
         <div>Survey Question: ADCLJN</div>      
         <div class="form-group">
             <label>Options To Add:</label>
-            <input type="text" class="form-control" name="option1">
-            <input type="text" class="form-control" name="option2">
-            <input type="text" class="form-control" name="option3">
-            <input type="text" class="form-control" name="option4">
-            <input type="text" class="form-control" name="option5">
+            <input type="text" class="form-control" name="options[1]">
+            <input type="text" class="form-control" name="options[2]">
+            <input type="text" class="form-control" name="options[3]">
+            <input type="text" class="form-control" name="options[4]">
+            <input type="text" class="form-control" name="options[5]">
         </div>
         <button type="submit" class="btn btn-warning btn-lg">Apply</button>
     </form>
@@ -36,4 +36,14 @@
 
 </div>
 </body>
+<script>
+var countBox =5;
+var boxName = 0;
+function addInput()
+{
+     var boxName="options["+countBox+"]"; 
+document.getElementById('more-boxes').innerHTML+='<input type="text" class="form-control" name="'+boxName+'"  />';
+     countBox += 1;
+}
+</script>
 </html>

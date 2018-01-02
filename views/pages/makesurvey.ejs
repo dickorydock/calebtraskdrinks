@@ -46,7 +46,7 @@ var countBox =5;
 var boxName = 0;
 function addInput()
 {
-     var boxName="option"+countBox; 
+     var boxName="options["+countBox+"]"; 
 document.getElementById('more-boxes').innerHTML+='<input type="text" class="form-control" name="'+boxName+'"  />';
      countBox += 1;
 }
