@@ -9,6 +9,8 @@ module.exports =
 {
     makesurvey: function(req,res){
         console.log(req.body);
+        
+        console.log("THE LENGTH IS"+req.body.length);
         var arrOptions =  [req.body.option0,req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
 
         //remove blank options
@@ -36,7 +38,6 @@ module.exports =
     addoptions: function(req,res){
         var arrOptions =  [req.body.option0,req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
         //remove blank options
-        console.log("THE LENGTH IS"+req.body.length);
         arrOptions = arrOptions.filter(function(n){ return n != ""}); 
 
         var myupdate = {$push:{}};
