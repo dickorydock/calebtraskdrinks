@@ -104,13 +104,6 @@ module.exports = function(app, passport, survey) {
      app.get('/deletesurvey/:id' , isLoggedIn, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
-            // userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
-            //     res.render('pages/profile.ejs', {
-            //         user : req.user,
-            //         userData: doc2,
-            //         allData: doc2 
-            //     });
-            // });
         });
         res.redirect('/profile');
         
@@ -122,8 +115,6 @@ module.exports = function(app, passport, survey) {
         //is this your survey? if not, return to profile
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {}, function(err, doc){
             if (doc!=undefined){
-                // userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
-                    console.log(doc);
                     res.render('pages/addoptions.ejs', {
                         user : req.user,
                         surveyid: req.params.id,
@@ -156,25 +147,7 @@ module.exports = function(app, passport, survey) {
         // res.redirect('/survey/'+req.params.id);
     });
     
-        // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});
-        // res.redirect('/profile');
-        
-        // res.render('pages/survey.ejs', {
-        //         user : req.user,
-        //         surveyid: req.params.id,
-        //         surveyData: doc
-        //     });
-        // });
-           /* userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
-                console.log("IN HERE");
-                res.render('pages/profile.ejs', {
-                    user : req.user,
-                    userData: doc,
-                    allData: doc
-
-
-                });
-            });*/
+      
 /*NEXT TO FIX:
 --column widths  DONE
 --actually link to the survey page DONE
@@ -190,7 +163,7 @@ module.exports = function(app, passport, survey) {
    maybe should allow voting, but maybe not multiple times per...computer? TODO
 
    LEFT TO DO:
-   What if you want more than five options initially? 
+   What if you want more than five options initially? DONE
    only one response per IP?
 
 */ 
@@ -208,30 +181,6 @@ module.exports = function(app, passport, survey) {
         survey.makesurvey(req,res);
        
     });
-    // app.get('/addoption/:id', isLoggedIn, function(req, res) {
-    //     res.render('pages/addoption.ejs', {
-    //             user : req.user,
-    //         });
-    //     });
-
-    // app.post('/addoption/:id', function(req,res){
-    //     survey.makesurvey(req,res);
-    //     res.redirect('/profile');
-       
-    // });
- // , {
-            // user : req.user // get the user out of session and pass to template
-        // });
-        // es, 
-            // {successRedirect: '/profile', failureRedirect: '/makeasurvey', failureFlash: true});
-
-        //need to make sure they haven't left some survey options blank - or deal with these if they have!
-
-        //post to the database
-
-        //ok so two tabs on the home page
-            //list all your surveys / make a new survey
-            //links to most recent surveys made by others
     // =====================================
     // LOGOUT ==============================
     // =====================================
