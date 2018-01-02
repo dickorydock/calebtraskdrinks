@@ -14,10 +14,10 @@
     var boxName = 0;
     function addInput()
     {
-        console.log("IN AFDL");
-        var tag = document.createElement('input'); // Create a `input` element,
-        tag.setAttribute('type', 'text');          // Set it's `type` attribute,
-        tag.setAttribute('name', "options["+countBox+"]");               // Set it's `name` attribute,
+        var tag = document.createElement('input'); // Create a input element,
+        tag.setAttribute('type', 'text');          // Set type attribute,
+        tag.setAttribute('class', 'form-control');          // Set class attribute,
+        tag.setAttribute('name', "options["+countBox+"]");               // Set name attribute,
         var y = document.getElementById("more-boxes");      // "Get" the `y` element,
         y.appendChild(tag);                        // Append the input to `y`,
         countBox += 1;
@@ -30,7 +30,7 @@
 
 <div class="col-sm-6 col-sm-offset-3">
 
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
+    <h1><span class="fa fa-sign-in"></span> Create A Survey</h1>
     <!-- MAKE A NEW SURVEY FORM -->
     <form action="/makesurvey" method="post">
         <div class="form-group">
