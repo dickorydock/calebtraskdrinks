@@ -42,7 +42,7 @@ module.exports =
 
         eachupdate.$each["surveyOptions"] = arrOptions;
         eachupdate.$each["surveyResponse"]=arrZeroes;
-        console.log(arrOptions);
+        console.log(JSON.stringify(arrOptions));
         console.log(eachupdate);
         myupdate.$push["surveyOptions"] = {$each:{}};
         myupdate.$push["surveyResponses"] = {$each:{}};
@@ -52,7 +52,7 @@ module.exports =
 
         // console.log("PRAY"+arrOptions);
         // console.log("PRAY2"+arrZeroes);
-        console.log(myupdate);// arrOptions.forEach(function(arrOption){
+        console.log(JSON.stringify(myupdate));// arrOptions.forEach(function(arrOption){
             // myupdate.$push["surveyResponses"] = arrOption;
         
 
