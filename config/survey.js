@@ -33,10 +33,18 @@ module.exports =
         //remove blank options
         arrOptions = arrOptions.filter(function(n){ return n != ""}); 
 
-        console.log("PRAY"+arrOptions);
         var myupdate = {$push:{}};
-        myupdate.$push["surveyResponses"] = arrOptions;
-        // arrOptions.forEach(function(arrOption){
+        var arrZeroes=[];
+        for(i=0;i<arrOptions.length;i++){
+            arrZeroes.push(0);
+        }
+        myupdate.$push["surveyOptions"] = arrOptions;
+        myupdate.$push["surveyResponses"] = arrZeroes;
+        
+
+        console.log("PRAY"+arrOptions);
+        console.log("PRAY2"+arrZeroes);
+        console.log("PRAY3"+myupdate);// arrOptions.forEach(function(arrOption){
             // myupdate.$push["surveyResponses"] = arrOption;
         
 
