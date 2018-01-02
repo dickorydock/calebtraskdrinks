@@ -8,6 +8,7 @@ var userSurvey            = require('../app/models/userSurvey');
 module.exports =
 {
     makesurvey: function(req,res){
+        console.log(req.body);
         var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
 
         //remove blank options

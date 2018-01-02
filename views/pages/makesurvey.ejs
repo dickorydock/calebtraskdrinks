@@ -23,11 +23,14 @@
         </div>      
         <div class="form-group">
             <label>List of Survey Options, in order (up to 5 - maybe will add more later)</label>
-            <% for (var i=0;i<10;i++){%>
+            <label>List of Survey Options, in order (up to 5 - maybe will add more later)</label>
+            <% for (var i=0;i<5;i++){%>
                 <input type="text" class="form-control" name="option<%=i%>">
             <%}%>
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Make the Survey!</button>
+        <button type="submit" class="btn btn-warning btn-lg">Add 5 Options</button>
+    
+        <button type="submit" value="OHBOY" class="btn btn-warning btn-lg">Make the Survey!</button>
     </form>
 
     <hr>
