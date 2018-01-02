@@ -101,7 +101,20 @@ module.exports = function(app, passport, survey) {
         });
     });
 
-     app.get('/deletesurvey/:id' /*, isLoggedIn*/, function(req, res) {
+     app.get('/deletesurvey/:id' , isLoggedIn, function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
+            userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
+                res.render('pages/profile.ejs', {
+                    user : req.user,
+                    userData: doc2,
+                    allData: doc2 /*need this to be EVERYTHING not just this user*/
+                });
+            });
+        });
+    });
+
+    app.get('/addoption/:id' , isLoggedIn, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
             userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
@@ -151,9 +164,6 @@ module.exports = function(app, passport, survey) {
 // get the user out of session and pass to template
 
     app.get('/makesurvey', isLoggedIn, function(req, res) {
-         // var userSurveys  = require('./models/userSurvey');
-        // userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err, doc){
-        
         res.render('pages/makesurvey.ejs', {
                 user : req.user // get the user out of session and pass to template
             });
@@ -162,7 +172,20 @@ module.exports = function(app, passport, survey) {
     app.post('/makesurvey', function(req,res){
         survey.makesurvey(req,res);
         res.redirect('/profile');
-        // , {
+       
+    });
+    // app.get('/addoption/:id', isLoggedIn, function(req, res) {
+    //     res.render('pages/addoption.ejs', {
+    //             user : req.user,
+    //         });
+    //     });
+
+    // app.post('/addoption/:id', function(req,res){
+    //     survey.makesurvey(req,res);
+    //     res.redirect('/profile');
+       
+    // });
+ // , {
             // user : req.user // get the user out of session and pass to template
         // });
         // es, 
@@ -175,8 +198,6 @@ module.exports = function(app, passport, survey) {
         //ok so two tabs on the home page
             //list all your surveys / make a new survey
             //links to most recent surveys made by others
-    });
-
     // =====================================
     // LOGOUT ==============================
     // =====================================

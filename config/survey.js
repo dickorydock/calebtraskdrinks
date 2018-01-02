@@ -8,9 +8,56 @@ var userSurvey            = require('../app/models/userSurvey');
 module.exports =
 {
     makesurvey: function(req,res){
-        console.log(req);
-
         var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
+
+        //remove blank options
+        arrOptions = arrOptions.filter(function(n){ return n != ""}); 
+
+        var newUserSurvey            = new userSurvey();
+        
+        // set the user's local credentials
+        newUserSurvey.surveyQuestion    = req.body.question;
+        newUserSurvey.surveyOptions     = arrOptions;
+        newUserSurvey.surveyResponses   = [0,0,0,0,0];
+        newUserSurvey.surveyActive      = 1 ; 
+        newUserSurvey.responseCount     = 0 ; 
+        newUserSurvey.surveyCreated     = new Date().toISOString();
+        newUserSurvey.userId            = req.user._id;
+
+        // save the userSurvey
+        return newUserSurvey.save();
+    } 
+
+    addoptions: function(req,res){
+        var arrOptions =  [req.body.option1, req.body.option2, req.body.option3, req.body.option4, req.body.option5];
+        //remove blank options
+        arrOptions = arrOptions.filter(function(n){ return n != ""}); 
+
+        var userSurveys  = require('./models/userSurvey');
+        
+        var myupdate = {$push:{}};
+        myupdate.$push["surveyResponses"] = arrOptions;
+        // arrOptions.forEach(function(arrOption){
+            // myupdate.$push["surveyResponses"] = arrOption;
+        
+
+        // })
+        // myupdate.$push["surveyResponses."+req.body.text] = 1 ;
+        // myupdate.$inc["responseCount"] = 1 ;
+        // userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
+            // res.redirect('/survey/'+req.params.id);
+        // });
+
+        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err, doc){
+            userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
+                res.render('pages/profile.ejs', {
+                    user : req.user,
+                    userData: doc2,
+                    allData: doc2 
+                });
+            });
+        });
+
 
         //remove blank options
         arrOptions = arrOptions.filter(function(n){ return n != ""}); 
