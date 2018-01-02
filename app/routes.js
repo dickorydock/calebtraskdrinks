@@ -114,6 +114,12 @@ module.exports = function(app, passport, survey) {
         });
     });
 
+     app.post('/deletesurvey/:id', isLoggedIn, function(req,res){
+        survey.addoptions(req,res);
+        res.redirect('/survey'+req.params.id);
+     
+     })
+
     app.get('/addoptions/:id', isLoggedIn, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
@@ -121,6 +127,7 @@ module.exports = function(app, passport, survey) {
                 userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
                     res.render('pages/addoptions.ejs', {
                         user : req.user,
+                        surveyid: req.params.id,
                         userData: doc2,
                         allData: doc2 /*need this to be EVERYTHING not just this user*/
                     });       
