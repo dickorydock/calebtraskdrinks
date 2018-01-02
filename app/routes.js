@@ -118,17 +118,17 @@ module.exports = function(app, passport, survey) {
         var userSurveys  = require('./models/userSurvey');
        
         //is this your survey? if not, return to profile
-        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
+        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {}, function(err, doc){
             if (doc!=undefined){
-                userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
-                    console.log(doc2);
+                // userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
+                    // console.log(doc2);
                     res.render('pages/addoptions.ejs', {
                         user : req.user,
                         surveyid: req.params.id,
-                        userData: doc2,
-                        allData: doc2 /*need this to be EVERYTHING not just this user*/
+                        userData: doc,
+                        allData: doc /*need this to be EVERYTHING not just this user*/
                     });       
-                });
+                // });
             }
             else res.render('pages/profile.ejs', {
                         user : req.user,
