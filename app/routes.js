@@ -141,7 +141,7 @@ module.exports = function(app, passport, survey) {
 
     app.post('/addoptions/:id', function(req,res){
         survey.addoptions(req,res);
-        res.redirect('/survey/'+req.params.id);
+        // res.redirect('/survey/'+req.params.id);
     });
     
         // userSurveys.update({'_id':  req.params.id}, {"$inc": {surveyActive: 1}});

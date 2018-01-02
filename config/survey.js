@@ -55,7 +55,9 @@ module.exports =
         //     res.redirect('/survey/'+req.params.id);
         // });
 
-        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate});
+        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err,doc){
+              res.redirect('/survey/'+req.params.id);
+        });
     }
     // =========================================================================
     // survey session setup ==================================================
