@@ -56,7 +56,7 @@ module.exports =
 
         userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err,doc){
               console.log("IN HERE");
-              console.log(err);
+              console.log(doc);
               console.log("OUT")
               res.redirect('/survey/'+req.params.id);
         });
