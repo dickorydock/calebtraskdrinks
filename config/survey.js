@@ -52,18 +52,10 @@ module.exports =
         // myupdate.$push["surveyResponses."+req.body.text] = 1 ;
         // myupdate.$inc["responseCount"] = 1 ;
         // userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
-            // res.redirect('/survey/'+req.params.id);
+        //     res.redirect('/survey/'+req.params.id);
         // });
 
-        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err, doc){
-            userSurvey.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
-                res.render('pages/profile.ejs', {
-                    user : req.user,
-                    userData: doc2,
-                    allData: doc2 
-                });
-            });
-        });
+        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate});
     }
     // =========================================================================
     // survey session setup ==================================================
