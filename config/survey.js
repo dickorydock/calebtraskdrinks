@@ -34,10 +34,16 @@ module.exports =
         arrOptions = arrOptions.filter(function(n){ return n != ""}); 
 
         var myupdate = {$push:{}};
+        var eachupdate = {$each:{}};
         var arrZeroes=[];
         for(i=0;i<arrOptions.length;i++){
             arrZeroes.push(0);
         }
+
+        eachupdate.$each["surveyOptions"] = arrOptions;
+        eachupdate.$each["surveyResponse"]=arrZeroes;
+
+        console.log(eachupdate);
         myupdate.$push["surveyOptions"] = arrOptions;
         myupdate.$push["surveyResponses"] = arrZeroes;
 
