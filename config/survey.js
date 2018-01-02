@@ -13,13 +13,9 @@ module.exports =
         var arrOptions = req.body.options.filter(function(n){ return n != ""}); 
 
         var arrZeroes=[];
-        for (var k; k<arrOptions.length;k++){
+        for (var i=0; i<arrOptions.length;i++){
             arrZeroes.push(0);
         }
-        console.log("up here");
-        console.log(arrOptions);
-        console.log(arrOptions.length);
-        console.log(arrZeroes);
         var newUserSurvey            = new userSurvey();
         
         // set the user's local credentials
@@ -33,7 +29,6 @@ module.exports =
 
         // save the userSurvey
         return newUserSurvey.save(function(err,doc){
-            console.log(doc._id);
             res.redirect('/survey/'+doc._id);
    
         });
@@ -42,12 +37,10 @@ module.exports =
     addoptions: function(req,res){
         //remove blank options
         arrOptions = req.body.options.filter(function(n){ return n != ""}); 
-        console.log(arrOptions);
         var arrZeroes=[];
         for(i=0;i<arrOptions.length;i++){
             arrZeroes.push(0);
         }
-        console.log(arrZeroes);
         //construct the mongoDB update
         var myupdate = {$push:{}};
         myupdate.$push["surveyOptions"] = {$each:{}};
