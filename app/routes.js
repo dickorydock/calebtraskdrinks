@@ -104,7 +104,6 @@ module.exports = function(app, passport, survey) {
      app.get('/deletesurvey/:id' , isLoggedIn, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
-            res.redirect('/profile');
             // userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
             //     res.render('pages/profile.ejs', {
             //         user : req.user,
@@ -113,6 +112,8 @@ module.exports = function(app, passport, survey) {
             //     });
             // });
         });
+        res.redirect('/profile');
+        
     });
 
     app.get('/addoptions/:id', isLoggedIn, function(req, res) {
