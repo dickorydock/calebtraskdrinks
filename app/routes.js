@@ -104,13 +104,14 @@ module.exports = function(app, passport, survey) {
      app.get('/deletesurvey/:id' , isLoggedIn, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
         userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
-            userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
-                res.render('pages/profile.ejs', {
-                    user : req.user,
-                    userData: doc2,
-                    allData: doc2 /*need this to be EVERYTHING not just this user*/
-                });
-            });
+            res.redirect('/profile');
+            // userSurveys.find({'userId': req.user._id,'surveyActive': 1}, function(err2, doc2){
+            //     res.render('pages/profile.ejs', {
+            //         user : req.user,
+            //         userData: doc2,
+            //         allData: doc2 
+            //     });
+            // });
         });
     });
 
