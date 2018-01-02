@@ -38,8 +38,8 @@ module.exports =
         for(i=0;i<arrOptions.length;i++){
             arrZeroes.push(0);
         }
-        myupdate.$push["surveyOptions"].$each = arrOptions;
-        myupdate.$push["surveyResponses"].$each = arrZeroes;
+        myupdate.$push["surveyOptions"] = arrOptions;
+        myupdate.$push["surveyResponses"] = arrZeroes;
 
         // console.log("PRAY"+arrOptions);
         // console.log("PRAY2"+arrZeroes);
@@ -54,7 +54,7 @@ module.exports =
         //     res.redirect('/survey/'+req.params.id);
         // });
 
-        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {myupdate}, function(err,doc){
+        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {$push:{surveyResponses:13}}, function(err,doc){
               console.log("IN HERE");
               console.log(req.params.id);
               console.log(req.user._id);
