@@ -22,15 +22,15 @@
             <input type="text" class="form-control" name="question">
         </div>      
         <div class="form-group">
-            <label>List of Survey Options, in order (up to 5 - maybe will add more later)</label>
+            <label>Survey Options, in order</label>
             <% for (var i=0;i<5;i++){%>
                 <input type="text" class="form-control" name="option<%=i%>">
             <%}%>
             <span id="more-boxes"></span>
         </div>
-        <input type="button" onclick="addInput()" class="btn btn-warning btn-md" value="Add Row"/>
+        <input type="button" onclick="addInput()" class="btn btn-warning btn-lg btn-space" value="Add Row"/>
         <br/>
-        <button type="submit" class="btn btn-warning btn-lg">Make the Survey!</button>
+        <button type="submit" class="btn btn-warning btn-lg btn-space">Make the Survey!</button>
     </form>
 
     <hr>
