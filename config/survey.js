@@ -45,7 +45,9 @@ module.exports =
 
         console.log(eachupdate);
         myupdate.$push["surveyOptions"] = {$each:{}};
+        myupdate.$push["surveyResponses"] = {$each:{}};
         myupdate.$push["surveyOptions"].$each[0]= arrOptions;
+        myupdate.$push["surveyResponses"].$each[0]= arrZeroes;
         // myupdate.$push["surveyResponses"] = arrZeroes;
 
         // console.log("PRAY"+arrOptions);
