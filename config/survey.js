@@ -54,7 +54,7 @@ module.exports =
         //     res.redirect('/survey/'+req.params.id);
         // });
 
-        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {$push:{surveyResponses:[33,26]}}, function(err,doc){
+        userSurvey.update({'_id':  req.params.id, 'userId':req.user._id}, {$push:{surveyResponses: {$each [33,26]}}}, function(err,doc){
               console.log("IN HERE");
               console.log(req.params.id);
               console.log(req.user._id);
