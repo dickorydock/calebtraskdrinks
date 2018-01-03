@@ -13,7 +13,7 @@ module.exports = {
     'twitterAuth' : {
         'consumerKey'       : process.env.TWITTER_CONSUMERKEY,
         'consumerSecret'    : process.env.TWITTER_CONSUMERSECRET,
-        'callbackURL'       : 'http://adamtraskvotes.herokuapp.com/auth/twitter/callback'
+        'callbackURL'       : 'http://calebtraskdrinks.herokuapp.com/auth/twitter/callback'
     },
 
     'googleAuth' : {
