@@ -100,7 +100,7 @@ module.exports = function(app, passport, survey) {
                 // newFileActions();
             }
         }
-        request(options0, auth0 callback2);
+        request(options0, auth0, callback2);
 
         var userSurveys  = require('./models/userSurvey');
         
