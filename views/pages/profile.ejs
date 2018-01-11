@@ -21,23 +21,20 @@
     <div class="row">
         <%=yelpData%>
         <%=yelpDataString%>
-        What now
-        <!-- MY SURVEYS -->
-        <div class="col-sm-8">
-             <div class="well">
-                <h3><span class="fa fa-user"></span>Next Bar</h3>
-                <div class="row">
-                    <%yelpData.forEach(function(entry, k){%>
-                    <div class="col-sm-9"><%=entry.name%></div>
-                    <div class="col-sm-9"><%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></div>
-                    <div class="col-sm-9"><%=entry.name%></div>
-                    <div class="col-sm-3"><a id='<%=entry._id%>'class='surveyQuestion'><%=entry.responseCount%></a></div>
-                    <%})%> 
-                </div>
-            </div>
-        </div>
         
+
     </div>
+    What now
+        <!-- MY SURVEYS -->
+	<div class="col-sm-8">
+	    <%yelpData.forEach(function(entry, k){%>
+	    <div class="row top-buffer ">
+	        <div class="col-sm-9"><%=entry.name%></div>
+	        <div class="col-sm-9"><%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></div>
+	    </div>
+	    <%})%> 
+	</div>
+    
 </div>
 </body>
 </html>
