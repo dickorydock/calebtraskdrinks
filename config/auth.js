@@ -1,7 +1,8 @@
 
 // expose our config directly to our application using module.exports
 module.exports = {
-
+    'apiKey' : process.env.YELP_APIKEY,
+    
     'facebookAuth' : {
         'clientID'      : 'your-secret-clientID-here', // your App ID
         'clientSecret'  : 'your-client-secret-here', // your App Secret
