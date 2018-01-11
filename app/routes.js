@@ -94,6 +94,7 @@ module.exports = function(app, passport, survey) {
                     res.render('pages/profile.ejs', {
                         user : req.user,
                         yelpData:JSON.parse(body).businesses,
+                        yelpDataString:body,
                         userData: doc,
                         allData: doc /*need this to be EVERYTHING not just this user*/
                     });
