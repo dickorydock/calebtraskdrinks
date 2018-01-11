@@ -71,18 +71,30 @@ module.exports = function(app, passport, survey) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-
         // request.
-
-            var userSurveys  = require('./models/userSurvey');
-            userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
-                res.render('pages/profile.ejs', {
-                    user : req.user,
-                    yelpData: "ooooo",
-                    userData: doc,
-                    allData: doc /*need this to be EVERYTHING not just this user*/
+        var options0 = {
+            url: "http://www.talkinbroadway.com/allthatchat_new/index.php"
+        };
+        var callback2 = function(err, httpResponse2, body){
+            // siteBody = body;
+            if (err){throw err;}
+            else {            
+                userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
+                    res.render('pages/profile.ejs', {
+                        user : req.user,
+                        yelpData: "goooooood",
+                        userData: doc,
+                        allData: doc /*need this to be EVERYTHING not just this user*/
+                    });
                 });
-            });
+                // newFileActions();
+            }
+        }
+        request(options0, callback2);
+
+        var userSurveys  = require('./models/userSurvey');
+        
+
         });
     app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
         var userSurveys  = require('./models/userSurvey');
