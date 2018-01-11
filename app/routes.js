@@ -76,15 +76,15 @@ module.exports = function(app, passport, survey) {
         // request.
         var options0 = {
             // url: "http://www.talkinbroadway.com/allthatchat_new/index.php"
-            url: "https://api.yelp.com/v3/businesses/search?location=Phoenix"
+            url: "https://api.yelp.com/v3/businesses/search?location=Phoenix",
+             'auth': {
+                'bearer': process.env.YELP_APIKEY
+           }
 
         };
 
-        var auth0 = {
-            'auth': {
-                'bearer': process.env.YELP_APIKEY
-           }
-    }
+    //     var auth0 = {  
+    // }
         var callback2 = function(err, httpResponse2, body){
             // siteBody = body;
             if (err){throw err;}
@@ -100,7 +100,7 @@ module.exports = function(app, passport, survey) {
                 // newFileActions();
             }
         }
-        request(options0, auth0, callback2);
+        request(options0, /*auth0,*/ callback2);
 
         var userSurveys  = require('./models/userSurvey');
         
