@@ -29,8 +29,8 @@
         <!-- MY SURVEYS -->
 	    <%yelpData.forEach(function(entry, k){%>
 	    <div class="row top-buffer ">
-	        <div class="col-sm-9"><%=entry.name%></div>
-	        <div class="col-sm-9"><%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></div>
+	         <div class="col-sm-3"><a href="www.google.com"><img src="<%=entry.image_url%>"</img></a></div>
+	        <div class="col-sm-9"><%=entry.name%><%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></div>
 	    </div>
 	    <%})%> 
 	
