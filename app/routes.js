@@ -84,7 +84,7 @@ module.exports = function(app, passport, survey) {
                 userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
                     res.render('pages/profile.ejs', {
                         user : req.user,
-                        yelpData: "goooooood",
+                        yelpData:body,
                         userData: doc,
                         allData: doc /*need this to be EVERYTHING not just this user*/
                     });
