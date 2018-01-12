@@ -10,6 +10,12 @@ module.exports = function(app, passport, survey) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        userSurveys.find({'surveyActive': 1}, function(err, doc){
+            res.render('pages/index.ejs', {
+               allData: doc /*need this to be EVERYTHING not just this user*/
+            });
+        });
     });
 
     // =====================================
