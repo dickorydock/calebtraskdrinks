@@ -26,6 +26,9 @@
         <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
     </div>
 
+    <input type='button' class="btn"  id='addnewrecord' data-userid = <%=user._id%> data-yelpid = 'new-record' data-mode = 'addonenew'  onmousedown="gotoBar(this);" >Add a new record</input>
+    <input type='button' class="btn"  id='toggleme' data-userid = <%=user._id%> data-yelpid = 'new-record' data-mode = 'toggleone'  onmousedown="gotoBar(this);" >Toggle one</input>
+
     What now
     <!-- MY SURVEYS -->
     <%=yelpDataString%>

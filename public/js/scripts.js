@@ -32,6 +32,7 @@
   };
 
 function gotoBar(el){
+  console.log(el);
 
   var id = el.getAttribute('data-userid');
   var yelpid = el.getAttribute('data-yelpid');
