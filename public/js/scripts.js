@@ -38,12 +38,12 @@ function gotoBar(el){
   var yelpid = el.getAttribute('data-yelpid');
   var mode = el.getAttribute('data-mode'); 
 
-  // $.ajax({
-  //   url:'./gotoBar',
-  //   cache: false,
-  //   type: "POST",
-  //   data:{id:id, yelpid:yelpid, mode:mode},
-  // });       
+  $.ajax({
+    url:'./gotoBar',
+    cache: false,
+    type: "POST",
+    data:{id:id, yelpid:yelpid, mode:mode},
+  });       
 
   // var watchword = "Unwatch"; 
 

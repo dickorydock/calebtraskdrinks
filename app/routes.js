@@ -55,7 +55,7 @@ module.exports = function(app, passport, survey) {
           newVisitor.yelpId             = yelpId;
           newVisitor.isGoingToday       = true;
           newVisitor.lastResponseDate   = localISOTime;
-          return instancerecord.save();
+          return newVisitor.save();
         }
         return data;
       })
