@@ -5,7 +5,9 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<style>
         body        { padding-top:80px; word-wrap:break-word;  }
    		.top-buffer {margin-top: 20px}
         .bar-listing {height: 150px}
@@ -13,7 +15,7 @@
             display: block;
             margin: auto;
             height:150px;
-         </style>
+    </style>
 </head>
 <body>
 <div class="container">
@@ -25,23 +27,34 @@
     </div>
 
     What now
-        <!-- MY SURVEYS -->
-		<%yelpData.forEach(function(entry, k){%>
-	   
-		    <div class="row top-buffer bar-listing">
-		       
-		        	<div class="col-md-3 bar-photo">
-		        		 <a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"></a>
-		        	</div>
-		        	<div class="col-md-9">
-		        	 <a href="<%=entry.url%>">
-		        		<%=entry.name%><br/>
-		        		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
-		        		<button class="btn">0 Going Today</button></div>
-		        	</a>
-		    		</div>
-		    </div>
-	    <%})%> 
+    <!-- MY SURVEYS -->
+    <%=yelpDataString%>
+	<%yelpData.forEach(function(entry, k){%>
+   
+	    <div class="row top-buffer bar-listing">
+	       
+    	<div class="col-md-3 bar-photo">
+    		 <a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"></a>
+    	</div>
+    	<div class="col-md-9">
+    	 <a href="<%=entry.url%>">
+    		<%=entry.name%><br/>
+    		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
+    		 <%if (user!=undefined)
+    		 { %>
+    	 	<input type='button' class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'offx'  onmousedown="gotoBar(this);" >I Go</input>
+	   	 <%}%> 
+
+    		0 Going Today
+
+
+
+
+		</a>
+		
+	   	</div>
+		</div>
+	<%})%> 
 	
 </div>
 </body>
