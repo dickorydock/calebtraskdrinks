@@ -34,39 +34,51 @@ module.exports = function(app, passport, survey) {
         console.log(req.body);
         var businessVisitors = require('./models/businessVisitor');
         var users = require('./models/user');
-        return businessVisitors.findOne(
-        {
-            "$and": [
-                {
-                   "userId": req.body.id
-                }
-                ,{
-                    "yelpId": req.body.yelpid
-                }
-            ]
-        }
-      )
-      .exec()
-      .then(data => {
-       if (true) {
-       // if (!data) {
-          var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
-          var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-          var newVisitor = new businessVisitors();
-          newVisitor.userId             = req.body.id;
-          newVisitor.yelpId             = req.body.yelpid;
-          newVisitor.isGoingToday       = true;
-          newVisitor.lastResponseDate   = localISOTime;
-          return newVisitor.save();
+        
+            return businessVisitors.findOne(
+            {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]})
+            .exec()
+            .then(data => {
+            if (true) {
+             // if (!data) {
+                if (req.body.mode=='addonenew'){
+        
+                var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
+                var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+                var newVisitor = new businessVisitors();
+                newVisitor.userId             = req.body.id;
+                newVisitor.yelpId             = req.body.yelpid;
+                newVisitor.isGoingToday       = true;
+                newVisitor.lastResponseDate   = localISOTime;
+                return newVisitor.save();
 
-          /*allow people to GO
-          create conut of how many are going
-          can i say i'm going tomorrow instead of today?
-          can i see these on a map?
-          */
+                /*allow people to GO
+                create conut of how many are going
+                can i say i'm going tomorrow instead of today?
+                can i see these on a map?
+                */
+            }
+            if (req.body.mode=='toggle'){
+                console.log(data);
+
+                var tzOffset        = (new Date()).getTimezoneOffset() * 60000 ;
+                var localISOTime    = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+                var newVisitor      = new businessVisitors();
+                newVisitor.userId             = req.body.id;
+                newVisitor.yelpId             = req.body.yelpid;
+                newVisitor.isGoingToday       = true;
+                newVisitor.lastResponseDate   = localISOTime;
+                return newVisitor.save();
+
+                /*allow people to GO
+                create conut of how many are going
+                can i say i'm going tomorrow instead of today?
+                can i see these on a map?
+                */
+            }
         }
-        return data;
-      })
+            return data;
+            })
     })
 
    // process the login form

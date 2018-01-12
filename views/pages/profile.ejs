@@ -46,8 +46,7 @@
     		 <%if (user!=undefined)
     		 { %>
     	 	<input type='button' class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'addonenew'  onmousedown="gotoBar(this);" >I Go</input>
-
-    	 	 <input type='button' class="btn"  id='addnewrecord' data-userid = <%=user._id%> data-yelpid = 'new-record' data-mode = 'addonenew'  onmousedown="gotoBar(this);" >Add a new record</input>
+    	 	<input type='button' class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'toggle'  onmousedown="gotoBar(this);" >Toggle</input>
    
 	   	 <%}%> 
 
