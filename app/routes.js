@@ -49,7 +49,7 @@ module.exports = function(app, passport, survey) {
       .exec()
       .then(data => {
        if (!data) {
-          console.log("adding "+yelpId+" with "+userId);
+          console.log("adding "+req.body.yelpid+" with ");
           var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
           var newVisitor = new businessVisitors();
           newVisitor.userId             = req.body.id;
