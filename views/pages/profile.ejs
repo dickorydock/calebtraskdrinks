@@ -28,9 +28,11 @@
     What now
         <!-- MY SURVEYS -->
 	    <%yelpData.forEach(function(entry, k){%>
-	    <div class="row top-buffer ">
-	         <div class="col-sm-3"><a href="www.google.com"><img class = "img-responsive" src="<%=entry.image_url%>"></a></div>
-	        <div class="col-sm-9"><%=entry.name%><%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></div>
+	    <div class="well"
+		    <div class="row top-buffer ">
+		         <div class="col-sm-3"><a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"></a></div>
+		        <div class="col-sm-9"><%=entry.name%><br/><%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%><br/><button class="btn" text="I'm Going Tonight!"></button></div>
+		    </div>
 	    </div>
 	    <%})%> 
 	
