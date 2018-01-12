@@ -24,12 +24,6 @@
         <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
     </div>
 
-    <div class="row">
-        <%=yelpData%>
-        <%=yelpDataString%>
-        
-
-    </div>
     What now
         <!-- MY SURVEYS -->
 	     <div class="row top-buffer bar-listing">
@@ -45,7 +39,7 @@
 		    <div class="row top-buffer bar-listing">
 		       
 		        	<div class="col-md-3 bar-photo">
-		        		 <a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url</a>
+		        		 <a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"></a>
 		        	</div>
 		        	<div class="col-md-9">
 		        	 <a href="<%=entry.url%>">
@@ -54,6 +48,7 @@
 		        		<button class="btn">0 Going Today</button></div>
 		        	</a>
 		    		</div>
+		    </div>
 	    <%})%> 
 	
 </div>
