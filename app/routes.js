@@ -31,6 +31,7 @@ module.exports = function(app, passport, survey) {
 
 
     app.post('/gotoBar', function(req,res){
+        console.log(req.body);
         var businessVisitors = require('./models/businessVisitor');
         var users = require('./models/user');
         return businessVisitors.findOne(
