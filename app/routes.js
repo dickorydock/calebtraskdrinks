@@ -66,7 +66,7 @@ module.exports = function(app, passport, survey) {
                 var newVisitor      = new businessVisitors();
                 newVisitor.userId             = req.body.id;
                 newVisitor.yelpId             = req.body.yelpid;
-                newVisitor.isGoingToday       = true;
+                newVisitor.isGoingToday       = !(data.isGoingToday);
                 newVisitor.lastResponseDate   = localISOTime;
                 return newVisitor.save();
 
