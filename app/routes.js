@@ -38,10 +38,10 @@ module.exports = function(app, passport, survey) {
         {
             "$and": [
                 {
-                   "userId": userId
+                   "userId": req.body.id
                 }
                 ,{
-                    "yelpId": yelpId
+                    "yelpId": req.body.yelpId
                 }
             ]
         }
@@ -52,8 +52,8 @@ module.exports = function(app, passport, survey) {
           console.log("adding "+yelpId+" with "+userId);
           var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
           var newVisitor = new businessVisitors();
-          newVisitor.userId             = userId;
-          newVisitor.yelpId             = yelpId;
+          newVisitor.userId             = req.body.id;
+          newVisitor.yelpId             = req.body.yelpId;
           newVisitor.isGoingToday       = true;
           newVisitor.lastResponseDate   = localISOTime;
           return newVisitor.save();
