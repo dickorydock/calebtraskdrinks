@@ -23,70 +23,72 @@ module.exports = function(app, passport, survey) {
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
+
+
         // render the page and pass in any flash data if it exists
         res.render('pages/login.ejs', { message: req.flash('loinMessage') }); 
     });
 
-  //    function saveInstance() {
+     function saveInstance() {
     
-  //     return businessVisitors.findOne(
-  //       {
-  //           "$and": [
-  //               {
-  //                  "userId": userId
-  //               }
-  //               ,{
-  //                   "yelpId": yelpId
-  //               }
-  //           ]
-  //       }
-  //     )
-  //     .exec()
-  //     .then(data => {
-  //      if (!data) {
-  //         console.log("adding "+yelpId+" with "+userId);
-  //         var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-  //         var newVisitor = new businessVisitors();
-  //         newVisitor.userId             = userId;
-  //         newVisitor.yelpId             = yelpId;
-  //         newVisitor.isGoingToday       = true;
-  //         newVisitor.lastResponseDate   = localISOTime;
-  //         return instancerecord.save();
-  //       }
-  //       return data;
-  //     })
-  // };
+      return businessVisitors.findOne(
+        {
+            "$and": [
+                {
+                   "userId": userId
+                }
+                ,{
+                    "yelpId": yelpId
+                }
+            ]
+        }
+      )
+      .exec()
+      .then(data => {
+       if (!data) {
+          console.log("adding "+yelpId+" with "+userId);
+          var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+          var newVisitor = new businessVisitors();
+          newVisitor.userId             = userId;
+          newVisitor.yelpId             = yelpId;
+          newVisitor.isGoingToday       = true;
+          newVisitor.lastResponseDate   = localISOTime;
+          return instancerecord.save();
+        }
+        return data;
+      })
+  };
 
-    // app.post('/gotoBar', function(req,res){
-    //     var businessVisitors = require('./models/businessVisitor');
-    //     var users = require('./models/user');
-    //     return businessVisitors.findOne(
-    //     {
-    //         "$and": [
-    //             {
-    //                "userId": userId
-    //             }
-    //             ,{
-    //                 "yelpId": yelpId
-    //             }
-    //         ]
-    //     }
-    //   )
-    //   .exec()
-    //   .then(data => {
-    //    if (!data) {
-    //       console.log("adding "+yelpId+" with "+userId);
-    //       var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-    //       var newVisitor = new businessVisitors();
-    //       newVisitor.userId             = userId;
-    //       newVisitor.yelpId             = yelpId;
-    //       newVisitor.isGoingToday       = true;
-    //       newVisitor.lastResponseDate   = localISOTime;
-    //       return instancerecord.save();
-    //     }
-    //     return data;
-    //   })
-    // })
+    app.post('/gotoBar', function(req,res){
+        var businessVisitors = require('./models/businessVisitor');
+        var users = require('./models/user');
+        return businessVisitors.findOne(
+        {
+            "$and": [
+                {
+                   "userId": userId
+                }
+                ,{
+                    "yelpId": yelpId
+                }
+            ]
+        }
+      )
+      .exec()
+      .then(data => {
+       if (!data) {
+          console.log("adding "+yelpId+" with "+userId);
+          var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+          var newVisitor = new businessVisitors();
+          newVisitor.userId             = userId;
+          newVisitor.yelpId             = yelpId;
+          newVisitor.isGoingToday       = true;
+          newVisitor.lastResponseDate   = localISOTime;
+          return instancerecord.save();
+        }
+        return data;
+      })
+    })
 
    // process the login form
     app.post('/login', passport.authenticate('local-login', {
@@ -142,9 +144,100 @@ module.exports = function(app, passport, survey) {
 
         };
 
+    //     var auth0 = {  
+    // }
+        var callback2 = function(err, httpResponse2, body){
+            // siteBody = body;
+            if (err){throw err;}
+            else {            
+                // console.log(body)
+                userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
+                    res.render('pages/profile.ejs', {
+                        user : req.user,
+                        yelpData:JSON.parse(body).businesses,
+                        yelpDataString:body,
+                        userData: doc,
+                        allData: doc /*need this to be EVERYTHING not just this user*/
+                    });
+                });
+                // newFileActions();
+            }
+        }
+        request(options0, /*auth0,*/ callback2);
+
+        var userSurveys  = require('./models/userSurvey');
         
 
         });
+    app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        userSurveys.find({'_id':  req.params.id}, function(err, doc){
+            res.render('pages/survey.ejs', {
+                    user : req.user,
+                    surveyid: req.params.id,
+                    thisUrl: "http://"+req.headers.host+req.originalUrl,
+                    surveyData: doc,
+                    chartNames: doc[0].surveyOptions,
+                    chartData: doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length)
+            });
+        });
+    });
+    app.post('/survey/:id' , function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        var myupdate = {$inc:{}};
+        myupdate.$inc["surveyResponses."+req.body.text] = 1 ;
+        myupdate.$inc["responseCount"] = 1 ;
+        userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
+            res.redirect('/survey/'+req.params.id);
+        });
+    });
+
+     app.get('/deletesurvey/:id' , isLoggedIn, function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
+        });
+        res.redirect('/profile');
+        
+    });
+
+    app.get('/addoptions/:id', isLoggedIn, function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+       
+        //is this your survey? if not, return to profile
+        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {}, function(err, doc){
+            if (doc!=undefined){
+                    res.render('pages/addoptions.ejs', {
+                        user : req.user,
+                        surveyid: req.params.id,
+                        userData: doc,
+                        allData: doc /*need this to be EVERYTHING not just this user*/
+                    });       
+                // });
+            }
+            else res.render('pages/profile.ejs', {
+                        user : req.user,
+                        userData: doc,
+                        allData: doc /*need this to be EVERYTHING not just this user*/
+                    });       
+            });
+        });
+
+
+    app.post('/survey/:id' , function(req, res) {
+        var userSurveys  = require('./models/userSurvey');
+        var myupdate = {$inc:{}};
+        myupdate.$inc["surveyResponses."+req.body.text] = 1 ;
+        myupdate.$inc["responseCount"] = 1 ;
+        userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
+            res.redirect('/survey/'+req.params.id);
+        });
+    });
+
+    app.post('/addoptions/:id', function(req,res){
+        survey.addoptions(req,res);
+        // res.redirect('/survey/'+req.params.id);
+    });
+    
       
 /*NEXT TO FIX:
 --column widths  DONE
