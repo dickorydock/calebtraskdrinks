@@ -8,6 +8,7 @@
     <style>
         body        { padding-top:80px; word-wrap:break-word;  }
         .top-buffer {margin-top: 20px}
+        .bar-listing {height: 80px}
     </style>
 </head>
 <body>
@@ -28,10 +29,10 @@
     What now
         <!-- MY SURVEYS -->
 	    <%yelpData.forEach(function(entry, k){%>
-	    <div class="well">
+	    <div class="well bar-listing">
 		    <div class="row top-buffer ">
 		         <div class="col-sm-3"><a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"></div>
-		        <div class="col-sm-9"><%=entry.name%><br/><%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/><button class="btn">I'm Going Tonight!</button></div>
+		        <div class="col-sm-9"><%=entry.name%><br/><%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/><button class="btn">0 Going Today</button></div>
 		    </div>
 	    </div>
 	    <%})%> 
