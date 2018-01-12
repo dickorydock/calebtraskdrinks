@@ -21,66 +21,66 @@ module.exports = function(app, passport, survey) {
         res.render('pages/login.ejs', { message: req.flash('loinMessage') }); 
     });
 
-     function saveInstance() {
+  //    function saveInstance() {
     
-      return businessVisitors.findOne(
-        {
-            "$and": [
-                {
-                   "userId": userId
-                }
-                ,{
-                    "yelpId": yelpId
-                }
-            ]
-        }
-      )
-      .exec()
-      .then(data => {
-       if (!data) {
-          console.log("adding "+yelpId+" with "+userId);
-          var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-          var newVisitor = new businessVisitors();
-          newVisitor.userId             = userId;
-          newVisitor.yelpId             = yelpId;
-          newVisitor.isGoingToday       = true;
-          newVisitor.lastResponseDate   = localISOTime;
-          return instancerecord.save();
-        }
-        return data;
-      })
-  };
+  //     return businessVisitors.findOne(
+  //       {
+  //           "$and": [
+  //               {
+  //                  "userId": userId
+  //               }
+  //               ,{
+  //                   "yelpId": yelpId
+  //               }
+  //           ]
+  //       }
+  //     )
+  //     .exec()
+  //     .then(data => {
+  //      if (!data) {
+  //         console.log("adding "+yelpId+" with "+userId);
+  //         var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+  //         var newVisitor = new businessVisitors();
+  //         newVisitor.userId             = userId;
+  //         newVisitor.yelpId             = yelpId;
+  //         newVisitor.isGoingToday       = true;
+  //         newVisitor.lastResponseDate   = localISOTime;
+  //         return instancerecord.save();
+  //       }
+  //       return data;
+  //     })
+  // };
 
-    app.post('/gotoBar', function(req,res){
-        var businessVisitors = require('./models/businessVisitor');
-        var users = require('./models/user');
-        return businessVisitors.findOne(
-        {
-            "$and": [
-                {
-                   "userId": userId
-                }
-                ,{
-                    "yelpId": yelpId
-                }
-            ]
-        }
-      )
-      .exec()
-      .then(data => {
-       if (!data) {
-          console.log("adding "+yelpId+" with "+userId);
-          var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-          var newVisitor = new businessVisitors();
-          newVisitor.userId             = userId;
-          newVisitor.yelpId             = yelpId;
-          newVisitor.isGoingToday       = true;
-          newVisitor.lastResponseDate   = localISOTime;
-          return instancerecord.save();
-        }
-        return data;
-      })
-    })
+    // app.post('/gotoBar', function(req,res){
+    //     var businessVisitors = require('./models/businessVisitor');
+    //     var users = require('./models/user');
+    //     return businessVisitors.findOne(
+    //     {
+    //         "$and": [
+    //             {
+    //                "userId": userId
+    //             }
+    //             ,{
+    //                 "yelpId": yelpId
+    //             }
+    //         ]
+    //     }
+    //   )
+    //   .exec()
+    //   .then(data => {
+    //    if (!data) {
+    //       console.log("adding "+yelpId+" with "+userId);
+    //       var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+    //       var newVisitor = new businessVisitors();
+    //       newVisitor.userId             = userId;
+    //       newVisitor.yelpId             = yelpId;
+    //       newVisitor.isGoingToday       = true;
+    //       newVisitor.lastResponseDate   = localISOTime;
+    //       return instancerecord.save();
+    //     }
+    //     return data;
+    //   })
+    // })
 
    // process the login form
     app.post('/login', passport.authenticate('local-login', {
