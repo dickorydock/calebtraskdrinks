@@ -50,7 +50,6 @@ module.exports = function(app, passport, survey) {
       .then(data => {
        if (true) {
        // if (!data) {
-          console.log("adding "+req.body.yelpid+" with ");
           var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
           var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
           var newVisitor = new businessVisitors();

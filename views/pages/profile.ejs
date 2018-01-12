@@ -45,7 +45,10 @@
     		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
     		 <%if (user!=undefined)
     		 { %>
-    	 	<input type='button' class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'offx'  onmousedown="gotoBar(this);" >I Go</input>
+    	 	<input type='button' class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'addonenew'  onmousedown="gotoBar(this);" >I Go</input>
+
+    	 	 <input type='button' class="btn"  id='addnewrecord' data-userid = <%=user._id%> data-yelpid = 'new-record' data-mode = 'addonenew'  onmousedown="gotoBar(this);" >Add a new record</input>
+   
 	   	 <%}%> 
 
     		0 Going Today
