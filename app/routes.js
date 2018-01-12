@@ -48,7 +48,8 @@ module.exports = function(app, passport, survey) {
       )
       .exec()
       .then(data => {
-       if (!data) {
+       if (true) {
+       // if (!data) {
           console.log("adding "+req.body.yelpid+" with ");
           var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
           var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
@@ -58,6 +59,12 @@ module.exports = function(app, passport, survey) {
           newVisitor.isGoingToday       = true;
           newVisitor.lastResponseDate   = localISOTime;
           return newVisitor.save();
+
+          /*allow people to GO
+          create conut of how many are going
+          can i say i'm going tomorrow instead of today?
+          can i see these on a map?
+          */
         }
         return data;
       })
