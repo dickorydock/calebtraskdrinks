@@ -41,7 +41,7 @@ module.exports = function(app, passport, survey) {
                    "userId": req.body.id
                 }
                 ,{
-                    "yelpId": req.body.yelpId
+                    "yelpId": req.body.yelpid
                 }
             ]
         }
@@ -53,7 +53,7 @@ module.exports = function(app, passport, survey) {
           var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
           var newVisitor = new businessVisitors();
           newVisitor.userId             = req.body.id;
-          newVisitor.yelpId             = req.body.yelpId;
+          newVisitor.yelpId             = req.body.yelpid;
           newVisitor.isGoingToday       = true;
           newVisitor.lastResponseDate   = localISOTime;
           return newVisitor.save();
