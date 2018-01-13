@@ -64,10 +64,10 @@ module.exports = function(app, passport, survey) {
                 */
                 }            
                 }
-            return data;
-            })
-          res.redirect('/profile');
-  
+            // return data;
+            res.redirect('/profile');
+         })
+     
     })
 
    // process the login form
