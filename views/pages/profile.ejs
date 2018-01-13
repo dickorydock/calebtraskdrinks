@@ -43,9 +43,10 @@
     	 <a href="<%=entry.url%>">
     		<%=entry.name%><br/>
     		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
+    		0 Going <br/>
     		 <%if (user!=undefined)
     		 { %>
-    	 	<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'notgoing'  onmousedown="gotoBar(this);" >Not Going</button>
+    	 	<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'notgoing'  onmousedown="gotoBar(this);" >No, I'm Not Going</button>
     	 	
 	   	 <%}%> 
 

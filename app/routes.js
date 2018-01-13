@@ -33,8 +33,12 @@ module.exports = function(app, passport, survey) {
     app.post('/gotoBar', function(req,res){
         console.log(req.body);
         var businessVisitors = require('./models/businessVisitor');
-        var myupdate = {$inc: {clickCount:3}};
-        var users = require('./models/user');
+        var updateCount = 1 ; 
+        if ( req.body.mode == "notgoing"){
+            updateCount = 0 ;
+        }
+       var myupdate = {$set: {clickCount:updateCount}};
+       var users = require('./models/user');
         
             return businessVisitors.update(
             {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate)
@@ -55,31 +59,12 @@ module.exports = function(app, passport, survey) {
                 return newVisitor.save();
 
                 /*allow people to GO
-                create conut of how many are going
+                create count of how many are going
                 can i say i'm going tomorrow instead of today?
                 can i see these on a map?
                 */
-            }
-            if (req.body.mode=='toggle'){
-                /*need to figure out how to toggle this 1-12-2018*/
-                // businessVisitors.update({)   console.log(data);
-
-                var tzOffset        = (new Date()).getTimezoneOffset() * 60000 ;
-                var localISOTime    = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-                var newVisitor      = new businessVisitors();
-                newVisitor.userId             = req.body.id;
-                newVisitor.yelpId             = req.body.yelpid;
-                newVisitor.isGoingToday       = !(data.isGoingToday);
-                newVisitor.lastResponseDate   = localISOTime;
-                return newVisitor.save();
-
-                /*allow people to GO
-                create conut of how many are going
-                can i say i'm going tomorrow instead of today?
-                can i see these on a map?
-                */
-            }
-        }
+                }            
+                }
             return data;
             })
     })
