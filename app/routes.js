@@ -45,7 +45,7 @@ module.exports = function(app, passport, survey) {
             {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate, {multi: true}, function(err,data){
             // if (true)
              {
-             // if (!data) {
+             if (data.n==0) {
                 console.log(data);
                 console.log("yeah in here");
                 // if (req.body.mode=='addonenew')
