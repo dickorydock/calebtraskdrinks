@@ -38,6 +38,19 @@ function gotoBar(el){
   var yelpid = el.getAttribute('data-yelpid');
   var mode = el.getAttribute('data-mode'); 
 
+  var modereplacement = "amgoing" ;
+  var buttonword = "amgoingButton"; 
+  if (mode=="amgoing")
+  { 
+    var modereplacement = "notgoing" ;
+    var buttonword = "notgoingButton"; 
+  }
+
+
+  $("#going-"+id).attr('class', buttonword+ " ") ;
+  $("#going-"+id).attr('data-mode',  modereplacement);
+
+
   $.ajax({
     url:'./gotoBar',
     cache: false,
