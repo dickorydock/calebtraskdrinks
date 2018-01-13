@@ -8,6 +8,7 @@ var businessVisitorSchema = mongoose.Schema({
         userId          : String,
         yelpId			: String,
         isGoingToday    : Boolean,
+        clickCount      : Number,
         lastResponseDate:Date
 });
 
