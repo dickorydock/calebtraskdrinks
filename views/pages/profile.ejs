@@ -45,11 +45,10 @@
     		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
     		 <%if (user!=undefined)
     		 { %>
-    	 	<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'notgoing'  onmousedown="gotoBar(this);" >Not Going</input>
+    	 	<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'notgoing'  onmousedown="gotoBar(this);" >Not Going</button>
     	 	
 	   	 <%}%> 
 
-    		0 Going Today
 
 
 
