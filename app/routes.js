@@ -41,9 +41,7 @@ module.exports = function(app, passport, survey) {
        var users = require('./models/user');
         
             return businessVisitors.update(
-            {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate)
-            .exec()
-            .then(data => {
+            {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate, function(err,data){
             if (true) {
              // if (!data) {
                 if (req.body.mode=='addonenew'){
