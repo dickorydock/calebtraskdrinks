@@ -38,9 +38,11 @@ function gotoBar(el){
   var yelpid = el.getAttribute('data-yelpid');
   var mode = el.getAttribute('data-mode'); 
   var modereplacement = "amgoing" ;
+  var modereplacementtext = "Yes, I Am Going!" ;
   var buttonword = "amgoingButton"; 
   if (mode=="amgoing")
   { 
+    var modereplacementtext= "No, I'm Not Going";
     var modereplacement = "notgoing" ;
     var buttonword = "notgoingButton"; 
   }
@@ -48,6 +50,7 @@ function gotoBar(el){
 
   $("#going-"+yelpid).attr('class', buttonword+ " btn") ;
   $("#going-"+yelpid).attr('data-mode',  modereplacement);
+  $("#going-"+yelpid).attr('text', modereplacementtext);
 
 console.log("here");
   console.log(yelpid);
