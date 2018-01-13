@@ -32,12 +32,11 @@
   };
 
 function gotoBar(el){
-  console.log(el);
+  // console.log(el);
 
   var id = el.getAttribute('data-userid');
   var yelpid = el.getAttribute('data-yelpid');
   var mode = el.getAttribute('data-mode'); 
-
   var modereplacement = "amgoing" ;
   var buttonword = "amgoingButton"; 
   if (mode=="amgoing")
@@ -47,10 +46,13 @@ function gotoBar(el){
   }
 
 
-  $("#going-"+id).attr('class', buttonword+ " ") ;
+  $("#going-"+id).attr('class', buttonword+ " btn") ;
   $("#going-"+id).attr('data-mode',  modereplacement);
 
-
+console.log("here");
+  console.log(id);
+  console.log("#going-"+id);
+  
   $.ajax({
     url:'./gotoBar',
     cache: false,
