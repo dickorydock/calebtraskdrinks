@@ -45,9 +45,8 @@
     		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
     		 <%if (user!=undefined)
     		 { %>
-    	 	<input type='button' class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'notgoing'  onmousedown="gotoBar(this);" >Not Going</input>
-    	 	<input type='button' class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'toggle'  onmousedown="gotoBar(this);" >Toggle</input>
-   
+    	 	<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'notgoing'  onmousedown="gotoBar(this);" >Not Going</input>
+    	 	
 	   	 <%}%> 
 
     		0 Going Today
