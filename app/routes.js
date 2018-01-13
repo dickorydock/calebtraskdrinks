@@ -37,6 +37,7 @@ module.exports = function(app, passport, survey) {
         if ( req.body.mode == "notgoing"){
             updateCount = 0 ;
         }
+        console.log("updateCount is "+updateCount);
        var myupdate = {$set: {clickCount:updateCount}};
        var users = require('./models/user');
         
@@ -65,6 +66,8 @@ module.exports = function(app, passport, survey) {
                 }
             return data;
             })
+          res.redirect('/profile');
+  
     })
 
    // process the login form
