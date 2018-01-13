@@ -43,9 +43,12 @@ module.exports = function(app, passport, survey) {
         
             return businessVisitors.update(
             {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate, function(err,data){
-            if (true) {
+            // if (true)
+             {
              // if (!data) {
-                if (req.body.mode=='addonenew'){
+                console.log("yeah in here");
+                // if (req.body.mode=='addonenew')
+                {
         
                 var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
                 var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
