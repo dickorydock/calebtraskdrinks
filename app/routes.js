@@ -30,7 +30,7 @@ module.exports = function(app, passport, survey) {
     });
 
 
-    app.post('/gotoBar', function(req,res){
+    app.post('/profile', function(req,res){
         console.log(req.body);
         var businessVisitors = require('./models/businessVisitor');
         var updateCount = 1 ; 

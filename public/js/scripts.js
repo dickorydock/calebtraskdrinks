@@ -56,11 +56,13 @@ console.log("here");
   console.log(yelpid);
   console.log("#going-"+yelpid);
   $.ajax({
-    url:'./gotoBar',
+    url:'./profile',
     cache: false,
     type: "POST",
     data:{id:id, yelpid:yelpid, mode:mode},
   });       
+
+  /*POST requests are timing out - fix this 1-13-2018*/
 
   // var watchword = "Unwatch"; 
 
