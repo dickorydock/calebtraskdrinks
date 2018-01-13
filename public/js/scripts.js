@@ -50,7 +50,7 @@ function gotoBar(el){
 
   $("#going-"+yelpid).attr('class', buttonword+ " btn") ;
   $("#going-"+yelpid).attr('data-mode',  modereplacement);
-  $("#going-"+yelpid).attr('html', modereplacementtext);
+  $("#going-"+yelpid).html(modereplacementtext);
 
 console.log("here");
   console.log(yelpid);
