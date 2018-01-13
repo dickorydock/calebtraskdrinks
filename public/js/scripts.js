@@ -46,13 +46,12 @@ function gotoBar(el){
   }
 
 
-  $("#going-"+id).attr('class', buttonword+ " btn") ;
-  $("#going-"+id).attr('data-mode',  modereplacement);
+  $("#going-"+yelpid).attr('class', buttonword+ " btn") ;
+  $("#going-"+yelpid).attr('data-mode',  modereplacement);
 
 console.log("here");
-  console.log(id);
-  console.log("#going-"+id);
-  
+  console.log(yelpid);
+  console.log("#going-"+yelpid);
   $.ajax({
     url:'./gotoBar',
     cache: false,
