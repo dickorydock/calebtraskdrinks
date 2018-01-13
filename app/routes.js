@@ -70,7 +70,7 @@ module.exports = function(app, passport, survey) {
                 }
             // return data;
             res.redirect('/profile');
-         })
+         }})
      
     })
 
