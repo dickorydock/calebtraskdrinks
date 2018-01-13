@@ -46,6 +46,7 @@ module.exports = function(app, passport, survey) {
             // if (true)
              {
              // if (!data) {
+                console.log(!data);
                 console.log("yeah in here");
                 // if (req.body.mode=='addonenew')
                 {
