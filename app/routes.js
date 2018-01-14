@@ -88,12 +88,12 @@ module.exports = function(app, passport, survey) {
             var alltheseids = [];
             for(var i in bodyJSON.businesses)
             {
-             alltheseids.push([i, bodyJSON.businesses [i]]);
+             alltheseids.push([i, bodyJSON.businesses[i].id]);
             }
             // var allIds = bodyJSON.businesses.map(function(item) {
             // return item.id;
             // });
-
+            console.log("oooof");
             console.log(alltheseids)
             // var yelpIdList = bodyJSON.businesses.id;
             // continue from here
