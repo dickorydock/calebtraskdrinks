@@ -127,7 +127,8 @@ module.exports = function(app, passport, survey) {
                         }
                         idsandsums.push([thisid, thissum])
                     })
-
+                    console.log("idsa");
+                    console.log(idsandsums);
 
                     function combineArrays(arr1, arr2) {
                       for(var i = 0; i < arr2.length; i++) {
