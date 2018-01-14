@@ -104,12 +104,13 @@ module.exports = function(app, passport, survey) {
                 var grouped = [];
 
                 data.forEach(function (o) {
-                    // console.log(o);
+                // console.log(o);
                 if (!this[o.yelpId]) {
                     this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0 };
                     grouped.push(this[o.yelpId]);
                 }
-
+                console.log(this[o.userId]);
+                console.log(req.user._id);
                 if (this[o.userId]==req.user._id){
                     this[o.yelpId].userGoing = this[o.clickCount];
                 }
@@ -130,7 +131,7 @@ module.exports = function(app, passport, survey) {
                 // console.log("idsa");
                 console.log(idsandsums);
 
-                function combineArrays(arr1, arr2) {
+                /*function combineArrays(arr1, arr2) {
                   for(var i = 0; i < arr2.length; i++) {
                     // check if current object exists in arr1
                     var idIndex = hasID(arr2[i]['yelpId'], arr1);
@@ -160,7 +161,7 @@ module.exports = function(app, passport, survey) {
                   return -1;
                 }
 
-                var combine = combineArrays(data, grouped);
+                var combine = combineArrays(data, grouped);*/
 
                 /*NEXT UP: correctly show the button if the person has said they are going*/
                 /* should these be reset every day?*/
