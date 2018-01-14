@@ -121,8 +121,8 @@ module.exports = function(app, passport, survey) {
                     alltheseids.map(function(thisid){
                         var thissum = 0 ;
                         for (groups in grouped){
-                            if (groups[0]==thisid){
-                                thissum = groups[1];
+                            if (groups.yelpId==thisid){
+                                thissum = groups.sumCount;
                             }
                         }
                         idsandsums.push([thisid, thissum])
