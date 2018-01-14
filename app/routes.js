@@ -122,7 +122,7 @@ module.exports = function(app, passport, survey) {
                         var thissum = 0 ;
 
                         //figure out why this isn't working!
-                        for (groups in grouped){
+                        grouped.forEach(function(groups){
                             // console.log("gt nis ")
                             // console.log(groups);
                             // console.log(grouped[groups]);
@@ -130,7 +130,7 @@ module.exports = function(app, passport, survey) {
                             if (grouped[groups].yelpId==thisid){
                                 thissum = grouped[groups].sumCount;
                             }
-                        }
+                        });
                         idsandsums.push([thisid, thissum])
                     })
                     // console.log("idsa");
