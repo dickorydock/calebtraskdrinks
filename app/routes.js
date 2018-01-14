@@ -110,10 +110,10 @@ module.exports = function(app, passport, survey) {
                     data.forEach(function (o) {
                         console.log(o);
                     if (!this[o.yelpId]) {
-                        this[o.yelpId] = { yelpId: o.yelpId, clickCount: 0 };
+                        this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0 };
                         grouped.push(this[o.yelpId]);
                     }
-                    this[o.yelpId].clickCount += o.clickCount;
+                    this[o.yelpId].sumCount += o.clickCount;
                     }, Object.create(null));
 
                     // console.log(grouped);
@@ -148,7 +148,7 @@ module.exports = function(app, passport, survey) {
 
                       return -1;
                     }
-                    
+
                     var combine = combineArrays(data, grouped);
                     console.log(combine);
 
