@@ -85,11 +85,16 @@ module.exports = function(app, passport, survey) {
             //make an array of all of the yelpids from the request
             var bodyJSON = JSON.parse(body);
 
-            var allIds = bodyJSON.businesses.map(function(item) {
-            return item.id;
-            });
+            var alltheseids = [];
+            for(var i in bodyJSON.businesses)
+            {
+             alltheseids.push([i, bodyJSON.businesses [i]]);
+            }
+            // var allIds = bodyJSON.businesses.map(function(item) {
+            // return item.id;
+            // });
 
-            console.log("oh you")
+            console.log(alltheseids)
             // var yelpIdList = bodyJSON.businesses.id;
             // continue from here
             //basically need to search our database for any of these yelpids, then if they're in there make an array that contains:
