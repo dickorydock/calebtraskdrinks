@@ -85,8 +85,8 @@ module.exports = function(app, passport, survey) {
             //make an array of all of the yelpids from the request
             var bodyJSON = JSON.parse(body);
 
-            var allIds = bodyJSON.map(function(item) {
-            return item.businesses.id;
+            var allIds = bodyJSON.businesses.map(function(item) {
+            return item.id;
             });
 
             console.log("oh you")
