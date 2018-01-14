@@ -103,7 +103,7 @@ module.exports = function(app, passport, survey) {
                     /*also need to pass the data on from here about numbers*/
                     console.log(" in meeee");
                     // console.log(data);
-                    console.log("length is "+data.length);
+                    // console.log("length is "+data.length);
 
                     var grouped = [];
 
@@ -116,7 +116,43 @@ module.exports = function(app, passport, survey) {
                     this[o.yelpId].clickCount += o.clickCount;
                     }, Object.create(null));
 
-                    console.log(grouped);
+                    // console.log(grouped);
+
+
+                    function combineArrays(arr1, arr2) {
+                      for(var i = 0; i < arr2.length; i++) {
+                        // check if current object exists in arr1
+                        var idIndex = hasID(arr2[i]['yelpId'], arr1);
+                        if(idIndex >= 0){
+                          //update
+                          for(var key in arr2[i]){
+                            arr1[idIndex][key] = arr2[i][key];
+                          }
+                        } else {
+                          //insert
+                          arr1.push(arr2[i]);
+                        }
+                      }
+
+                      return arr1;
+                    }
+
+                    //Returns position in array that ID exists
+                    function hasID(id, arr) {
+                      for(var i = 0; i < arr.length; i ++) {
+                        if(arr[i]['yelpId'] === id)
+                        {
+                          return i;
+                        }
+                      }
+
+                      return -1;
+                    }
+
+                    var combine = combineArrays(arr1, arr2);
+                    console.log(combine);
+
+
 
                     res.render('pages/profile.ejs', {
                         user : req.user,
