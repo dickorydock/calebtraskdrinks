@@ -109,11 +109,11 @@ module.exports = function(app, passport, survey) {
 
                     data.forEach(function (o) {
                         console.log(o);
-                    if (!this[o.yelpid]) {
-                        this[o.yelpid] = { yelpid: o.yelpid, val: o.clickCount };
-                        grouped.push(this[o.yelpid]);
+                    if (!this[o.yelpId]) {
+                        this[o.yelpId] = { yelpId: o.yelpId, val: o.clickCount };
+                        grouped.push(this[o.yelpId]);
                     }
-                    this[o.yelpid].clickCount += o.clickCount;
+                    this[o.yelpId].clickCount += o.clickCount;
                     }, Object.create(null));
 
                     console.log(grouped);
