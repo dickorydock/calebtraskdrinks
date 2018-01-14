@@ -94,21 +94,21 @@ module.exports = function(app, passport, survey) {
             // var allIds = bodyJSON.businesses.map(function(item) {
             // return item.id;
             // });
-            console.log("oooof");
-            console.log(alltheseids);
+            // console.log("oooof");
+            // console.log(alltheseids);
 
             var profileCallback = function(err, data){
                 // userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
                     //need to summarize this data!
                     /*also need to pass the data on from here about numbers*/
-                    console.log(" in meeee");
+                    // console.log(" in meeee");
                     // console.log(data);
                     // console.log("length is "+data.length);
 
                     var grouped = [];
 
                     data.forEach(function (o) {
-                        console.log(o);
+                        // console.log(o);
                     if (!this[o.yelpId]) {
                         this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0 };
                         grouped.push(this[o.yelpId]);
@@ -116,21 +116,24 @@ module.exports = function(app, passport, survey) {
                     this[o.yelpId].sumCount += o.clickCount;
                     }, Object.create(null));
 
-                    console.log(grouped);
+                    // console.log(grouped);
                     var idsandsums = [];
                     alltheseids.map(function(thisid){
                         var thissum = 0 ;
+
+                        //figure out why this isn't working!
                         for (groups in grouped){
-                            console.log("gt is ")
+                            console.log("gt nis ")
                             console.log(groups);
-                            console.log("thisis" +thisid);
+                            console.log(grouped);
+                            // console.log("thisis" +thisid);
                             if (groups.yelpId==thisid){
                                 thissum = groups.sumCount;
                             }
                         }
                         idsandsums.push([thisid, thissum])
                     })
-                    console.log("idsa");
+                    // console.log("idsa");
                     console.log(idsandsums);
 
                     function combineArrays(arr1, arr2) {
@@ -164,7 +167,7 @@ module.exports = function(app, passport, survey) {
                     }
 
                     var combine = combineArrays(data, grouped);
-                    console.log(combine);
+                    // console.log(combine);
 
 
 
@@ -177,8 +180,8 @@ module.exports = function(app, passport, survey) {
                     });
                 // });
             }
-            console.log("looking for");
-            console.log(alltheseids);
+            // console.log("looking for");
+            // console.log(alltheseids);
             businessVisitors.find({yelpId:{$in:alltheseids}}).
             // where('id').in(['tastybox-phoenix', 'be-coffee-food-stuff-phoenix']).
             exec(profileCallback);
@@ -201,7 +204,7 @@ module.exports = function(app, passport, survey) {
         });
 
     app.post('/profile', function(req,res){
-        console.log(req.body);
+        // console.log(req.body);
         var businessVisitors = require('./models/businessVisitor');
         var updateCount = 1 ; 
         if ( req.body.mode == "amgoing"){
