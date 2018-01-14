@@ -111,13 +111,14 @@ module.exports = function(app, passport, survey) {
                         // userData: doc
                     });
                 // });
-            }
+            };
             console.log("looking for");
             console.log(alltheseids);
             businessVisitors.find({id:{$in:alltheseids}}, function(err,data){
                 console.log(data);
-                console.log("ABC")
-            });
+                console.log("ABC");
+                return data;
+            })
             // where('id').in(['tastybox-phoenix', 'be-coffee-food-stuff-phoenix']).
             // exec(profileCallback);
             // var yelpIdList = bodyJSON.businesses.id;
