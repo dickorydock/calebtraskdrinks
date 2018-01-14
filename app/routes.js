@@ -102,7 +102,8 @@ module.exports = function(app, passport, survey) {
                     //need to summarize this data!
                     /*also need to pass the data on from here about numbers*/
                     console.log(" in meeee");
-                    console.log(data);
+                    // console.log(data);
+                    console.log("length is "+data.length)
                     res.render('pages/profile.ejs', {
                         user : req.user,
                         yelpData:JSON.parse(body).businesses,
