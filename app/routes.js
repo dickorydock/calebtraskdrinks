@@ -103,7 +103,22 @@ module.exports = function(app, passport, survey) {
                     /*also need to pass the data on from here about numbers*/
                     console.log(" in meeee");
                     // console.log(data);
-                    console.log("length is "+data.length)
+                    console.log("length is "+data.length);
+
+                    var grouped = [];
+
+                    data.forEach(function (o) {
+                    if (!this[o.yelpid]) {
+                        this[o.yelpid] = { yelpid: o.yelpid, val: o.clickCount };
+                        grouped.push(this[o.yelpid]);
+                    }
+                    this[o.yelpid].clickCount += o.clickCount;
+                    }, Object.create(null));
+
+                    console.log(grouped);
+
+
+
                     res.render('pages/profile.ejs', {
                         user : req.user,
                         yelpData:JSON.parse(body).businesses,
