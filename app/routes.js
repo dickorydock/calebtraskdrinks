@@ -125,7 +125,7 @@ module.exports = function(app, passport, survey) {
                         for (groups in grouped){
                             console.log("gt nis ")
                             console.log(groups);
-                            console.log(grouped);
+                            console.log(grouped.length);
                             // console.log("thisis" +thisid);
                             if (groups.yelpId==thisid){
                                 thissum = groups.sumCount;
