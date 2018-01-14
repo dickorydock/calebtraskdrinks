@@ -73,7 +73,8 @@ module.exports = function(app, passport, survey) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-
+        var businessVisitors = require('./models/businessVisitor');
+        
         var options0 = {
             url: "https://api.yelp.com/v3/businesses/search?location=Phoenix",
              'auth': {'bearer': process.env.YELP_APIKEY}
@@ -88,21 +89,15 @@ module.exports = function(app, passport, survey) {
             var alltheseids = [];
             for(var i in bodyJSON.businesses)
             {
-             alltheseids.push([i, bodyJSON.businesses[i].id]);
+             alltheseids.push(bodyJSON.businesses[i].id);
             }
             // var allIds = bodyJSON.businesses.map(function(item) {
             // return item.id;
             // });
             console.log("oooof");
-            console.log(alltheseids)
-            // var yelpIdList = bodyJSON.businesses.id;
-            // continue from here
-            //basically need to search our database for any of these yelpids, then if they're in there make an array that contains:
-            //     [[yelpid1, sumcount1], [yelpid2, sumcount2], ...]
-            //...and then pass that array on to the res.render below
-            
-            if (err){throw err;}
-            else {            
+            console.log(alltheseids);
+
+            var profileCallback = function(err, data){
                 userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
 
                     /*also need to pass the data on from here about numbers*/
@@ -113,8 +108,24 @@ module.exports = function(app, passport, survey) {
                         userData: doc
                     });
                 });
-                // newFileActions();
             }
+
+            businessVisitors.
+            where('id').in(alltheseid).
+            exec(profileCallback);
+            // var yelpIdList = bodyJSON.businesses.id;
+            // continue from here
+            //basically need to search our database for any of these yelpids, then if they're in there make an array that contains:
+            //     [[yelpid1, sumcount1], [yelpid2, sumcount2], ...]
+            //...and then pass that array on to the res.render below
+            
+            // if (err){throw err;}
+            // else {            
+              
+                // newFileActions();
+            // }
+
+            
         }
         request(options0, callback2);
         var userSurveys  = require('./models/userSurvey');
@@ -124,7 +135,7 @@ module.exports = function(app, passport, survey) {
         console.log(req.body);
         var businessVisitors = require('./models/businessVisitor');
         var updateCount = 1 ; 
-        if ( req.body.mode == "notgoing"){
+        if ( req.body.mode == "amgoing"){
             updateCount = 0 ;
         }
         console.log("updateCount is "+updateCount);
