@@ -111,7 +111,7 @@ module.exports = function(app, passport, survey) {
             }
 
             businessVisitors.
-            where('id').in(alltheseid).
+            where('id').in(alltheseids).
             exec(profileCallback);
             // var yelpIdList = bodyJSON.businesses.id;
             // continue from here
@@ -125,7 +125,7 @@ module.exports = function(app, passport, survey) {
                 // newFileActions();
             // }
 
-            
+
         }
         request(options0, callback2);
         var userSurveys  = require('./models/userSurvey');
