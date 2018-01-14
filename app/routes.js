@@ -98,16 +98,19 @@ module.exports = function(app, passport, survey) {
             console.log(alltheseids);
 
             var profileCallback = function(err, data){
-                userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
-
+                // userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
+                    //need to summarize this data!
                     /*also need to pass the data on from here about numbers*/
+
+                    console.log(data);
                     res.render('pages/profile.ejs', {
                         user : req.user,
                         yelpData:JSON.parse(body).businesses,
-                        yelpDataString:body,
-                        userData: doc
+                        yelpDataString:body
+                        // ,
+                        // userData: doc
                     });
-                });
+                // });
             }
 
             businessVisitors.
