@@ -127,8 +127,8 @@ module.exports = function(app, passport, survey) {
                             // console.log(groups);
                             // console.log(grouped[groups]);
                             // console.log("thisis" +thisid);
-                            if (grouped[groups].yelpId==thisid){
-                                thissum = grouped[groups].sumCount;
+                            if (groups.yelpId==thisid){
+                                thissum = groups.sumCount;
                             }
                         });
                         idsandsums.push([thisid, thissum])
