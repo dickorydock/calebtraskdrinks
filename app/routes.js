@@ -114,8 +114,8 @@ module.exports = function(app, passport, survey) {
             }
             console.log("looking for");
             console.log(alltheseids);
-            businessVisitors.
-            where('id').in(['tastybox-phoenix', 'be-coffee-food-stuff-phoenix']).
+            businessVisitors.find({id:{$in:alltheseids}}).
+            // where('id').in(['tastybox-phoenix', 'be-coffee-food-stuff-phoenix']).
             exec(profileCallback);
             // var yelpIdList = bodyJSON.businesses.id;
             // continue from here
