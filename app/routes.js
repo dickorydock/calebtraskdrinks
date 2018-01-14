@@ -101,7 +101,7 @@ module.exports = function(app, passport, survey) {
                 // userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
                     //need to summarize this data!
                     /*also need to pass the data on from here about numbers*/
-
+                    console.log(" in meeee");
                     console.log(data);
                     res.render('pages/profile.ejs', {
                         user : req.user,
@@ -112,7 +112,8 @@ module.exports = function(app, passport, survey) {
                     });
                 // });
             }
-
+            console.log("looking for");
+            console.log(alltheseids);
             businessVisitors.
             where('id').in(alltheseids).
             exec(profileCallback);
