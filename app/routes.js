@@ -116,7 +116,17 @@ module.exports = function(app, passport, survey) {
                     this[o.yelpId].sumCount += o.clickCount;
                     }, Object.create(null));
 
-                    // console.log(grouped);
+                    console.log(grouped);
+                    var idsandsums = [];
+                    alltheseids.map(function(thisid){
+                        var thissum = 0 ;
+                        for (groups in grouped){
+                            if (groups[0]==thisid){
+                                thissum = groups[1];
+                            }
+                        }
+                        idsandsums.push([thisid, thissum])
+                    })
 
 
                     function combineArrays(arr1, arr2) {
