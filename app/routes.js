@@ -29,51 +29,6 @@ module.exports = function(app, passport, survey) {
         res.render('pages/login.ejs', { message: req.flash('loinMessage') }); 
     });
 
-
-    app.post('/profile', function(req,res){
-        console.log(req.body);
-        var businessVisitors = require('./models/businessVisitor');
-        var updateCount = 1 ; 
-        if ( req.body.mode == "notgoing"){
-            updateCount = 0 ;
-        }
-        console.log("updateCount is "+updateCount);
-       var myupdate = {$set: {clickCount:updateCount}};
-       var users = require('./models/user');
-        
-            return businessVisitors.update(
-            {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate, {multi: true}, function(err,data){
-            // if (true)
-             {
-             if (data.n==0) {
-                console.log(data);
-                console.log("yeah in here");
-                // if (req.body.mode=='addonenew')
-                {
-        
-                var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
-                var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-                var newVisitor = new businessVisitors();
-                newVisitor.userId             = req.body.id;
-                newVisitor.yelpId             = req.body.yelpid;
-                newVisitor.isGoingToday       = true;
-                newVisitor.clickCount         = 1;
-                newVisitor.lastResponseDate   = localISOTime;
-                return newVisitor.save();
-
-                /*allow people to GO
-                create count of how many are going
-                can i say i'm going tomorrow instead of today?
-                can i see these on a map?
-                */
-                }            
-                }
-            // return data;
-            res.redirect('/profile');
-         }})
-     
-    })
-
    // process the login form
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
@@ -118,144 +73,87 @@ module.exports = function(app, passport, survey) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-        // request.
-        var options0 = {
-            // url: "http://www.talkinbroadway.com/allthatchat_new/index.php"
-            url: "https://api.yelp.com/v3/businesses/search?location=Phoenix",
-             'auth': {
-                'bearer': process.env.YELP_APIKEY
-           }
 
+        var options0 = {
+            url: "https://api.yelp.com/v3/businesses/search?location=Phoenix",
+             'auth': {'bearer': process.env.YELP_APIKEY}
         };
 
-    //     var auth0 = {  
-    // }
         var callback2 = function(err, httpResponse2, body){
             // siteBody = body;
+
+            //make an array of all of the yelpids from the request
+            var bodyJSON = JSON.parse(body);
+
+            var allIds = bodyJSON.map(function(item) {
+            return item.businesses.id;
+            });
+
+            console.log("oh you")
+            // var yelpIdList = bodyJSON.businesses.id;
+            // continue from here
+            //basically need to search our database for any of these yelpids, then if they're in there make an array that contains:
+            //     [[yelpid1, sumcount1], [yelpid2, sumcount2], ...]
+            //...and then pass that array on to the res.render below
+            
             if (err){throw err;}
             else {            
-                // console.log(body)
                 userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
+
+                    /*also need to pass the data on from here about numbers*/
                     res.render('pages/profile.ejs', {
                         user : req.user,
                         yelpData:JSON.parse(body).businesses,
                         yelpDataString:body,
-                        userData: doc,
-                        allData: doc /*need this to be EVERYTHING not just this user*/
+                        userData: doc
                     });
                 });
                 // newFileActions();
             }
         }
-        request(options0, /*auth0,*/ callback2);
-
+        request(options0, callback2);
         var userSurveys  = require('./models/userSurvey');
-        
-
         });
-    app.get('/survey/:id' /*, isLoggedIn*/, function(req, res) {
-        var userSurveys  = require('./models/userSurvey');
-        userSurveys.find({'_id':  req.params.id}, function(err, doc){
-            res.render('pages/survey.ejs', {
-                    user : req.user,
-                    surveyid: req.params.id,
-                    thisUrl: "http://"+req.headers.host+req.originalUrl,
-                    surveyData: doc,
-                    chartNames: doc[0].surveyOptions,
-                    chartData: doc[0].surveyResponses.slice(0,doc[0].surveyOptions.length)
-            });
-        });
-    });
-    app.post('/survey/:id' , function(req, res) {
-        var userSurveys  = require('./models/userSurvey');
-        var myupdate = {$inc:{}};
-        myupdate.$inc["surveyResponses."+req.body.text] = 1 ;
-        myupdate.$inc["responseCount"] = 1 ;
-        userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
-            res.redirect('/survey/'+req.params.id);
-        });
-    });
 
-     app.get('/deletesurvey/:id' , isLoggedIn, function(req, res) {
-        var userSurveys  = require('./models/userSurvey');
-        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {surveyActive: 0}, function(err, doc){
-        });
-        res.redirect('/profile');
-        
-    });
+    app.post('/profile', function(req,res){
+        console.log(req.body);
+        var businessVisitors = require('./models/businessVisitor');
+        var updateCount = 1 ; 
+        if ( req.body.mode == "notgoing"){
+            updateCount = 0 ;
+        }
+        console.log("updateCount is "+updateCount);
+       var myupdate = {$set: {clickCount:updateCount}};
+       var users = require('./models/user');     
+            return businessVisitors.update(
+            {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate, {multi: true}, function(err,data){
 
-    app.get('/addoptions/:id', isLoggedIn, function(req, res) {
-        var userSurveys  = require('./models/userSurvey');
-       
-        //is this your survey? if not, return to profile
-        userSurveys.update({'_id':  req.params.id, 'userId':req.user._id}, {}, function(err, doc){
-            if (doc!=undefined){
-                    res.render('pages/addoptions.ejs', {
-                        user : req.user,
-                        surveyid: req.params.id,
-                        userData: doc,
-                        allData: doc /*need this to be EVERYTHING not just this user*/
-                    });       
-                // });
+            //if there wasn't a record before, make one
+             if (data.n==0) {
+                console.log(data);
+                console.log("yeah in here");
+                var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
+                var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+                var newVisitor = new businessVisitors();
+                newVisitor.userId             = req.body.id;
+                newVisitor.yelpId             = req.body.yelpid;
+                newVisitor.isGoingToday       = true;
+                newVisitor.clickCount         = 1;
+                newVisitor.lastResponseDate   = localISOTime;
+                return newVisitor.save();
+
+                /*allow people to GO
+                create count of how many are going
+                can i say i'm going tomorrow instead of today?
+                can i see these on a map?
+                */
             }
-            else res.render('pages/profile.ejs', {
-                        user : req.user,
-                        userData: doc,
-                        allData: doc /*need this to be EVERYTHING not just this user*/
-                    });       
-            });
-        });
+            // return data;
+            res.redirect('/profile');
+         })     
+    })
 
 
-    app.post('/survey/:id' , function(req, res) {
-        var userSurveys  = require('./models/userSurvey');
-        var myupdate = {$inc:{}};
-        myupdate.$inc["surveyResponses."+req.body.text] = 1 ;
-        myupdate.$inc["responseCount"] = 1 ;
-        userSurveys.update({"_id":  req.params.id}, myupdate ,function(err,doc){
-            res.redirect('/survey/'+req.params.id);
-        });
-    });
-
-    app.post('/addoptions/:id', function(req,res){
-        survey.addoptions(req,res);
-        // res.redirect('/survey/'+req.params.id);
-    });
-    
-      
-/*NEXT TO FIX:
---column widths  DONE
---actually link to the survey page DONE
---make a page where you can view the survey and vote! title, options, the number of responses for each.  DONE
---aghhh, make a voting page! DONE
---add graphic display of results to the survey DONE
---ok, so one page for voting, one page for viewing maybe? SAME PAGE
---allow deleting of polls (maybe on the individual poll page?) DONE
---add a sharing option TODO DONE
---add an indicator of DATE when you make a survey, so we can use this to sort
-
---FIX BUTTONS TO MAKE THEM LOOK NICE
-   maybe should allow voting, but maybe not multiple times per...computer? TODO
-
-   LEFT TO DO:
-   What if you want more than five options initially? DONE
-   only one response per IP?
-
-*/ 
-
-
-// get the user out of session and pass to template
-
-    app.get('/makesurvey', isLoggedIn, function(req, res) {
-        res.render('pages/makesurvey.ejs', {
-                user : req.user // get the user out of session and pass to template
-            });
-        });
-
-    app.post('/makesurvey', function(req,res){
-        survey.makesurvey(req,res);
-       
-    });
     // =====================================
     // LOGOUT ==============================
     // =====================================
