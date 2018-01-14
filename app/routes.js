@@ -99,87 +99,81 @@ module.exports = function(app, passport, survey) {
 
             var profileCallback = function(err, data){
                 // userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
-                    //need to summarize this data!
-                    /*also need to pass the data on from here about numbers*/
-                    // console.log(" in meeee");
-                    // console.log(data);
-                    // console.log("length is "+data.length);
+                //need to summarize this data!
+                /*also need to pass the data on from here about numbers*/
+                var grouped = [];
 
-                    var grouped = [];
+                data.forEach(function (o) {
+                    // console.log(o);
+                if (!this[o.yelpId]) {
+                    this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0 };
+                    grouped.push(this[o.yelpId]);
+                }
 
-                    data.forEach(function (o) {
-                        // console.log(o);
-                    if (!this[o.yelpId]) {
-                        this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0 };
-                        grouped.push(this[o.yelpId]);
-                    }
-                    this[o.yelpId].sumCount += o.clickCount;
-                    }, Object.create(null));
+                if (this[o.userId]==req.user._id){
+                    this[o.yelpId].userGoing = this[o.clickCount];
+                }
 
-                    // console.log(grouped);
-                    var idsandsums = [];
-                    alltheseids.map(function(thisid){
-                        var thissum = 0 ;
+                this[o.yelpId].sumCount += o.clickCount;
+                }, Object.create(null));
 
-                        //figure out why this isn't working!
-                        grouped.forEach(function(groups){
-                            // console.log("gt nis ")
-                            // console.log(groups);
-                            // console.log(grouped[groups]);
-                            // console.log("thisis" +thisid);
-                            if (groups.yelpId==thisid){
-                                thissum = groups.sumCount;
-                            }
-                        });
-                        idsandsums.push([thisid, thissum])
-                    })
-                    // console.log("idsa");
-                    console.log(idsandsums);
-
-                    function combineArrays(arr1, arr2) {
-                      for(var i = 0; i < arr2.length; i++) {
-                        // check if current object exists in arr1
-                        var idIndex = hasID(arr2[i]['yelpId'], arr1);
-                        if(idIndex >= 0){
-                          //update
-                          for(var key in arr2[i]){
-                            arr1[idIndex][key] = arr2[i][key];
-                          }
-                        } else {
-                          //insert
-                          arr1.push(arr2[i]);
+                var idsandsums = [];
+                alltheseids.map(function(thisid){
+                    var thissum = 0 ;
+                    grouped.forEach(function(groups){
+                          if (groups.yelpId==thisid){
+                            thissum = groups.sumCount;
                         }
-                      }
-
-                      return arr1;
-                    }
-
-                    //Returns position in array that ID exists
-                    function hasID(id, arr) {
-                      for(var i = 0; i < arr.length; i ++) {
-                        if(arr[i]['yelpId'] === id)
-                        {
-                          return i;
-                        }
-                      }
-
-                      return -1;
-                    }
-
-                    var combine = combineArrays(data, grouped);
-                    // console.log(combine);
-
-
-
-                    res.render('pages/profile.ejs', {
-                        user : req.user,
-                        yelpData:JSON.parse(body).businesses,
-                        yelpDataString:body,
-                        sumsArray: idsandsums
-                        // ,
-                        // userData: doc
                     });
-                // });
+                    idsandsums.push([thisid, thissum])
+                })
+                // console.log("idsa");
+                console.log(idsandsums);
+
+                function combineArrays(arr1, arr2) {
+                  for(var i = 0; i < arr2.length; i++) {
+                    // check if current object exists in arr1
+                    var idIndex = hasID(arr2[i]['yelpId'], arr1);
+                    if(idIndex >= 0){
+                      //update
+                      for(var key in arr2[i]){
+                        arr1[idIndex][key] = arr2[i][key];
+                      }
+                    } else {
+                      //insert
+                      arr1.push(arr2[i]);
+                    }
+                  }
+
+                  return arr1;
+                }
+
+                //Returns position in array that ID exists
+                function hasID(id, arr) {
+                  for(var i = 0; i < arr.length; i ++) {
+                    if(arr[i]['yelpId'] === id)
+                    {
+                      return i;
+                    }
+                  }
+
+                  return -1;
+                }
+
+                var combine = combineArrays(data, grouped);
+
+                /*NEXT UP: correctly show the button if the person has said they are going*/
+                /* should these be reset every day?*/
+
+                res.render('pages/profile.ejs', {
+                    user : req.user,
+                    yelpData:JSON.parse(body).businesses,
+                    yelpDataString:body,
+                    sumsArray: idsandsums
+                    // ,
+                    // userData: doc
+                });
+            // });
             }
             // console.log("looking for");
             // console.log(alltheseids);
