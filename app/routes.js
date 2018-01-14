@@ -108,6 +108,7 @@ module.exports = function(app, passport, survey) {
                     var grouped = [];
 
                     data.forEach(function (o) {
+                        console.log(o);
                     if (!this[o.yelpid]) {
                         this[o.yelpid] = { yelpid: o.yelpid, val: o.clickCount };
                         grouped.push(this[o.yelpid]);
@@ -116,8 +117,6 @@ module.exports = function(app, passport, survey) {
                     }, Object.create(null));
 
                     console.log(grouped);
-
-
 
                     res.render('pages/profile.ejs', {
                         user : req.user,
