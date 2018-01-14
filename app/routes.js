@@ -148,8 +148,8 @@ module.exports = function(app, passport, survey) {
 
                       return -1;
                     }
-
-                    var combine = combineArrays(arr1, arr2);
+                    
+                    var combine = combineArrays(data, grouped);
                     console.log(combine);
 
 
