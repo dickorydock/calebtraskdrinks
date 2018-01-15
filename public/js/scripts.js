@@ -79,7 +79,7 @@ function gotoBar(el){
   //maybe besides the ajax request, change something only if the user is connected
   // console.log("Is the browser online? " + navigator.onLine);    
 
-    console.log("DANG IT PRE");
+    console.log("DANG IT PRE"+navigator.online);
   if (navigator.online){
     //get the current sum value
     console.log("DANG IT");
