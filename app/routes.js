@@ -180,7 +180,7 @@ module.exports = function(app, passport, survey) {
                     user : req.user,
                     yelpData:JSON.parse(body).businesses,
                     yelpDataString:body,
-                    sumsArray: idsandsums
+                    sumsArray: grouped
                     // ,
                     // userData: doc
                 });
