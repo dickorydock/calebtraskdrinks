@@ -69,7 +69,10 @@ function gotoBar(el){
     type: "POST",
     data:{id:id, yelpid:yelpid, mode:mode},
     success: function() {   
-        location.reload();  
+        console.log("will it be here?");
+        //don't reload the page, just change the number
+        // location.reload();  
+
     }
   });       
 

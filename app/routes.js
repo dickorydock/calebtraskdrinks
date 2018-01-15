@@ -152,9 +152,9 @@ module.exports = function(app, passport, survey) {
 
             //if there wasn't a record before, make one
              if (data.n==0) {
-                var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
-                var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-                var newVisitor = new businessVisitors();
+                var tzOffset                  = (new Date()).getTimezoneOffset() * 60000 ;
+                var localISOTime              = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+                var newVisitor                = new businessVisitors();
                 newVisitor.userId             = req.body.id;
                 newVisitor.yelpId             = req.body.yelpid;
                 newVisitor.isGoingToday       = true;
