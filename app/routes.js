@@ -81,7 +81,6 @@ module.exports = function(app, passport, survey) {
         };
 
         var callback2 = function(err, httpResponse2, body){
-            // siteBody = body;
 
             //make an array of all of the yelpids from the request
             var bodyJSON = JSON.parse(body);
@@ -91,42 +90,24 @@ module.exports = function(app, passport, survey) {
             {
              alltheseids.push(bodyJSON.businesses[i].id);
             }
-            // var allIds = bodyJSON.businesses.map(function(item) {
-            // return item.id;
-            // });
-            // console.log("oooof");
-            // console.log(alltheseids);
+            /*need to automatically update the number of people when you click on the button*/
 
             var profileCallback = function(err, data){
-                // userSurveys.find({/*'userId': req.user._id,*/'surveyActive': 1}, function(err, doc){
                 //need to summarize this data!
                 /*also need to pass the data on from here about numbers*/
                 var grouped = [];
 
                 data.forEach(function (o) {
                 if (!this[o.yelpId]) {
-
-                    console.log("in here");
-                    console.log(o.yelpId);
-                    // console.log(o);
                     this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
                     grouped.push(this[o.yelpId]);
                 }
-                // console.log("A"+o.yelpId);
-                // console.log("B"+o.userId);
-                // console.log("C"+req.user._id);
-                // console.log("D"+o.clickCount);
-                // console.log("after");
-                // console.log(this[o.userId]);
-                // console.log(req.user._id);
                 if (o.userId==req.user._id && o.clickCount==1){
                     this[o.yelpId].userGoing = 1;
                 }
 
                 this[o.yelpId].sumCount += o.clickCount;
                 }, Object.create(null));
-
-                console.log(grouped);
 
                 var idsandsums = [];
                 alltheseids.map(function(thisid){
@@ -140,40 +121,6 @@ module.exports = function(app, passport, survey) {
                     });
                     idsandsums.push([thisid, thissum, thisgoing])
                 })
-                // console.log("idsa");
-                console.log(idsandsums);
-
-                /*function combineArrays(arr1, arr2) {
-                  for(var i = 0; i < arr2.length; i++) {
-                    // check if current object exists in arr1
-                    var idIndex = hasID(arr2[i]['yelpId'], arr1);
-                    if(idIndex >= 0){
-                      //update
-                      for(var key in arr2[i]){
-                        arr1[idIndex][key] = arr2[i][key];
-                      }
-                    } else {
-                      //insert
-                      arr1.push(arr2[i]);
-                    }
-                  }
-
-                  return arr1;
-                }
-
-                //Returns position in array that ID exists
-                function hasID(id, arr) {
-                  for(var i = 0; i < arr.length; i ++) {
-                    if(arr[i]['yelpId'] === id)
-                    {
-                      return i;
-                    }
-                  }
-
-                  return -1;
-                }
-
-                var combine = combineArrays(data, grouped);*/
 
                 /*NEXT UP: correctly show the button if the person has said they are going*/
                 /* should these be reset every day?*/
@@ -183,27 +130,10 @@ module.exports = function(app, passport, survey) {
                     yelpData:JSON.parse(body).businesses,
                     yelpDataString:body,
                     sumsArray: idsandsums
-                    // ,
-                    // userData: doc
                 });
-            // });
             }
-            // console.log("looking for");
-            // console.log(alltheseids);
             businessVisitors.find({yelpId:{$in:alltheseids}}).
-            // where('id').in(['tastybox-phoenix', 'be-coffee-food-stuff-phoenix']).
             exec(profileCallback);
-            // var yelpIdList = bodyJSON.businesses.id;
-            // continue from here
-            //basically need to search our database for any of these yelpids, then if they're in there make an array that contains:
-            //     [[yelpid1, sumcount1], [yelpid2, sumcount2], ...]
-            //...and then pass that array on to the res.render below
-            
-            // if (err){throw err;}
-            // else {            
-              
-                // newFileActions();
-            // }
 
 
         }
@@ -269,3 +199,45 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
+                /*function combineArrays(arr1, arr2) {
+                  for(var i = 0; i < arr2.length; i++) {
+                    // check if current object exists in arr1
+                    var idIndex = hasID(arr2[i]['yelpId'], arr1);
+                    if(idIndex >= 0){
+                      //update
+                      for(var key in arr2[i]){
+                        arr1[idIndex][key] = arr2[i][key];
+                      }
+                    } else {
+                      //insert
+                      arr1.push(arr2[i]);
+                    }
+                  }
+
+                  return arr1;
+                }
+
+                //Returns position in array that ID exists
+                function hasID(id, arr) {
+                  for(var i = 0; i < arr.length; i ++) {
+                    if(arr[i]['yelpId'] === id)
+                    {
+                      return i;
+                    }
+                  }
+
+                  return -1;
+                }
+
+                var combine = combineArrays(data, grouped);*/
+            // var yelpIdList = bodyJSON.businesses.id;
+            // continue from here
+            //basically need to search our database for any of these yelpids, then if they're in there make an array that contains:
+            //     [[yelpid1, sumcount1], [yelpid2, sumcount2], ...]
+            //...and then pass that array on to the res.render below
+            
+            // if (err){throw err;}
+            // else {            
+              
+                // newFileActions();
+            // }
