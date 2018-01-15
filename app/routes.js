@@ -131,12 +131,14 @@ module.exports = function(app, passport, survey) {
                 var idsandsums = [];
                 alltheseids.map(function(thisid){
                     var thissum = 0 ;
+                    var thisgoing = 0 ;
                     grouped.forEach(function(groups){
                           if (groups.yelpId==thisid){
                             thissum = groups.sumCount;
+                            thisgoing = groups.userGoing;
                         }
                     });
-                    idsandsums.push([thisid, thissum])
+                    idsandsums.push([thisid, thissum, thisgoing])
                 })
                 // console.log("idsa");
                 console.log(idsandsums);
@@ -180,7 +182,7 @@ module.exports = function(app, passport, survey) {
                     user : req.user,
                     yelpData:JSON.parse(body).businesses,
                     yelpDataString:body,
-                    sumsArray: grouped
+                    sumsArray: idsandsums
                     // ,
                     // userData: doc
                 });

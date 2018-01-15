@@ -43,17 +43,18 @@
     	 <a href="<%=entry.url%>">
     		<%=entry.name%><br/>
     		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
-    		<%=sumsArray[k].sumCount%> 0 Going <br/>
+    		<%=sumsArray[k][1]%> 0 Going <br/>
     		 <%if (user!=undefined){ %>
-    		 	<%if (sumsArray[k].userGoing==1)
+    		 	<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
+    		 	<%if (sumsArray[k][2]==1)
 				{%>
-				<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'amgoing'  onmousedown="gotoBar(this);" >Yes, I Am Going!</button>
+				'amgoing'  onmousedown="gotoBar(this);" >Yes, I Am Going!
     		 	<%}%>
-				<%if (sumsArray[k].userGoing==0)
+				<%if (sumsArray[k][2]==0)
 				{%>
-				<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 'notgoing'  onmousedown="gotoBar(this);" >No, I'm Not Going</button>
+				'notgoing'  onmousedown="gotoBar(this);" >No, I'm Not Going
     		 	<%}%>
-
+    		 	</button>
     	 	
 	   	 	<%}%> 
 
