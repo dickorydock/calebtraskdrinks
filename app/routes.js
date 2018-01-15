@@ -2,7 +2,9 @@
 module.exports = function(app, passport, survey) {
     var survey   = require('../config/survey.js');
     var request     = require('request');
-
+    var businessVisitors = require('./models/businessVisitor');
+    var users = require('./models/user');     
+               
     // var request   = require('../config/survey.js');
 
     
@@ -140,13 +142,11 @@ module.exports = function(app, passport, survey) {
         });
 
     app.post('/profile', function(req,res){
-        var businessVisitors = require('./models/businessVisitor');
         var updateCount = 1 ; 
-        if ( req.body.mode == "amgoing"){
+        if (req.body.mode == "amgoing"){
             updateCount = 0 ;
         }
        var myupdate = {$set: {clickCount:updateCount}};
-       var users = require('./models/user');     
             return businessVisitors.update(
             {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate, {multi: true}, function(err,data){
 

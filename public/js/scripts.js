@@ -6,6 +6,8 @@ $(document)
   .ajaxStop(function () {
     $loading.hide();
   });
+/*need to figure out how to get this loader showing - don't want to just change the js, because that doesn't go through if there's no internet connection
+  and it would be misleading to show otherwise*/
 
      function saveInstance() {
     
@@ -61,9 +63,6 @@ function gotoBar(el){
   $("#going-"+yelpid).html(modereplacementtext);
   // $("#going-"+yelpid+"").html(modereplacementtext);
 
-console.log("here");
-  console.log(yelpid);
-  console.log("#going-"+yelpid);
   $.ajax({
     url:'./profile',
     cache: false,
