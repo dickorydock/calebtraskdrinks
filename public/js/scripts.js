@@ -79,8 +79,8 @@ function gotoBar(el){
   //maybe besides the ajax request, change something only if the user is connected
   // console.log("Is the browser online? " + navigator.onLine);    
 
-    console.log("DANG IT PRE"+navigator.online);
-  if (navigator.online){
+    // console.log("DANG IT PRE"+navigator.online);
+  if (navigator.onLine){
     //get the current sum value
     console.log("DANG IT");
     var currentSum = $(yelpid+"-sum").val();
