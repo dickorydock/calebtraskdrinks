@@ -85,7 +85,7 @@ function gotoBar(el){
     console.log("DANG IT");
     var currentSum = $("#"+yelpid+"-sum").html();
     console.log("is it"+currentSum);
-    var newSum = currentSum+addOn;
+    var newSum = parseInt(currentSum)+addOn;
     $("#"+yelpid+"-sum").html(newSum);
  
   }  
