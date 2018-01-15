@@ -43,7 +43,7 @@
     	 <a href="<%=entry.url%>">
     		<%=entry.name%><br/>
     		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
-    		<%=sumsArray[k][1]%> 0 Going <br/>
+    		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> 0 Going <br/>
     		 <%if (user!=undefined){ %>
     		 	<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
     		 	<%if (sumsArray[k][2]==1)
