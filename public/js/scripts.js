@@ -76,6 +76,8 @@ function gotoBar(el){
     }
   });
 
+  /*fix issue with rows mis-aligning!!*/
+
   //maybe besides the ajax request, change something only if the user is connected
   // console.log("Is the browser online? " + navigator.onLine);    
 
@@ -86,7 +88,7 @@ function gotoBar(el){
     var currentSum = $("#"+yelpid+"-sum").html();
     console.log("is it"+currentSum);
     var newSum = parseInt(currentSum)+addOn;
-    $("#"+yelpid+"-sum").html(newSum);
+    $("#"+yelpid+"-sum").html(newSum.toString());
  
   }  
 
