@@ -112,7 +112,10 @@ module.exports = function(app, passport, survey) {
                     this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
                     grouped.push(this[o.yelpId]);
                 }
-                // console.log(this[o]);
+                console.log("A"+o.yelpId);
+                console.log("B"+o.userId);
+                console.log("C"+req.user._id);
+                console.log("D"+o.clickCount);
                 // console.log("after");
                 // console.log(this[o.userId]);
                 // console.log(req.user._id);
