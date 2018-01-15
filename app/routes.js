@@ -105,11 +105,14 @@ module.exports = function(app, passport, survey) {
 
                 data.forEach(function (o) {
                 if (!this[o.yelpId]) {
+
+                    console.log("in here");
+                    console.log(o.yelpId);
+                    console.log(o);
                     this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0 };
                     grouped.push(this[o.yelpId]);
                 }
-                console.log("in here");
-                console.log(this[o]);
+                // console.log(this[o]);
                 console.log("after");
                 // console.log(this[o.userId]);
                 console.log(req.user._id);
