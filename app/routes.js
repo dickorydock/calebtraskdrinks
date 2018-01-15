@@ -92,21 +92,18 @@ module.exports = function(app, passport, survey) {
             {
              alltheseids.push(bodyJSON.businesses[i].id);
             }
-            /*need to automatically update the number of people when you click on the button*/
-
             var profileCallback = function(err, data){
                 var grouped = [];
-
                 data.forEach(function (o) {
-                if (!this[o.yelpId]) {
-                    this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
-                    grouped.push(this[o.yelpId]);
-                }
-                if (o.userId==req.user._id && o.clickCount==1){
-                    this[o.yelpId].userGoing = 1;
-                }
+                    if (!this[o.yelpId]) {
+                        this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
+                        grouped.push(this[o.yelpId]);
+                    }
+                    if (o.userId==req.user._id && o.clickCount==1){
+                        this[o.yelpId].userGoing = 1;
+                    }
 
-                this[o.yelpId].sumCount += o.clickCount;
+                    this[o.yelpId].sumCount += o.clickCount;
                 }, Object.create(null));
 
                 var idsandsums = [];
@@ -122,9 +119,7 @@ module.exports = function(app, passport, survey) {
                     idsandsums.push([thisid, thissum, thisgoing])
                 })
 
-                /*NEXT UP: correctly show the button if the person has said they are going*/
-                /* should these be reset every day?*/
-
+            
                 res.render('pages/profile.ejs', {
                     user : req.user,
                     yelpData:JSON.parse(body).businesses,
@@ -134,8 +129,6 @@ module.exports = function(app, passport, survey) {
             }
             businessVisitors.find({yelpId:{$in:alltheseids}}).
             exec(profileCallback);
-
-
         }
         request(options0, callback2);
         var userSurveys  = require('./models/userSurvey');
@@ -161,14 +154,7 @@ module.exports = function(app, passport, survey) {
                 newVisitor.clickCount         = 1;
                 newVisitor.lastResponseDate   = localISOTime;
                 return newVisitor.save();
-
-                /*allow people to GO
-                create count of how many are going
-                can i say i'm going tomorrow instead of today?
-                can i see these on a map?
-                */
             }
-            // return data;
             res.redirect('/profile');
          })     
     })
