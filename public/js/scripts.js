@@ -48,7 +48,7 @@ function gotoBar(el){
   var modereplacement = "amgoing" ;
   var modereplacementtext = "Yes, I Am Going!" ;
   var buttonword = "amgoingButton"; 
-  var addon = 1; 
+  var addOn = 1; 
   if (mode=="amgoing")
   { 
     var modereplacementtext= "No, I'm Not Going";
@@ -84,7 +84,7 @@ function gotoBar(el){
     // console.log("DANG IT PRE"+navigator.online);
   if (navigator.onLine){
     //get the current sum value
-    console.log("DANG IT");
+    console.log("adding"+addOn);
     var currentSum = $("#"+yelpid+"-sum").html();
     console.log("is it"+currentSum);
     var newSum = parseInt(currentSum)+addOn;
