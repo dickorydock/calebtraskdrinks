@@ -106,22 +106,24 @@ module.exports = function(app, passport, survey) {
                 data.forEach(function (o) {
                 if (!this[o.yelpId]) {
 
-                    console.log("in here");
-                    console.log(o.yelpId);
-                    console.log(o);
-                    this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0 };
+                    // console.log("in here");
+                    // console.log(o.yelpId);
+                    // console.log(o);
+                    this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
                     grouped.push(this[o.yelpId]);
                 }
                 // console.log(this[o]);
-                console.log("after");
+                // console.log("after");
                 // console.log(this[o.userId]);
-                console.log(req.user._id);
-                if (this[o.userId]==req.user._id){
+                // console.log(req.user._id);
+                if (o.userId==req.user._id){
                     this[o.yelpId].userGoing = this[o.clickCount];
                 }
 
                 this[o.yelpId].sumCount += o.clickCount;
                 }, Object.create(null));
+
+                console.log(grouped);
 
                 var idsandsums = [];
                 alltheseids.map(function(thisid){
