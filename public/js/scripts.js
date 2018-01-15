@@ -54,7 +54,7 @@ function gotoBar(el){
     var modereplacementtext= "No, I'm Not Going";
     var modereplacement = "notgoing" ;
     var buttonword = "notgoingButton"; 
-    var addOn = -1; 
+    // var addOn = -1; 
   }
 
 
@@ -77,16 +77,7 @@ function gotoBar(el){
   });
 
   //maybe besides the ajax request, change something only if the user is connected
-  // console.log("Is the browser online? " + navigator.onLine);    
-
-  if (navigator.online){
-    //get the current sum value
-    console.log("DANG IT");
-    var currentSum = $(yelpid+"-sum").val();
-    var newSum = currentSum+addOn;
-    $(yelpid+"-sum").html(newSum);
- 
-  }  
+  console.log("Is the browser online? " + navigator.onLine);      
 
   /*POST requests are timing out - fix this 1-13-2018*/
 
