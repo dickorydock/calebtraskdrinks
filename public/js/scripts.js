@@ -40,17 +40,20 @@ function gotoBar(el){
   var modereplacement = "amgoing" ;
   var modereplacementtext = "Yes, I Am Going!" ;
   var buttonword = "amgoingButton"; 
+  var addon = 1; 
   if (mode=="amgoing")
   { 
     var modereplacementtext= "No, I'm Not Going";
     var modereplacement = "notgoing" ;
     var buttonword = "notgoingButton"; 
+    // var addOn = -1; 
   }
 
 
   $("#going-"+yelpid).attr('class', buttonword+ " btn") ;
   $("#going-"+yelpid).attr('data-mode',  modereplacement);
   $("#going-"+yelpid).html(modereplacementtext);
+  // $("#going-"+yelpid+"").html(modereplacementtext);
 
 console.log("here");
   console.log(yelpid);
@@ -60,6 +63,9 @@ console.log("here");
     cache: false,
     type: "POST",
     data:{id:id, yelpid:yelpid, mode:mode},
+    success: function() {   
+        location.reload();  
+    }
   });       
 
   /*POST requests are timing out - fix this 1-13-2018*/

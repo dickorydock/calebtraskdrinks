@@ -93,8 +93,6 @@ module.exports = function(app, passport, survey) {
             /*need to automatically update the number of people when you click on the button*/
 
             var profileCallback = function(err, data){
-                //need to summarize this data!
-                /*also need to pass the data on from here about numbers*/
                 var grouped = [];
 
                 data.forEach(function (o) {
@@ -142,13 +140,11 @@ module.exports = function(app, passport, survey) {
         });
 
     app.post('/profile', function(req,res){
-        // console.log(req.body);
         var businessVisitors = require('./models/businessVisitor');
         var updateCount = 1 ; 
         if ( req.body.mode == "amgoing"){
             updateCount = 0 ;
         }
-        console.log("updateCount is "+updateCount);
        var myupdate = {$set: {clickCount:updateCount}};
        var users = require('./models/user');     
             return businessVisitors.update(
@@ -156,8 +152,6 @@ module.exports = function(app, passport, survey) {
 
             //if there wasn't a record before, make one
              if (data.n==0) {
-                console.log(data);
-                console.log("yeah in here");
                 var tzOffset       = (new Date()).getTimezoneOffset() * 60000 ;
                 var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
                 var newVisitor = new businessVisitors();
