@@ -120,7 +120,7 @@ module.exports = function(app, passport, survey) {
                 // console.log(this[o.userId]);
                 // console.log(req.user._id);
                 if (o.userId==req.user._id && o.clickCount==1){
-                    this[o.userGoing] = 1;
+                    this[o.yelpId].userGoing = 1;
                 }
 
                 this[o.yelpId].sumCount += o.clickCount;
