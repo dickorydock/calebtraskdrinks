@@ -83,7 +83,7 @@ function gotoBar(el){
   if (navigator.onLine){
     //get the current sum value
     console.log("DANG IT");
-    var currentSum = $(yelpid+"-sum").val();
+    var currentSum = $(yelpid+"-sum").html();
     console.log("is it"+currentSum);
     var newSum = currentSum+addOn;
     $(yelpid+"-sum").html(newSum);
