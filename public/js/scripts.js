@@ -74,7 +74,10 @@ function gotoBar(el){
         // location.reload();  
 
     }
-  });       
+  });
+
+  //maybe besides the ajax request, change something only if the user is connected
+  console.log("Is the browser online? " + navigator.onLine);      
 
   /*POST requests are timing out - fix this 1-13-2018*/
 
