@@ -104,7 +104,7 @@ module.exports = function(app, passport, survey) {
                 var grouped = [];
 
                 data.forEach(function (o) {
-                console.log(o);
+                console.log(this[o]);
                 if (!this[o.yelpId]) {
                     this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0 };
                     grouped.push(this[o.yelpId]);
