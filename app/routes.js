@@ -72,9 +72,8 @@ module.exports = function(app, passport, survey) {
     // PROFILE SECTION =====================
     // =====================================
     // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
+    // we will use route middleware to verify this (the isLoggedIn function) and we will use the Yelp API to identify local bars
  var setLocation = function(req, res){
- // var userSurveys  = require('./models/userSurvey');
         var businessVisitors = require('./models/businessVisitor');
         var options0 = {
             url: "https://api.yelp.com/v3/businesses/search?term=bar&location="+req.body.myLocation,
@@ -133,7 +132,7 @@ module.exports = function(app, passport, survey) {
     }
     
 
-    app.get('/profile', isLoggedIn, function(req, res) {
+    app.get('/profile', function(req, res) {
         
        res.render('pages/profile.ejs', {
                     user : req.user,
@@ -149,14 +148,8 @@ module.exports = function(app, passport, survey) {
         /******************/
         /***NEW LOCATION***/
         /******************/
-        console.log(req.body);
         if (req.body.hasOwnProperty('myLocation')){
-            // console.log("making a new location!");
-            console.log("the new location is "+req.body.myLocation);
-            // console.log("the whole body is ");
-            // console.log(req.body);
             setLocation(req, res);
-            // res.redirect('/profile');
         }
 
         else
@@ -165,7 +158,6 @@ module.exports = function(app, passport, survey) {
         /**GOING TO A BAR**/
         /******************/
         {
-            console.log("YOU CLICKED ME!");
             var updateCount = 1 ; 
             if (req.body.mode == "amgoing"){
                 updateCount = 0 ;
@@ -211,45 +203,3 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
-                /*function combineArrays(arr1, arr2) {
-                  for(var i = 0; i < arr2.length; i++) {
-                    // check if current object exists in arr1
-                    var idIndex = hasID(arr2[i]['yelpId'], arr1);
-                    if(idIndex >= 0){
-                      //update
-                      for(var key in arr2[i]){
-                        arr1[idIndex][key] = arr2[i][key];
-                      }
-                    } else {
-                      //insert
-                      arr1.push(arr2[i]);
-                    }
-                  }
-
-                  return arr1;
-                }
-
-                //Returns position in array that ID exists
-                function hasID(id, arr) {
-                  for(var i = 0; i < arr.length; i ++) {
-                    if(arr[i]['yelpId'] === id)
-                    {
-                      return i;
-                    }
-                  }
-
-                  return -1;
-                }
-
-                var combine = combineArrays(data, grouped);*/
-            // var yelpIdList = bodyJSON.businesses.id;
-            // continue from here
-            //basically need to search our database for any of these yelpids, then if they're in there make an array that contains:
-            //     [[yelpid1, sumcount1], [yelpid2, sumcount2], ...]
-            //...and then pass that array on to the res.render below
-            
-            // if (err){throw err;}
-            // else {            
-              
-                // newFileActions();
-            // }

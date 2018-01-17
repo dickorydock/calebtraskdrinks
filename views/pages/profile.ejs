@@ -24,7 +24,6 @@
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-        <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
     </div>
 
 
@@ -47,7 +46,7 @@
     <%}%>
 	<%yelpData.forEach(function(entry, k){%>
    
-	    <div class="row top-buffer bar-listing">
+	    <div class="row top-buffer bar-listing" id="going-row-<%=entry.id%>">
         	<div class="col-md-3 bar-photo"><a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"/></a></div>
         	<div class="col-md-7">
         	 <a href="<%=entry.url%>">
