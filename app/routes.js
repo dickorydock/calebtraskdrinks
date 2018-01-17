@@ -123,12 +123,12 @@ module.exports = function(app, passport, survey) {
                 //         idsandsums.push([thisid, thissum, thisgoing])
                 //     })
                 // }
-                //     res.render('pages/profile.ejs', {
-                //         user : req.user,
-                //         yelpData:JSON.parse(body).businesses,
-                //         yelpDataString:body,
-                //         sumsArray: idsandsums
-                //     });
+                    res.render('pages/profile.ejs', {
+                        user : req.user,
+                        yelpData:JSON.parse(body).businesses,
+                        yelpDataString:body,
+                        sumsArray: idsandsums
+                    });
                 
             }
             businessVisitors.find({yelpId:{$in:alltheseids}}).
@@ -154,6 +154,7 @@ module.exports = function(app, passport, survey) {
         /******************/
         /***NEW LOCATION***/
         /******************/
+        console.log(req);
         if (req.body.hasOwnProperty('myLocation')){
             setLocation(req, res);
         }
