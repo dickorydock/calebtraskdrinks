@@ -148,7 +148,7 @@ module.exports = function(app, passport, survey) {
        
         });
 
-    app.post('/profile', function(req,res){
+    app.post( '/profile', function(req,res){
 
         /******************/
         /***NEW LOCATION***/
