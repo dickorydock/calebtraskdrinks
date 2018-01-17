@@ -139,6 +139,7 @@ module.exports = function(app, passport, survey) {
         /******************/
         /***NEW LOCATION***/
         /******************/
+        console.log(req.body);
         if (req.body.hasOwnProperty('myLocation')){
             console.log("making a new location!");
             console.log("the new location is "+req.body.mylocation);
