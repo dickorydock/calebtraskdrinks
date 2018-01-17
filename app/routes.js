@@ -153,6 +153,7 @@ module.exports = function(app, passport, survey) {
 
         if (req.body.buttontype == "goingResponse")
         {
+            console.log("YOU CLICKED ME!");
             var updateCount = 1 ; 
             if (req.body.mode == "amgoing"){
                 updateCount = 0 ;

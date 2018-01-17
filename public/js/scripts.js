@@ -9,6 +9,26 @@ put bars on a map? - TODO
 */
 //if user clicks on a yelpid that we don't have a record for yet for this user, make one
 
+
+function setLocation(el){
+  // console.log(el);
+  $.ajax({
+    url:'./profile',
+    cache: false,
+    type: "POST",
+    data:{id:id, yelpid:yelpid, mode:mode}
+  });
+
+  if (navigator.onLine){
+    $("#going-"+yelpid).attr('class', buttonword+ " btn") ;
+    $("#going-"+yelpid).attr('data-mode',  modereplacement);
+    $("#going-"+yelpid).html(modereplacementtext);
+    var currentSum = $("#"+yelpid+"-sum").html();
+    var newSum = parseInt(currentSum)+addOn;
+    $("#"+yelpid+"-sum").html(newSum.toString()); 
+  }  
+}
+
 function gotoBar(el){
   var id = el.getAttribute('data-userid');
   var yelpid = el.getAttribute('data-yelpid');
@@ -29,7 +49,7 @@ function gotoBar(el){
     url:'./profile',
     cache: false,
     type: "POST",
-    data:{id:id, yelpid:yelpid, mode:mode, goingResponse:goingResponse}
+    data:{id:id, yelpid:yelpid, mode:mode}
   });
 
   if (navigator.onLine){
