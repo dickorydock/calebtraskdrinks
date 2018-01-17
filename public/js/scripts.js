@@ -36,7 +36,7 @@ function gotoBar(el){
   var yelpid = el.getAttribute('data-yelpid');
   var mode = el.getAttribute('data-mode'); 
   var modereplacement = "amgoing" ;
-  var newColor = "rgb(25, 25, 112,.2);";
+  var newColor = "rgb(25, 25, 112,.8)";
   var modereplacementtext = "Yes, I Am Going!" ;
   var buttonword = "amgoingButton"; 
   var addOn = 1; 
