@@ -15,7 +15,7 @@
         .bar-photo img {
             display: block;
             margin: auto;
-            height:150px;
+        
     </style>
 </head>
 <body>
@@ -38,10 +38,10 @@
     </form>
 
     <!-- MY SURVEYS -->
-    <%if (yelpData.length>0) {%>
+    <%if (yelpData.length>0 && user!=undefined) {%>
     <div class="row top-buffer">
-        <div class="col-md-3 bar-photo">Pic</div>
-        <div class="col-md-7">Information</div>
+        <div class="col-md-3 bar-photo"></div>
+        <div class="col-md-7"></div>
         <div class="col-md-2">Going Tonight?</div>
     </div>
     <%}%>
