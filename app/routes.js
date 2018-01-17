@@ -123,6 +123,7 @@ module.exports = function(app, passport, survey) {
                 //         idsandsums.push([thisid, thissum, thisgoing])
                 //     })
                 // }
+                
                     res.render('pages/profile.ejs', {
                         user : req.user,
                         yelpData:JSON.parse(body).businesses,
