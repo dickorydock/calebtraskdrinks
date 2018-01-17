@@ -4,13 +4,17 @@ change the 'no i'm not going' button to a slider- TOOD
 fix issue with rows mis-aligning depending on zoom - TODO
 only change the button too if if there's an internet connection - DONE  
 should buttons be reset every day? - TODO
-allow searches for other cities - maybe put a search box on the top of the page? - TODO
+allow searches for other cities - maybe put a search box on the top of the page? - DONE
 put bars on a map? - TODO
+sort bars by most popular - TODO
 */
 //if user clicks on a yelpid that we don't have a record for yet for this user, make one
 
 
 function setLocation(el){
+	var form = document.createElement('form');
+	form.setAttribute('method', 'post');
+	form.setAttribute('action', 'http://www.google.com')
   // console.log(el);
   $.ajax({
     url:'./profile',
