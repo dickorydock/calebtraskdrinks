@@ -156,7 +156,6 @@ module.exports = function(app, passport, survey) {
         if (req.body.hasOwnProperty('myLocation')){
             setLocation(req, res);
         }
-
         else
 
         /******************/
