@@ -135,28 +135,47 @@ module.exports = function(app, passport, survey) {
         });
 
     app.post('/profile', function(req,res){
-        var updateCount = 1 ; 
-        if (req.body.mode == "amgoing"){
-            updateCount = 0 ;
-        }
-       var myupdate = {$set: {clickCount:updateCount}};
-            return businessVisitors.update(
-            {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate, {multi: true}, function(err,data){
 
-            //if there wasn't a record before, make one
-             if (data.n==0) {
-                var tzOffset                  = (new Date()).getTimezoneOffset() * 60000 ;
-                var localISOTime              = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-                var newVisitor                = new businessVisitors();
-                newVisitor.userId             = req.body.id;
-                newVisitor.yelpId             = req.body.yelpid;
-                newVisitor.isGoingToday       = true;
-                newVisitor.clickCount         = 1;
-                newVisitor.lastResponseDate   = localISOTime;
-                return newVisitor.save();
+        /******************/
+        /***NEW LOCATION***/
+        /******************/
+        if (req.body.buttontype == "newLocation"){
+            console.log("making a new location!");
+            console.log("the new location is "+req.body.mylocation);
+            console.log("the whole body is ");
+            console.log(req.body);
+
+        }
+
+        /******************/
+        /**GOING TO A BAR**/
+        /******************/
+
+        if (req.body.buttontype == "goingResponse")
+        {
+            var updateCount = 1 ; 
+            if (req.body.mode == "amgoing"){
+                updateCount = 0 ;
             }
-            res.redirect('/profile');
-         })     
+           var myupdate = {$set: {clickCount:updateCount}};
+                return businessVisitors.update(
+                {"$and": [{"userId": req.body.id},{"yelpId": req.body.yelpid}]}, myupdate, {multi: true}, function(err,data){
+
+                //if there wasn't a record before, make one
+                 if (data.n==0) {
+                    var tzOffset                  = (new Date()).getTimezoneOffset() * 60000 ;
+                    var localISOTime              = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
+                    var newVisitor                = new businessVisitors();
+                    newVisitor.userId             = req.body.id;
+                    newVisitor.yelpId             = req.body.yelpid;
+                    newVisitor.isGoingToday       = true;
+                    newVisitor.clickCount         = 1;
+                    newVisitor.lastResponseDate   = localISOTime;
+                    return newVisitor.save();
+                }
+                res.redirect('/profile');
+             }) 
+        }    
     })
 
 

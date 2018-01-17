@@ -26,7 +26,15 @@
         <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
     </div>
 
-   
+    <!-- GET CITY -->
+    <form action="/profile" method="post">
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" name="mylocation">
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg" onmousedown="gotoBar(this)">Submit</button>
+    </form>
+
     <!-- MY SURVEYS -->
 	<%yelpData.forEach(function(entry, k){%>
    
@@ -41,7 +49,7 @@
     		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
     		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> 0 Going <br/>
     		 <%if (user!=undefined){ %>
-    		 	<button class="btn"  id='going-<%=entry.id%>' data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
+    		 	<button class="btn"  id='going-<%=entry.id%>' data-buttontype="goingResponse" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
     		 	<%if (sumsArray[k][2]==1)
 				{%>
 				'amgoing'  onmousedown="gotoBar(this);" >Yes, I Am Going!

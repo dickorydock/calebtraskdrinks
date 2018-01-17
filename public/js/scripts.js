@@ -1,11 +1,11 @@
 
 /*TO DO
-change the 'no i'm not going' button to a slider!
-fix issue with rows mis-aligning depending on zoom
-only change the button too if if there's an internet connection  
-should buttons be reset every day?
-allow searches for other cities - maybe put a search box on the top of the page?
-put bars on a map?
+change the 'no i'm not going' button to a slider- TOOD
+fix issue with rows mis-aligning depending on zoom - TODO
+only change the button too if if there's an internet connection - DONE  
+should buttons be reset every day? - TODO
+allow searches for other cities - maybe put a search box on the top of the page? - TODO
+put bars on a map? - TODO
 */
 //if user clicks on a yelpid that we don't have a record for yet for this user, make one
 
@@ -29,7 +29,7 @@ function gotoBar(el){
     url:'./profile',
     cache: false,
     type: "POST",
-    data:{id:id, yelpid:yelpid, mode:mode}
+    data:{id:id, yelpid:yelpid, mode:mode, goingResponse:goingResponse}
   });
 
   if (navigator.onLine){
