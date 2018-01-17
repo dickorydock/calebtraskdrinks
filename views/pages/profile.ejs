@@ -54,7 +54,7 @@
         		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
         		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> 0 Going <br/>
         		 <%if (user!=undefined){ %>
-        		 	<button class="btn"  id='going-<%=entry.id%>' data-buttontype="goingResponse" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
+        		 	<button class="btn"  id='xgoing-<%=entry.id%>' data-buttontype="goingResponse" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
         		 	<%if (sumsArray[k][2]==1)
     				{%>
     				'amgoing'  onmousedown="gotoBar(this);" >Yes, I Am Going!
@@ -68,7 +68,15 @@
     	   	</div>
             <div class="col-md-2">
                 <label class="switch">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  id='going-<%=entry.id%>' data-buttontype="goingResponse" onClick="gotoBar(this)" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode =  <%if (sumsArray[k][2]==1)
+                    {%>
+                    'amgoing' checked>
+                    <%}%>
+                    <%if (sumsArray[k][2]==0)
+                    {%>
+                    'notgoing'>
+                    <%}%>
+                
                     <span class="slider round"></span>
                 </label>
             </div>
