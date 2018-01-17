@@ -95,6 +95,7 @@ module.exports = function(app, passport, survey) {
 
             var profileCallback = function(err, data){
                 console.log(req);
+                req.hasOwnProperty(user)
                 // if (req.hasOwnProperty(user)){
                 //     console.log("true in here");
                 //     console.log(req.user);
@@ -137,7 +138,7 @@ module.exports = function(app, passport, survey) {
     }
     
 
-    app.get('/profile', isLoggedIn, function(req, res) {
+    app.get('/profile', function(req, res) {
         
        res.render('pages/profile.ejs', {
                     user : req.user,
