@@ -94,6 +94,7 @@ module.exports = function(app, passport, survey) {
             var grouped = [];
 
             var profileCallback = function(err, data){
+                console.log(req);
                 if (req.hasOwnProperty(user)){
                     console.log("true in here");
                     console.log(req.user);
