@@ -73,11 +73,11 @@ module.exports = function(app, passport, survey) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
- var setLocation = function(placeName){
+ var setLocation = function(req){
  // var userSurveys  = require('./models/userSurvey');
         var businessVisitors = require('./models/businessVisitor');
         var options0 = {
-            url: "https://api.yelp.com/v3/businesses/search?location="+placeName,
+            url: "https://api.yelp.com/v3/businesses/search?location="+req.body.myLocation,
              'auth': {'bearer': process.env.YELP_APIKEY}
         };
 
@@ -155,7 +155,7 @@ module.exports = function(app, passport, survey) {
             console.log("the new location is "+req.body.myLocation);
             // console.log("the whole body is ");
             // console.log(req.body);
-            setLocation(req.body.myLocation);
+            setLocation(req);
             // res.redirect('/profile');
         }
 
