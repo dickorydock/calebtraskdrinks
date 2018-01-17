@@ -7,7 +7,6 @@ module.exports = function(app, passport, survey) {
                
     // var request   = require('../config/survey.js');
 
-    
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -74,11 +73,11 @@ module.exports = function(app, passport, survey) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res) {
+ var setLocation = function(placeName){
+ // var userSurveys  = require('./models/userSurvey');
         var businessVisitors = require('./models/businessVisitor');
-        
         var options0 = {
-            url: "https://api.yelp.com/v3/businesses/search?location=Phoenix",
+            url: "https://api.yelp.com/v3/businesses/search?location="+placeName,
              'auth': {'bearer': process.env.YELP_APIKEY}
         };
 
@@ -131,7 +130,18 @@ module.exports = function(app, passport, survey) {
             exec(profileCallback);
         }
         request(options0, callback2);
-        var userSurveys  = require('./models/userSurvey');
+    }
+    
+
+    app.get('/profile', isLoggedIn, function(req, res) {
+        
+       res.render('pages/profile.ejs', {
+                    user : req.user,
+                    yelpData:{},
+                    yelpDataString:"",
+                    sumsArray: []
+                });
+       
         });
 
     app.post('/profile', function(req,res){
