@@ -139,20 +139,19 @@ module.exports = function(app, passport, survey) {
         /******************/
         /***NEW LOCATION***/
         /******************/
-        if (req.body.buttontype == "newLocation"){
+        if (req.body.hasOwnProperty('myLocation')){
             console.log("making a new location!");
             console.log("the new location is "+req.body.mylocation);
             console.log("the whole body is ");
             console.log(req.body);
-
+            res.redirect('/profile');
         }
+
+        else
 
         /******************/
         /**GOING TO A BAR**/
         /******************/
-        console.log("the body is");
-        console.log(req.body);
-        if (req.body.buttontype == "goingResponse")
         {
             console.log("YOU CLICKED ME!");
             var updateCount = 1 ; 
