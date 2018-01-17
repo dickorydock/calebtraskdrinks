@@ -137,7 +137,7 @@ module.exports = function(app, passport, survey) {
     }
     
 
-    app.get('/profile', function(req, res) {
+    app.get('/profile', isLoggedin, function(req, res) {
         
        res.render('pages/profile.ejs', {
                     user : req.user,
