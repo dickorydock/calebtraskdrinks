@@ -150,7 +150,8 @@ module.exports = function(app, passport, survey) {
         /******************/
         /**GOING TO A BAR**/
         /******************/
-
+        console.log("the body is");
+        console.log(req.body);
         if (req.body.buttontype == "goingResponse")
         {
             console.log("YOU CLICKED ME!");
