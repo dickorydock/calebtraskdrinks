@@ -60,7 +60,7 @@ function gotoBar(el){
     $("#going-"+yelpid).attr('class', buttonword+ " btn") ;
     $("#going-"+yelpid).attr('data-mode',  modereplacement);
     $("#going-"+yelpid).html(modereplacementtext);
-    $("#going-row-"+yelpid).attr('background-color', newColor);
+    $("#going-row-"+yelpid).css('background-color', newColor);
     var currentSum = $("#"+yelpid+"-sum").html();
     var newSum = parseInt(currentSum)+addOn;
     $("#"+yelpid+"-sum").html(newSum.toString()); 
