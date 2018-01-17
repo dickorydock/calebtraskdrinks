@@ -73,7 +73,7 @@ module.exports = function(app, passport, survey) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
- var setLocation = function(req){
+ var setLocation = function(req, res){
  // var userSurveys  = require('./models/userSurvey');
         var businessVisitors = require('./models/businessVisitor');
         var options0 = {
@@ -155,7 +155,7 @@ module.exports = function(app, passport, survey) {
             console.log("the new location is "+req.body.myLocation);
             // console.log("the whole body is ");
             // console.log(req.body);
-            setLocation(req);
+            setLocation(req, res);
             // res.redirect('/profile');
         }
 
