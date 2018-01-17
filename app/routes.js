@@ -137,7 +137,7 @@ module.exports = function(app, passport, survey) {
         
        res.render('pages/profile.ejs', {
                     user : req.user,
-                    yelpData:{},
+                    yelpData:[],
                     yelpDataString:"",
                     sumsArray: []
                 });
@@ -151,11 +151,12 @@ module.exports = function(app, passport, survey) {
         /******************/
         console.log(req.body);
         if (req.body.hasOwnProperty('myLocation')){
-            console.log("making a new location!");
-            console.log("the new location is "+req.body.mylocation);
-            console.log("the whole body is ");
-            console.log(req.body);
-            res.redirect('/profile');
+            // console.log("making a new location!");
+            console.log("the new location is "+req.body.myLocation);
+            // console.log("the whole body is ");
+            // console.log(req.body);
+            setLocation(req.body.myLocation);
+            // res.redirect('/profile');
         }
 
         else
