@@ -2,8 +2,8 @@
 /*TO DO
 change the 'no i'm not going' button to a slider- TOOD
 fix issue with rows mis-aligning depending on zoom - TODO
-only change the button too if if there's an internet connection - DONE  
 should buttons be reset every day? - TODO
+only change the button too if if there's an internet connection - DONE  
 allow searches for other cities - maybe put a search box on the top of the page? - DONE
 put bars on a map? - TODO
 sort bars by most popular - TODO
