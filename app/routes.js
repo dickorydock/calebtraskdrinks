@@ -95,39 +95,39 @@ module.exports = function(app, passport, survey) {
 
             var profileCallback = function(err, data){
                 console.log(req);
-                if (req.hasOwnProperty(user)){
-                    console.log("true in here");
-                    console.log(req.user);
-                    data.forEach(function (o) {
-                        if (!this[o.yelpId]) {
-                            this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
-                            grouped.push(this[o.yelpId]);
-                        }
-                        if (o.userId==req.user._id && o.clickCount==1){
-                            this[o.yelpId].userGoing = 1;
-                        }
+                // if (req.hasOwnProperty(user)){
+                //     console.log("true in here");
+                //     console.log(req.user);
+                //     data.forEach(function (o) {
+                //         if (!this[o.yelpId]) {
+                //             this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
+                //             grouped.push(this[o.yelpId]);
+                //         }
+                //         if (o.userId==req.user._id && o.clickCount==1){
+                //             this[o.yelpId].userGoing = 1;
+                //         }
 
-                        this[o.yelpId].sumCount += o.clickCount;
-                    }, Object.create(null));
+                //         this[o.yelpId].sumCount += o.clickCount;
+                //     }, Object.create(null));
 
-                    alltheseids.map(function(thisid){
-                        var thissum = 0 ;
-                        var thisgoing = 0 ;
-                        grouped.forEach(function(groups){
-                              if (groups.yelpId==thisid){
-                                thissum = groups.sumCount;
-                                thisgoing = groups.userGoing;
-                            }
-                        });
-                        idsandsums.push([thisid, thissum, thisgoing])
-                    })
-                }
-                    res.render('pages/profile.ejs', {
-                        user : req.user,
-                        yelpData:JSON.parse(body).businesses,
-                        yelpDataString:body,
-                        sumsArray: idsandsums
-                    });
+                //     alltheseids.map(function(thisid){
+                //         var thissum = 0 ;
+                //         var thisgoing = 0 ;
+                //         grouped.forEach(function(groups){
+                //               if (groups.yelpId==thisid){
+                //                 thissum = groups.sumCount;
+                //                 thisgoing = groups.userGoing;
+                //             }
+                //         });
+                //         idsandsums.push([thisid, thissum, thisgoing])
+                //     })
+                // }
+                //     res.render('pages/profile.ejs', {
+                //         user : req.user,
+                //         yelpData:JSON.parse(body).businesses,
+                //         yelpDataString:body,
+                //         sumsArray: idsandsums
+                //     });
                 
             }
             businessVisitors.find({yelpId:{$in:alltheseids}}).
