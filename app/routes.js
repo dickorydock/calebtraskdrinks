@@ -94,7 +94,7 @@ module.exports = function(app, passport, survey) {
             var grouped = [];
 
             var profileCallback = function(err, data){
-                if (req.hasPorperty(user)){
+                if (req.hasProperty(user)){
                     data.forEach(function (o) {
                         if (!this[o.yelpId]) {
                             this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
