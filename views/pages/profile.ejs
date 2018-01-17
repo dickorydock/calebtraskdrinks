@@ -27,11 +27,6 @@
         <a href="/makesurvey" class="btn btn-default btn-sm">Make a New Survey</a>
     </div>
 
-<!-- Rounded switch -->
-<label class="switch">
-  <input type="checkbox">
-  <span class="slider round"></span>
-</label>
 
     <!-- GET CITY -->
     <form action="/profile" method="post">
@@ -43,39 +38,40 @@
     </form>
 
     <!-- MY SURVEYS -->
+
+  <     div class="row top-buffer bar-listing">
+            <div class="col-md-3 bar-photo">Pic</div>
+            <div class="col-md-7">Information</div>
+            <div class="col-md-2">Going Tonight?</div>
+        </div>
 	<%yelpData.forEach(function(entry, k){%>
    
 	    <div class="row top-buffer bar-listing">
-	       
-    	<div class="col-md-3 bar-photo">
-    		 <a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"/></a>
-    	</div>
-    	<div class="col-md-9">
-    	 <a href="<%=entry.url%>">
-    		<%=entry.name%><br/>
-    		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
-    		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> 0 Going <br/>
-    		 <%if (user!=undefined){ %>
-    		 	<button class="btn"  id='going-<%=entry.id%>' data-buttontype="goingResponse" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
-    		 	<%if (sumsArray[k][2]==1)
-				{%>
-				'amgoing'  onmousedown="gotoBar(this);" >Yes, I Am Going!
-    		 	<%}%>
-				<%if (sumsArray[k][2]==0)
-				{%>
-				'notgoing'  onmousedown="gotoBar(this);" >No, I'm Not Going
-    		 	<%}%>
-    		 	</button>
-    	 	
-	   	 	<%}%> 
-
-
-
-
-
-		
-		
-	   	</div>
+        	<div class="col-md-3 bar-photo"><a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"/></a></div>
+        	<div class="col-md-7">
+        	 <a href="<%=entry.url%>">
+        		<%=entry.name%><br/>
+        		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
+        		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> 0 Going <br/>
+        		 <%if (user!=undefined){ %>
+        		 	<button class="btn"  id='going-<%=entry.id%>' data-buttontype="goingResponse" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
+        		 	<%if (sumsArray[k][2]==1)
+    				{%>
+    				'amgoing'  onmousedown="gotoBar(this);" >Yes, I Am Going!
+        		 	<%}%>
+    				<%if (sumsArray[k][2]==0)
+    				{%>
+    				'notgoing'  onmousedown="gotoBar(this);" >No, I'm Not Going
+        		 	<%}%>
+        		 	</button>
+    	   	 	<%}%>		
+    	   	</div>
+            <div class="col-md-2">
+                <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+                </label>
+            </div>
 		</div>
 	<%})%> 
 	
