@@ -38,12 +38,13 @@
     </form>
 
     <!-- MY SURVEYS -->
-
+    <%if yelpData.length>0{%>
     <div class="row top-buffer">
         <div class="col-md-3 bar-photo">Pic</div>
         <div class="col-md-7">Information</div>
         <div class="col-md-2">Going Tonight?</div>
     </div>
+    <%}%>
 	<%yelpData.forEach(function(entry, k){%>
    
 	    <div class="row top-buffer bar-listing">
@@ -52,21 +53,10 @@
         	 <a href="<%=entry.url%>">
         		<%=entry.name%><br/>
         		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
-        		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> 0 Going <br/>
-        		 <%if (user!=undefined){ %>
-        		 	<button class="btn"  id='xgoing-<%=entry.id%>' data-buttontype="goingResponse" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode = 
-        		 	<%if (sumsArray[k][2]==1)
-    				{%>
-    				'amgoing'  onmousedown="gotoBar(this);" >Yes, I Am Going!
-        		 	<%}%>
-    				<%if (sumsArray[k][2]==0)
-    				{%>
-    				'notgoing'  onmousedown="gotoBar(this);" >No, I'm Not Going
-        		 	<%}%>
-        		 	</button>
-    	   	 	<%}%>		
+        		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> Going <br/>
     	   	</div>
             <div class="col-md-2">
+             <%if (user!=undefined){ %>
                 <label class="switch">
                     <input type="checkbox"  id='going-<%=entry.id%>' data-buttontype="goingResponse" onClick="gotoBar(this)" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode =  <%if (sumsArray[k][2]==1)
                     {%>
@@ -76,9 +66,9 @@
                     {%>
                     'notgoing'>
                     <%}%>
-                
                     <span class="slider round"></span>
                 </label>
+          <%}%>       
             </div>
 		</div>
 	<%})%> 
