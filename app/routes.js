@@ -11,12 +11,7 @@ module.exports = function(app, passport, survey) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
-        var userSurveys  = require('./models/userSurvey');
-        userSurveys.find({'surveyActive': 1}, function(err, doc){
-            res.render('pages/index.ejs', {
-               allData: doc /*need this to be EVERYTHING not just this user*/
-            });
-        });
+        res.render('pages/index.ejs');
     });
 
     // =====================================
@@ -24,8 +19,6 @@ module.exports = function(app, passport, survey) {
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
-
-
         // render the page and pass in any flash data if it exists
         res.render('pages/login.ejs', { message: req.flash('loinMessage') }); 
     });
@@ -73,7 +66,7 @@ module.exports = function(app, passport, survey) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function) and we will use the Yelp API to identify local bars
- var setLocation = function(req, res){
+    var setLocation = function(req, res){
         var businessVisitors = require('./models/businessVisitor');
         var options0 = {
             url: "https://api.yelp.com/v3/businesses/search?term=bar&location="+req.body.myLocation,
@@ -94,8 +87,9 @@ module.exports = function(app, passport, survey) {
             var grouped = [];
 
             var profileCallback = function(err, data){
-                console.log(req);
+                // console.log(req);
                 console.log(req.hasOwnProperty(user));
+                console.log(req.hasOwnProperty(_passport.user));
                 // if (req.hasOwnProperty(user)){
                 //     console.log("true in here");
                 //     console.log(req.user);
@@ -123,13 +117,13 @@ module.exports = function(app, passport, survey) {
                 //         idsandsums.push([thisid, thissum, thisgoing])
                 //     })
                 // }
-                
-                    res.render('pages/profile.ejs', {
-                        user : req.user,
-                        yelpData:JSON.parse(body).businesses,
-                        yelpDataString:body,
-                        sumsArray: idsandsums
-                    });
+
+                    // res.render('pages/profile.ejs', {
+                    //     user : req.user,
+                    //     yelpData:JSON.parse(body).businesses,
+                    //     yelpDataString:body,
+                    //     sumsArray: idsandsums
+                    // });
                 
             }
             businessVisitors.find({yelpId:{$in:alltheseids}}).
