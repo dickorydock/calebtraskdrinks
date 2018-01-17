@@ -88,8 +88,8 @@ module.exports = function(app, passport, survey) {
 
             var profileCallback = function(err, data){
                 // console.log(req);
-                console.log(req.hasOwnProperty(user));
-                console.log(req.hasOwnProperty(_passport.user));
+                console.log(req.hasOwnProperty(usebbbr));
+                console.log(req.hasOwnProperty(_passport.usbbber));
                 // if (req.hasOwnProperty(user)){
                 //     console.log("true in here");
                 //     console.log(req.user);
