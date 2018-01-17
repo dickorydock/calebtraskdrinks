@@ -90,33 +90,41 @@ module.exports = function(app, passport, survey) {
                 // console.log(req);
                 // console.log(req.hasOwnProperty('user'));
                 // console.log(req.hasOwnProperty('_passport.usbbber));
-                if (req.hasOwnProperty('user')){
-                    console.log("true in here");
-                    console.log(req.user);
+                // if (req.hasOwnProperty('user')){
                     data.forEach(function (o) {
                         if (!this[o.yelpId]) {
                             this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
                             grouped.push(this[o.yelpId]);
                         }
-                        if (o.userId==req.user._id && o.clickCount==1){
-                            this[o.yelpId].userGoing = 1;
+                        if (req.hasOwnProperty('user')){
+                            if (o.userId==req.user._id && o.clickCount==1){
+                                this[o.yelpId].userGoing = 1;
+                            }
                         }
 
                         this[o.yelpId].sumCount += o.clickCount;
                     }, Object.create(null));
-
+                    //NEED TO SPLIT UP THE USER-SPECIFIC PART AND THE OTHER PART
                     alltheseids.map(function(thisid){
                         var thissum = 0 ;
                         var thisgoing = 0 ;
                         grouped.forEach(function(groups){
                               if (groups.yelpId==thisid){
                                 thissum = groups.sumCount;
+                                if (req.hasOwnProperty('user')){
                                 thisgoing = groups.userGoing;
                             }
+                            }
                         });
+                        if (req.hasOwnProperty('user')){
                         idsandsums.push([thisid, thissum, thisgoing])
+                        }
+                        else{
+                        idsandsums.push([thisid, thissum])
+                            
+                        }
                     })
-                }
+                // }
 
                     res.render('pages/profile.ejs', {
                         user : req.user,
