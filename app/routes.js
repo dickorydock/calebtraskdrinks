@@ -77,7 +77,7 @@ module.exports = function(app, passport, survey) {
  // var userSurveys  = require('./models/userSurvey');
         var businessVisitors = require('./models/businessVisitor');
         var options0 = {
-            url: "https://api.yelp.com/v3/businesses/search?location="+req.body.myLocation,
+            url: "https://api.yelp.com/v3/businesses/search?term=bar&location="+req.body.myLocation,
              'auth': {'bearer': process.env.YELP_APIKEY}
         };
 
