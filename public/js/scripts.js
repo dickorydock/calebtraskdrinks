@@ -36,7 +36,7 @@ function gotoBar(el){
   var yelpid = el.getAttribute('data-yelpid');
   var mode = el.getAttribute('data-mode'); 
   var modereplacement = "amgoing" ;
-  var newColor = "rgb(25, 25, 112,.3)";
+  // var newColor = "rgb(25, 25, 112,.3)";
   var modereplacementtext = "Yes, I Am Going!" ;
   var buttonword = "amgoingButton"; 
   var addOn = 1; 
@@ -45,7 +45,7 @@ function gotoBar(el){
     var modereplacementtext= "No, I'm Not Going";
     var modereplacement = "notgoing" ;
     var buttonword = "notgoingButton"; 
-    var newColor = "#ffffff";
+    // var newColor = "#ffffff";
     var addOn = -1; 
   }
   
@@ -60,7 +60,7 @@ function gotoBar(el){
     $("#going-"+yelpid).attr('class', buttonword+ " btn") ;
     $("#going-"+yelpid).attr('data-mode',  modereplacement);
     $("#going-"+yelpid).html(modereplacementtext);
-    $("#going-row-"+yelpid).css('background-color', newColor);
+    // $("#going-row-"+yelpid).css('background-color', newColor);
     // $("#going-row-"+yelpid).css('opacity', 0.3);
     var currentSum = $("#"+yelpid+"-sum").html();
     var newSum = parseInt(currentSum)+addOn;
