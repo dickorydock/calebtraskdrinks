@@ -121,6 +121,7 @@ module.exports = function(app, passport, survey) {
                     user : req.user,
                     yelpData:JSON.parse(body).businesses,
                     yelpDataString:body,
+                    resultsFor: yelpDataString:body,
                     sumsArray: idsandsums
                 });
                 
