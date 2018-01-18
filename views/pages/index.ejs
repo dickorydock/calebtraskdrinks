@@ -32,15 +32,11 @@
     <form action="/" method="post">
         <div class="form-group">
             <div style="overflow: hidden; padding-right: .5em;">
-                <input type="text" class="form-control" placeholder="Where to?" name="myLocation">
+                <input type="text" style="width: 100%;" class="form-control" placeholder="Where to?" name="myLocation">
             </div>
             <input type="submit" value="Search" class="btn btn-warning btn-lg" data-buttontype="setLocation" style="float:right" onclick="setLocation(this);">
         </div>
     </form>
-
-    <input type="submit"value="Find" style="float: right" />
-        <input type="text" style="width: 100%;" />
-    </div>
 
     <!-- MY SURVEYS -->
     <%if (yelpData.length>0 && user!=undefined) {%>
