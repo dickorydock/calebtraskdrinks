@@ -7,8 +7,7 @@ sort bars by most popular - not going to do so we can just present the data as Y
 allow searches for other cities - maybe put a search box on the top of the page? - DONE
 change the 'no i'm not going' button to a slider- DONE
 only change the button too if if there's an internet connection - DONE 
-
-allow users to login AFTER they do a search-TODO 
+allow users to login AFTER they do a search-DONE 
 */
 function setLocation(el){
   $.ajax({
