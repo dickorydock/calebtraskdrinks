@@ -77,10 +77,9 @@ module.exports = function(app, passport, survey) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function) and we will use the Yelp API to identify local bars
     var setLocation = function(req, res){
-        req.session.savedLocation = req.body.myLocation;
         var businessVisitors = require('./models/businessVisitor');
         var options0 = {
-            url: "https://api.yelp.com/v3/businesses/search?term=bar&location="+req.body.myLocation,
+            url: "https://api.yelp.com/v3/businesses/search?term=bar&location="+req.session.savedLocation,
              'auth': {'bearer': process.env.YELP_APIKEY}
         };
 
@@ -115,7 +114,6 @@ module.exports = function(app, passport, survey) {
 
                         this[o.yelpId].sumCount += o.clickCount;
                     }, Object.create(null));
-                    //NEED TO SPLIT UP THE USER-SPECIFIC PART AND THE OTHER PART
                     alltheseids.map(function(thisid){
                         var thissum = 0 ;
                         var thisgoing = 0 ;
@@ -153,8 +151,12 @@ module.exports = function(app, passport, survey) {
     
 
     app.get('/profile', function(req, res) {
-        console.log("did the cookie save? 3at");
-        console.log(req.session);
+        // console.log("did the cookie save? 3at");
+        // console.log(req.session);
+        if (req.session.savedLocation > 0){
+                setLocation(req, res);
+            }
+        else {
        // req.session.savedLocation = null;
        res.render('pages/profile.ejs', {
                     user : req.user,
@@ -162,24 +164,8 @@ module.exports = function(app, passport, survey) {
                     yelpDataString:"",
                     sumsArray: []
                 });
-       
-        });
-
-    app.get('/toprofile', function(req, res) {
-       // req.session.savedLocation = null;
-
-    //    $.ajax({
-    // url:'./profile',
-    // cache: false,
-    // type: "POST"
-    // ,data:{id:id, yelpid:yelpid, mode:mode}
-  // });
-       // res.render('pages/profile.ejs', {
-       //              user : req.user,
-       //              yelpData:[],
-       //              yelpDataString:"",
-       //              sumsArray: []
-       //          });
+            
+        }
        
         });
 
@@ -190,6 +176,7 @@ module.exports = function(app, passport, survey) {
         /******************/
         if (req.body.hasOwnProperty('myLocation')){
             if (req.body.myLocation.length > 0){
+                req.session.savedLocation = req.body.myLocation;
                 setLocation(req, res);
             }
         }
