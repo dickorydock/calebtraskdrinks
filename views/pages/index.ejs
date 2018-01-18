@@ -53,8 +53,13 @@
         	 <a href="<%=entry.url%>">
         		<%=entry.name%><br/>
         		<%=entry.location.address1%> <%=entry.location.city%>, <%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
-        		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> Going <br/>
-    	   	</div>
+        		 <%if (user==undefined){ %> <a href="/login"><%}%>
+                
+                <span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> Going <br/>
+                
+                 <%if (user==undefined){ %> </a><%}%>
+                
+            </div>
             <div class="col-md-2">
              <%if (user!=undefined){ %>
                 <label class="switch">
