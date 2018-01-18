@@ -27,6 +27,8 @@ module.exports = function(app, passport, survey) {
     // show the login form
     app.get('/login', function(req, res) {
         // render the page and pass in any flash data if it exists
+        console.log("did the cookie save? at");
+        console.log(req.session);
         res.render('pages/login.ejs', { message: req.flash('loinMessage') }); 
     });
 
@@ -149,7 +151,7 @@ module.exports = function(app, passport, survey) {
     
 
     app.get('/profile', function(req, res) {
-       req.session.savedLocation = null;
+       // req.session.savedLocation = null;
        res.render('pages/profile.ejs', {
                     user : req.user,
                     yelpData:[],
@@ -162,12 +164,12 @@ module.exports = function(app, passport, survey) {
     app.get('/toprofile', function(req, res) {
        // req.session.savedLocation = null;
 
-       $.ajax({
-    url:'./profile',
-    cache: false,
-    type: "POST"
+    //    $.ajax({
+    // url:'./profile',
+    // cache: false,
+    // type: "POST"
     // ,data:{id:id, yelpid:yelpid, mode:mode}
-  });
+  // });
        // res.render('pages/profile.ejs', {
        //              user : req.user,
        //              yelpData:[],
@@ -182,7 +184,6 @@ module.exports = function(app, passport, survey) {
         /******************/
         /***NEW LOCATION***/
         /******************/
-        console.log(req);
         if (req.body.hasOwnProperty('myLocation')){
             if (req.body.myLocation.length > 0){
                 setLocation(req, res);
