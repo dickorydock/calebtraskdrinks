@@ -32,7 +32,7 @@ module.exports = function(app, passport, survey) {
 
    // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/toprofile', // redirect to the secure profile section
+        successRedirect : '/rrr', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
