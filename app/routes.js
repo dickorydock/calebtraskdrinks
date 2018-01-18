@@ -155,7 +155,7 @@ module.exports = function(app, passport, survey) {
     app.get('/profile', function(req, res) {
         console.log("did the cookie save? 3at");
         console.log(req.session);
-        if (req.session.savedLocation > 0){
+        if (req.session.savedLocation.length > 0){
                 setLocation(req, res);
             }
         else {
