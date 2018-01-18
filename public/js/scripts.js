@@ -15,7 +15,7 @@ function setLocation(el){
 	// form.setAttribute('method', 'post');
 	// form.setAttribute('action', 'http://www.google.com')
   $.ajax({
-    url:'./profile',
+    url:'./',
     cache: false,
     type: "POST"
     // ,data:{id:id, yelpid:yelpid, mode:mode}
@@ -50,7 +50,7 @@ function gotoBar(el){
   }
   
   $.ajax({
-    url:'./profile',
+    url:'./',
     cache: false,
     type: "POST",
     data:{id:id, yelpid:yelpid, mode:mode}

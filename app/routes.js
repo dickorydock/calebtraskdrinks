@@ -17,9 +17,7 @@ module.exports = function(app, passport, survey) {
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
-                console.log("did the cookie save? 2at");
-                console.log(req.session);
+    app.get('/login', function(req, res) {
                res.render('pages/index.ejs');
     });
 
@@ -27,7 +25,7 @@ module.exports = function(app, passport, survey) {
     // LOGIN ===============================
     // =====================================
     // show the login form
-    app.get('/login', function(req, res) {
+    app.get('/locallogin', function(req, res) {
         // render the page and pass in any flash data if it exists
         console.log("did the cookie save? at");
         console.log(req.session);
@@ -35,9 +33,9 @@ module.exports = function(app, passport, survey) {
     });
 
    // process the login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
+    app.post('/locallogin', passport.authenticate('local-login', {
+        successRedirect : '/', // redirect to the secure profile section
+        failureRedirect : '/locallogin', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
     
@@ -60,7 +58,6 @@ module.exports = function(app, passport, survey) {
     // =====================================
     // show the signup form
     app.get('/signup', function(req, res) {
-
         // render the page and pass in any flash data if it exists
         res.render('pages/signup.ejs', { message: req.flash('signupMessage') });
     });
@@ -77,8 +74,6 @@ module.exports = function(app, passport, survey) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function) and we will use the Yelp API to identify local bars
     var setLocation = function(req, res){
-        console.log("running set!");
-        console.log(req.session);
         var businessVisitors = require('./models/businessVisitor');
         var options0 = {
             url: "https://api.yelp.com/v3/businesses/search?term=bar&location="+req.session.savedLocation,
@@ -152,9 +147,7 @@ module.exports = function(app, passport, survey) {
     }
     
 
-    app.get('/profile', function(req, res) {
-        console.log("did the cookie save? 3at");
-        console.log(req.session);
+    app.get('/', function(req, res) {
         if (req.session.savedLocation.length > 0){
                 setLocation(req, res);
             }
@@ -171,7 +164,7 @@ module.exports = function(app, passport, survey) {
        
         });
 
-    app.post( '/profile', function(req,res){
+    app.post( '/', function(req,res){
 
         /******************/
         /***NEW LOCATION***/
@@ -208,7 +201,7 @@ module.exports = function(app, passport, survey) {
                     newVisitor.lastResponseDate   = localISOTime;
                     return newVisitor.save();
                 }
-                res.redirect('/profile');
+                res.redirect('/');
              }) 
         }    
     })
