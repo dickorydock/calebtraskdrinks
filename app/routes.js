@@ -67,6 +67,7 @@ module.exports = function(app, passport, survey) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function) and we will use the Yelp API to identify local bars
     var setLocation = function(req, res){
+        var req.session.savedLocation = req.body.myLocation;
         var businessVisitors = require('./models/businessVisitor');
         var options0 = {
             url: "https://api.yelp.com/v3/businesses/search?term=bar&location="+req.body.myLocation,
@@ -142,7 +143,7 @@ module.exports = function(app, passport, survey) {
     
 
     app.get('/profile', function(req, res) {
-        
+       var req.session.savedLocation = "";
        res.render('pages/profile.ejs', {
                     user : req.user,
                     yelpData:[],
@@ -159,7 +160,9 @@ module.exports = function(app, passport, survey) {
         /******************/
         console.log(req);
         if (req.body.hasOwnProperty('myLocation')){
-            setLocation(req, res);
+            if (req.body.myLocation.length > 0){
+                setLocation(req, res);
+            }
         }
         else
 
