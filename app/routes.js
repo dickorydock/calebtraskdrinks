@@ -7,10 +7,10 @@ module.exports = function(app, passport, survey) {
     var users = require('./models/user');     
                
     //make cookies work
-    app.use(cookieSession({
-        name: 'session',
-        keys: ['key1', 'key2']
-    }))
+    // app.use(cookieSession({
+    //     name: 'session',
+    //     keys: ['key1', 'key2']
+    // }))
 
     // var request   = require('../config/survey.js');
 

@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({extended: true}));// get information from html fo
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' , name: 'session',  keys: ["edgarsonneborg"],// Cookie Options
+app.use(session({ name: 'session', secret: 'ilovescotchscotchyscotchscotch' , name: 'session',  keys: ["edgarsonneborg"],// Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
   })); // session secret
 app.use(passport.initialize());
