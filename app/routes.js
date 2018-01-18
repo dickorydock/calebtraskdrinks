@@ -48,8 +48,8 @@ module.exports = function(app, passport, survey) {
     // handle the callback after twitter has authenticated the user
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', {
-            successRedirect : '/profile',
-            failureRedirect : '/'
+            successRedirect : '/',
+            failureRedirect : '/login'
         }));
 
 
