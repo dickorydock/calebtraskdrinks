@@ -150,7 +150,7 @@ module.exports = function(app, passport, survey) {
     
 
     app.get('/profile', function(req, res) {
-       var req.session.savedLocation = "";
+       req.session.savedLocation = "";
        res.render('pages/profile.ejs', {
                     user : req.user,
                     yelpData:[],
