@@ -175,7 +175,7 @@ module.exports = function(app, passport, survey) {
        //              sumsArray: []
        //          });
        
-       //  });
+        });
 
     app.post( '/profile', function(req,res){
 
