@@ -38,7 +38,6 @@
     </form>
 
     <!-- MY SURVEYS -->
-    <%=yelpDataString%>
     <%if (yelpData.length>0 && user!=undefined) {%>
     <div class="row top-buffer">
         <div class="col-md-3 bar-photo">Showing Results for: <%=resultsFor%></div>
@@ -53,7 +52,7 @@
         	<div class="col-md-7">
         	 <a href="<%=entry.url%>">
         		<%=entry.name%><br/>
-        		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
+        		<%=entry.location.address1%> <%=entry.location.city%>, <%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
         		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> Going <br/>
     	   	</div>
             <div class="col-md-2">
