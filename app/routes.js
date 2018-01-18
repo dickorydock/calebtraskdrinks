@@ -2,6 +2,7 @@
 module.exports = function(app, passport, survey) {
     var survey   = require('../config/survey.js');
     var request     = require('request');
+    var esession     = require('express-session');
     var businessVisitors = require('./models/businessVisitor');
     var users = require('./models/user');     
                
