@@ -120,7 +120,6 @@ module.exports = function(app, passport, survey) {
                 res.render('pages/index.ejs', {
                     user : req.user,
                     yelpData:JSON.parse(body).businesses,
-                    yelpDataString:body,
                     resultsFor:req.session.savedLocation,
                     sumsArray: idsandsums
                 });
@@ -142,7 +141,6 @@ module.exports = function(app, passport, survey) {
        res.render('pages/index.ejs', {
                     user : req.user,
                     yelpData:[],
-                    yelpDataString:"",
                     sumsArray: []
                 });
             
