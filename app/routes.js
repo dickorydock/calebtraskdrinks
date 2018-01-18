@@ -10,7 +10,7 @@ module.exports = function(app, passport, survey) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/login', function(req, res) {
-               res.render('pages/index.ejs');
+               res.render('pages/login.ejs');
     });
 
     // =====================================
@@ -19,7 +19,7 @@ module.exports = function(app, passport, survey) {
     // show the login form
     app.get('/locallogin', function(req, res) {
         // render the page and pass in any flash data if it exists
-        res.render('pages/login.ejs', { message: req.flash('loinMessage') }); 
+        res.render('pages/locallogin.ejs', { message: req.flash('loinMessage') }); 
     });
 
    // process the login form
@@ -117,7 +117,7 @@ module.exports = function(app, passport, survey) {
                     }
                 })
       
-                res.render('pages/profile.ejs', {
+                res.render('pages/index.ejs', {
                     user : req.user,
                     yelpData:JSON.parse(body).businesses,
                     yelpDataString:body,
@@ -139,7 +139,7 @@ module.exports = function(app, passport, survey) {
             }
         else {
        // req.session.savedLocation = null;
-       res.render('pages/profile.ejs', {
+       res.render('pages/index.ejs', {
                     user : req.user,
                     yelpData:[],
                     yelpDataString:"",

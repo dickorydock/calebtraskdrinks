@@ -1,27 +1,78 @@
-<!-- views/index.ejs -->
+<!-- views/profile.ejs -->
 <!doctype html>
 <html>
 <head>
-    <title>Everybody's At The Bar Without You: Login</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
+    <title>Everybody's At The Bar Without You</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <script type="text/javascript" src="/js/scripts.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<style>
+        body        { padding-top:80px; word-wrap:break-word;  }
+   		.top-buffer {margin-top: 20px}
+        .bar-listing {height: 150px}
+        .bar-photo img {
+            display: block;
+            margin: auto;
+            height:150px;
     </style>
 </head>
 <body>
 <div class="container">
 
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span>Login</h1>
-
-        <p>Login or Register with:</p>
-        <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span>Everybody's At The Bar Without You</h1>
+    <%if (user==undefined){ %><a href="/login" class="btn btn-default btn-sm">Login</a> <%}%>
+     <%if (user!=undefined){ %><a href="/logout" class="btn btn-default btn-sm">Logout</a><%}%>
     </div>
+
+
+    <!-- GET CITY -->
+    <form action="/" method="post">
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" placeholder="Where to?" name="myLocation">
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg" data-buttontype="setLocation" onclick="setLocation(this);">Search</button>
+    </form>
+
+    <!-- MY SURVEYS -->
+    <%if (yelpData.length>0 && user!=undefined) {%>
+    <div class="row top-buffer">
+        <div class="col-md-3 bar-photo">Showing Results for: <%=resultsFor%></div>
+        <div class="col-md-7"></div>
+        <div class="col-md-2">Going Tonight?</div>
+    </div>
+    <%}%>
+	<%yelpData.forEach(function(entry, k){%>
+   
+	    <div class="row top-buffer bar-listing" id="going-row-<%=entry.id%>">
+        	<div class="col-md-3 bar-photo"><a href="<%=entry.url%>"><img class = "img-responsive" src="<%=entry.image_url%>"/></a></div>
+        	<div class="col-md-7">
+        	 <a href="<%=entry.url%>">
+        		<%=entry.name%><br/>
+        		<%=entry.location.address1%> <%=entry.location.city%>,<%=entry.location.state%> <%=entry.location.zip_code%></a><br/>
+        		<span id="<%=entry.id%>-sum"><%=sumsArray[k][1]%></span> Going <br/>
+    	   	</div>
+            <div class="col-md-2">
+             <%if (user!=undefined){ %>
+                <label class="switch">
+                    <input type="checkbox"  id='going-<%=entry.id%>' data-buttontype="goingResponse" onClick="gotoBar(this)" data-userid = <%=user._id%> data-yelpid = '<%=entry.id%>' data-mode =  <%if (sumsArray[k][2]==1)
+                    {%>
+                    'amgoing' checked>
+                    <%}%>
+                    <%if (sumsArray[k][2]==0)
+                    {%>
+                    'notgoing'>
+                    <%}%>
+                    <span class="slider round"></span>
+                </label>
+          <%}%>       
+            </div>
+		</div>
+	<%})%> 
+	
 </div>
 </body>
 </html>
-
