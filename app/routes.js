@@ -37,7 +37,6 @@ module.exports = function(app, passport, survey) {
         failureFlash : true // allow flash messages
     }));
     
-
     // =====================================
     // TWITTER ROUTES ======================
     // =====================================
@@ -150,7 +149,18 @@ module.exports = function(app, passport, survey) {
     
 
     app.get('/profile', function(req, res) {
-       req.session.savedLocation = "";
+       req.session.savedLocation = null;
+       res.render('pages/profile.ejs', {
+                    user : req.user,
+                    yelpData:[],
+                    yelpDataString:"",
+                    sumsArray: []
+                });
+       
+        });
+
+    app.get('/toprofile', function(req, res) {
+       // req.session.savedLocation = null;
        res.render('pages/profile.ejs', {
                     user : req.user,
                     yelpData:[],

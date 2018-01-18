@@ -11,14 +11,14 @@ only change the button too if if there's an internet connection - DONE
 allow users to login AFTER they do a search-TODO 
 */
 function setLocation(el){
-	var form = document.createElement('form');
-	form.setAttribute('method', 'post');
-	form.setAttribute('action', 'http://www.google.com')
+	// var form = document.createElement('form');
+	// form.setAttribute('method', 'post');
+	// form.setAttribute('action', 'http://www.google.com')
   $.ajax({
     url:'./profile',
     cache: false,
-    type: "POST",
-    data:{id:id, yelpid:yelpid, mode:mode}
+    type: "POST"
+    // ,data:{id:id, yelpid:yelpid, mode:mode}
   });
 
   if (navigator.onLine){
