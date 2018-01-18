@@ -32,13 +32,6 @@ var survey = require('./config/survey'); // pass passport for configuration
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-// app.use(cookieSession({
-  // name: 'session',
-  // keys: ["edgarsonneborg"],
- 
-  // Cookie Options
-  // maxAge: 24 * 60 * 60 * 1000 // 24 hours
-// });
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));// get information from html forms
 

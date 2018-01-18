@@ -11,14 +11,10 @@ only change the button too if if there's an internet connection - DONE
 allow users to login AFTER they do a search-TODO 
 */
 function setLocation(el){
-	// var form = document.createElement('form');
-	// form.setAttribute('method', 'post');
-	// form.setAttribute('action', 'http://www.google.com')
   $.ajax({
     url:'./',
     cache: false,
     type: "POST"
-    // ,data:{id:id, yelpid:yelpid, mode:mode}
   });
 
   if (navigator.onLine){
@@ -67,59 +63,3 @@ function gotoBar(el){
     $("#"+yelpid+"-sum").html(newSum.toString()); 
   }  
 }
-     
-  /*.fail(function(jqXHR, textStatus, errorThrown) {
-  console.log('There has been an error.');
-  });*/
-
-//loading class
-// var $loading = $('#loadingDiv').hide();
-// $(document)
-//   .ajaxStart(function () {
-//     $loading.show();
-//   })
-//   .ajaxStop(function () {
-//     $loading.hide();
-//   });
-  
-  /*POST requests are timing out - fix this 1-13-2018*/
-
-  // var watchword = "Unwatch"; 
-
-  // if (mode=="onx")
-  // { 
-  //   var watchword = "Watch"; 
-  // } 
-  // var allgenre = ["othe", "broa", "caba", "chil", "conc", "lect", "live", "musi", "play", "spec", "spor", "danc"] ; 
-
-  
-  // console.log("callback fired genre!!");
-//  function saveInstance() {
-
-//   return businessVisitors.findOne(
-//     {
-//         "$and": [
-//             {
-//                "userId": userId
-//             }
-//             ,{
-//                 "yelpId": yelpId
-//             }
-//         ]
-//     }
-//   )
-//   .exec()
-//   .then(data => {
-//    if (!data) {
-//       var localISOTime  = (new Date(Date.now() - tzOffset)).toISOString().slice(0,-1)  
-//       var newVisitor = new businessVisitors();
-//       newVisitor.userId             = userId;
-//       newVisitor.yelpId             = yelpId;
-//       //setting clickCount to 1 because if this record is being created, it must have been from a "No, I'm Not Going" state
-//       newVisitor.clickCount       = 1;
-//       newVisitor.lastResponseDate   = localISOTime;
-//       return instancerecord.save();
-//     }
-//     return data;
-//   })
-// };

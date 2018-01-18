@@ -5,15 +5,7 @@ module.exports = function(app, passport, survey) {
     var cookieSession     = require('cookie-session');
     var businessVisitors = require('./models/businessVisitor');
     var users = require('./models/user');     
-               
-    //make cookies work
-    // app.use(cookieSession({
-    //     name: 'session',
-    //     keys: ['key1', 'key2']
-    // }))
-
-    // var request   = require('../config/survey.js');
-
+  
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -27,8 +19,6 @@ module.exports = function(app, passport, survey) {
     // show the login form
     app.get('/locallogin', function(req, res) {
         // render the page and pass in any flash data if it exists
-        console.log("did the cookie save? at");
-        console.log(req.session);
         res.render('pages/login.ejs', { message: req.flash('loinMessage') }); 
     });
 
@@ -94,50 +84,45 @@ module.exports = function(app, passport, survey) {
             var grouped = [];
 
             var profileCallback = function(err, data){
-                // console.log(req);
-                // console.log(req.hasOwnProperty('user'));
-                // console.log(req.hasOwnProperty('_passport.usbbber));
-                // if (req.hasOwnProperty('user')){
-                    data.forEach(function (o) {
-                        if (!this[o.yelpId]) {
-                            this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
-                            grouped.push(this[o.yelpId]);
+                data.forEach(function (o) {
+                    if (!this[o.yelpId]) {
+                        this[o.yelpId] = { yelpId: o.yelpId, sumCount: 0, userGoing: 0, clickCount: o.clickCount};
+                        grouped.push(this[o.yelpId]);
+                    }
+                    if (req.hasOwnProperty('user')){
+                        if (o.userId==req.user._id && o.clickCount==1){
+                            this[o.yelpId].userGoing = 1;
                         }
-                        if (req.hasOwnProperty('user')){
-                            if (o.userId==req.user._id && o.clickCount==1){
-                                this[o.yelpId].userGoing = 1;
-                            }
-                        }
+                    }
 
-                        this[o.yelpId].sumCount += o.clickCount;
-                    }, Object.create(null));
-                    alltheseids.map(function(thisid){
-                        var thissum = 0 ;
-                        var thisgoing = 0 ;
-                        grouped.forEach(function(groups){
-                              if (groups.yelpId==thisid){
-                                thissum = groups.sumCount;
-                                if (req.hasOwnProperty('user')){
-                                thisgoing = groups.userGoing;
-                            }
-                            }
-                        });
-                        if (req.hasOwnProperty('user')){
-                        idsandsums.push([thisid, thissum, thisgoing])
+                    this[o.yelpId].sumCount += o.clickCount;
+                }, Object.create(null));
+                alltheseids.map(function(thisid){
+                    var thissum = 0 ;
+                    var thisgoing = 0 ;
+                    grouped.forEach(function(groups){
+                          if (groups.yelpId==thisid){
+                            thissum = groups.sumCount;
+                            if (req.hasOwnProperty('user')){
+                            thisgoing = groups.userGoing;
                         }
-                        else{
-                        idsandsums.push([thisid, thissum])
-                            
                         }
-                    })
-                // }
-
-                    res.render('pages/profile.ejs', {
-                        user : req.user,
-                        yelpData:JSON.parse(body).businesses,
-                        yelpDataString:body,
-                        sumsArray: idsandsums
                     });
+                    if (req.hasOwnProperty('user')){
+                    idsandsums.push([thisid, thissum, thisgoing])
+                    }
+                    else{
+                    idsandsums.push([thisid, thissum])
+                        
+                    }
+                })
+      
+                res.render('pages/profile.ejs', {
+                    user : req.user,
+                    yelpData:JSON.parse(body).businesses,
+                    yelpDataString:body,
+                    sumsArray: idsandsums
+                });
                 
             }
             businessVisitors.find({yelpId:{$in:alltheseids}}).
@@ -161,7 +146,6 @@ module.exports = function(app, passport, survey) {
                 });
             
         }
-       
         });
 
     app.post( '/', function(req,res){
