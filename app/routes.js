@@ -161,14 +161,21 @@ module.exports = function(app, passport, survey) {
 
     app.get('/toprofile', function(req, res) {
        // req.session.savedLocation = null;
-       res.render('pages/profile.ejs', {
-                    user : req.user,
-                    yelpData:[],
-                    yelpDataString:"",
-                    sumsArray: []
-                });
+
+       $.ajax({
+    url:'./profile',
+    cache: false,
+    type: "POST"
+    // ,data:{id:id, yelpid:yelpid, mode:mode}
+  });
+       // res.render('pages/profile.ejs', {
+       //              user : req.user,
+       //              yelpData:[],
+       //              yelpDataString:"",
+       //              sumsArray: []
+       //          });
        
-        });
+       //  });
 
     app.post( '/profile', function(req,res){
 
