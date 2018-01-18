@@ -18,7 +18,9 @@ module.exports = function(app, passport, survey) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
-        res.render('pages/index.ejs');
+                console.log("did the cookie save? 2at");
+                console.log(req.session);
+               res.render('pages/index.ejs');
     });
 
     // =====================================
