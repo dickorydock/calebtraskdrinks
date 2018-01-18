@@ -134,7 +134,7 @@ module.exports = function(app, passport, survey) {
     
 
     app.get('/', function(req, res) {
-        if (req.session.savedLocation.length > 0){
+        if (req.session.savedLocation != undefined){
                 setLocation(req, res);
             }
         else {
