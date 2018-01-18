@@ -32,9 +32,9 @@ var survey = require('./config/survey'); // pass passport for configuration
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(cookieSession({
-  name: 'session',
-  keys: ["edgarsonneborg"],
+// app.use(cookieSession({
+  // name: 'session',
+  // keys: ["edgarsonneborg"],
  
   // Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
@@ -45,7 +45,9 @@ app.use(bodyParser.urlencoded({extended: true}));// get information from html fo
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' , name: 'session',  keys: ["edgarsonneborg"],// Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
