@@ -153,6 +153,8 @@ module.exports = function(app, passport, survey) {
     
 
     app.get('/profile', function(req, res) {
+        console.log("did the cookie save? 3at");
+        console.log(req.session);
        // req.session.savedLocation = null;
        res.render('pages/profile.ejs', {
                     user : req.user,
