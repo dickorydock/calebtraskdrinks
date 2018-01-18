@@ -121,7 +121,7 @@ module.exports = function(app, passport, survey) {
                     user : req.user,
                     yelpData:JSON.parse(body).businesses,
                     yelpDataString:body,
-                    resultsFor: yelpDataString:body,
+                    resultsFor:req.session.savedLocation,
                     sumsArray: idsandsums
                 });
                 
@@ -196,6 +196,7 @@ module.exports = function(app, passport, survey) {
     // LOGOUT ==============================
     // =====================================
     app.get('/logout', function(req, res) {
+        req.session.savedLocation=null;
         req.logout();
         res.redirect('/');
     });
